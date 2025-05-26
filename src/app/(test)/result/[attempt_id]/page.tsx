@@ -527,13 +527,13 @@ export default function ResultPage() {
               전문적인 옥타그노시스 정식 검사를 통해<br/>더 깊이있는 분석과 맞춤형 진로 정보를 확인해보세요.
             </p>
             <a
-              href="https://www.octagnosis.com/"
+              href="https://aptitude-x.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-8 py-3 bg-white hover:bg-sky-50 text-blue-600 rounded-xl font-bold transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-sky-200"
             >
               <ExternalLink size={20} className="mr-2.5" />
-              맞춤형 옥타그노시스
+              맞춤형 옥타그노시스 검사 알아보기 
             </a>
           </section>
           
