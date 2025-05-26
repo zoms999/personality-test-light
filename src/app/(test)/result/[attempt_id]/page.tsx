@@ -148,6 +148,7 @@ export default function ResultPage() {
   
   const [copySuccess, setCopySuccess] = useState(false);
   const [kakaoReady, setKakaoReady] = useState(false);
+  const [participantCount, setParticipantCount] = useState<number | null>(null);
 
   const { data, error, isLoading, mutate } = useSWR<ApiResponse>(
     attemptId ? `/api/test/result/${attemptId}` : null,
@@ -163,6 +164,23 @@ export default function ResultPage() {
       }
     }
   );
+
+  // 참여자 수 가져오기
+  useEffect(() => {
+    const fetchParticipantCount = async () => {
+      try {
+        const response = await fetch('/api/stats/participants');
+        const data = await response.json();
+        if (data.success) {
+          setParticipantCount(data.data.display_count);
+        }
+      } catch (error) {
+        console.error('참여자 수 조회 실패:', error);
+      }
+    };
+
+    fetchParticipantCount();
+  }, []);
 
   // 카카오 SDK 초기화 로직 개선
   useEffect(() => {
@@ -422,7 +440,7 @@ export default function ResultPage() {
                         {type.description_points.map((point, i) => (
                           <li key={`${type.id}-desc-${i}`} className="flex items-start">
                             <CheckCircle size={16} className="text-green-500 mt-1 mr-2.5 flex-shrink-0" />
-                            <span className="text-slate-600 leading-relaxed">{point}</span>
+                            <span className="text-slate-600 leading-relaxed break-keep">{point}</span>
                           </li>
                         ))}
                       </ul>
@@ -515,7 +533,7 @@ export default function ResultPage() {
               className="inline-flex items-center px-8 py-3 bg-white hover:bg-sky-50 text-blue-600 rounded-xl font-bold transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-sky-200"
             >
               <ExternalLink size={20} className="mr-2.5" />
-              정식 검사 알아보기
+              맞춤형 옥타그노시스
             </a>
           </section>
           
@@ -524,19 +542,25 @@ export default function ResultPage() {
             <button
               type="button"
               onClick={() => router.push('/')}
-              className="px-10 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white rounded-xl font-semibold text-lg transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50 shadow-xl hover:shadow-2xl"
+              className="px-10 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white rounded-xl font-semibold text-lg transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50 shadow-xl hover:shadow-2xl inline-flex flex-col items-center"
             >
-              새로운 테스트 시작하기
+              <div>새로운 테스트 시작하기</div>
+              {participantCount !== null && (
+                <div className="flex items-center text-sm font-normal mt-1 opacity-90">
+                  <Users size={16} className="mr-1" />
+                  현재 총 {participantCount.toLocaleString()}명이 참여했어요!
+                </div>
+              )}
             </button>
           </div>
 
           {/* --- 푸터 로고/회사 정보 (간단하게) --- */}
           <footer className="mt-16 pt-8 border-t border-slate-200 text-center">
             <p className="text-sm text-slate-500">
-              본 테스트는 옥타그노시스 검사의 간략화 버전입니다.
+              본 테스트는 옥타그노시스 검사의 무료버전입니다.
             </p>
             <p className="text-sm text-slate-500 mt-1">
-              © {new Date().getFullYear()} Octagnosis. All Rights Reserved.
+              © {new Date().getFullYear()} Copyright 2004. 한국진로적성센터. All rights reserved.
             </p>
           </footer>
         </div>

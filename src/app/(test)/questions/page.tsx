@@ -156,7 +156,7 @@ function QuestionsPageContent() {
         {/* 헤더 */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-slate-800 mb-2">
-            나를 찾아줘! 테스트
+          옥스, 나를 찾아줘!
           </h1>
           <div className="flex items-center justify-center space-x-3 text-sm text-slate-500">
             <span>페이지 {currentPage + 1} / {totalPages}</span>
@@ -167,10 +167,10 @@ function QuestionsPageContent() {
 
         {/* 안내 문구 */}
         <div className="bg-sky-50 border border-sky-200 rounded-lg p-4 mb-8 shadow-sm">
-          <p className="text-sky-800 text-center text-sm sm:text-base font-medium">
+          <p className="text-sky-800 text-center text-sm sm:text-base font-medium break-keep">
             각 문항을 읽고, 평소 자신의 모습과 얼마나 일치하는지 선택해주세요.
-            <br className="sm:hidden"/>
-            <span className="font-semibold">&apos;전혀 아니다(1점)&apos;</span>부터 <span className="font-semibold">&apos;매우 그렇다(10점)&apos;</span>까지 가능합니다.
+            <br />
+            나와 많이 비슷할수록 <span className="font-semibold">10점</span>에 가깝게, 나와 비슷하지 않다면 <span className="font-semibold">1점</span>에 가깝게 체크하시면 됩니다.
           </p>
         </div>
 
@@ -179,19 +179,26 @@ function QuestionsPageContent() {
           <div className="space-y-8">
             {currentQuestions.map((question) => (
               <div key={question.id} className="border-b border-slate-100 last:border-b-0 pb-6 last:pb-0">
-                <h3 className="text-lg font-semibold text-slate-700 mb-5 leading-snug">
-                  {allQuestions.findIndex(q => q.id === question.id) + 1}. {question.question_text}
+                {/* --- 변경된 문항 표시 부분 시작 --- */}
+                <h3 className="text-lg font-semibold text-slate-700 mb-5 leading-snug flex items-baseline">
+                  <span className="mr-2 flex-shrink-0">
+                    {allQuestions.findIndex(q => q.id === question.id) + 1}.
+                  </span>
+                  <span className="break-keep">
+                    {question.question_text}
+                  </span>
                 </h3>
+                {/* --- 변경된 문항 표시 부분 끝 --- */}
                 
                 {/* 점수 선택 */}
                 <div className="space-y-3">
                   <div className="flex justify-between text-xs sm:text-sm text-slate-500 px-1 sm:px-2">
+                    <span>매우 그렇다</span> 
                     <span>전혀 아니다</span>
-                    <span>매우 그렇다</span>
                   </div>
                   
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2">
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((score) => (
+                    {[10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((score) => ( 
                       <label
                         key={`${question.id}-${score}`}
                         className={`flex flex-col items-center cursor-pointer transition-all duration-200 group ${
@@ -285,7 +292,7 @@ function QuestionsPageContent() {
         {/* 진행률 표시 */}
         <div className="mt-10">
           <div className="flex justify-between text-sm text-slate-600 mb-1.5 px-1">
-            <span>답변 현황</span>
+            <span>답변 진행</span>
             <span>{Object.keys(answers).length} / {allQuestions.length}</span>
           </div>
           <div className="w-full bg-slate-200 rounded-full h-2.5 relative overflow-hidden">
@@ -314,4 +321,4 @@ export default function QuestionsPage() {
       <QuestionsPageContent />
     </Suspense>
   );
-} 
+}
