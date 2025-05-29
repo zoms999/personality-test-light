@@ -1300,37 +1300,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type TestAttemptsCountOutputType
-   */
-
-  export type TestAttemptsCountOutputType = {
-    user_answers: number
-  }
-
-  export type TestAttemptsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user_answers?: boolean | TestAttemptsCountOutputTypeCountUser_answersArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * TestAttemptsCountOutputType without action
-   */
-  export type TestAttemptsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TestAttemptsCountOutputType
-     */
-    select?: TestAttemptsCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * TestAttemptsCountOutputType without action
-   */
-  export type TestAttemptsCountOutputTypeCountUser_answersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserAnswersWhereInput
-  }
-
-
-  /**
    * Models
    */
 
@@ -3674,7 +3643,10 @@ export namespace Prisma {
     id: string | null
     session_id: string | null
     user_name: string | null
+    birth_date: string | null
     user_email: string | null
+    phone_number: string | null
+    agreed_to_privacy: boolean | null
     ip_address: string | null
     user_agent: string | null
     is_completed: boolean | null
@@ -3687,7 +3659,10 @@ export namespace Prisma {
     id: string | null
     session_id: string | null
     user_name: string | null
+    birth_date: string | null
     user_email: string | null
+    phone_number: string | null
+    agreed_to_privacy: boolean | null
     ip_address: string | null
     user_agent: string | null
     is_completed: boolean | null
@@ -3700,7 +3675,10 @@ export namespace Prisma {
     id: number
     session_id: number
     user_name: number
+    birth_date: number
     user_email: number
+    phone_number: number
+    agreed_to_privacy: number
     ip_address: number
     user_agent: number
     is_completed: number
@@ -3723,7 +3701,10 @@ export namespace Prisma {
     id?: true
     session_id?: true
     user_name?: true
+    birth_date?: true
     user_email?: true
+    phone_number?: true
+    agreed_to_privacy?: true
     ip_address?: true
     user_agent?: true
     is_completed?: true
@@ -3736,7 +3717,10 @@ export namespace Prisma {
     id?: true
     session_id?: true
     user_name?: true
+    birth_date?: true
     user_email?: true
+    phone_number?: true
+    agreed_to_privacy?: true
     ip_address?: true
     user_agent?: true
     is_completed?: true
@@ -3749,7 +3733,10 @@ export namespace Prisma {
     id?: true
     session_id?: true
     user_name?: true
+    birth_date?: true
     user_email?: true
+    phone_number?: true
+    agreed_to_privacy?: true
     ip_address?: true
     user_agent?: true
     is_completed?: true
@@ -3849,7 +3836,10 @@ export namespace Prisma {
     id: string
     session_id: string | null
     user_name: string | null
+    birth_date: string | null
     user_email: string | null
+    phone_number: string | null
+    agreed_to_privacy: boolean
     ip_address: string | null
     user_agent: string | null
     is_completed: boolean
@@ -3881,23 +3871,26 @@ export namespace Prisma {
     id?: boolean
     session_id?: boolean
     user_name?: boolean
+    birth_date?: boolean
     user_email?: boolean
+    phone_number?: boolean
+    agreed_to_privacy?: boolean
     ip_address?: boolean
     user_agent?: boolean
     is_completed?: boolean
     completion_time?: boolean
     created_at?: boolean
     updated_at?: boolean
-    user_answers?: boolean | TestAttempts$user_answersArgs<ExtArgs>
-    test_result?: boolean | TestAttempts$test_resultArgs<ExtArgs>
-    _count?: boolean | TestAttemptsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["testAttempts"]>
 
   export type TestAttemptsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     session_id?: boolean
     user_name?: boolean
+    birth_date?: boolean
     user_email?: boolean
+    phone_number?: boolean
+    agreed_to_privacy?: boolean
     ip_address?: boolean
     user_agent?: boolean
     is_completed?: boolean
@@ -3910,7 +3903,10 @@ export namespace Prisma {
     id?: boolean
     session_id?: boolean
     user_name?: boolean
+    birth_date?: boolean
     user_email?: boolean
+    phone_number?: boolean
+    agreed_to_privacy?: boolean
     ip_address?: boolean
     user_agent?: boolean
     is_completed?: boolean
@@ -3923,7 +3919,10 @@ export namespace Prisma {
     id?: boolean
     session_id?: boolean
     user_name?: boolean
+    birth_date?: boolean
     user_email?: boolean
+    phone_number?: boolean
+    agreed_to_privacy?: boolean
     ip_address?: boolean
     user_agent?: boolean
     is_completed?: boolean
@@ -3932,26 +3931,19 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
-  export type TestAttemptsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "session_id" | "user_name" | "user_email" | "ip_address" | "user_agent" | "is_completed" | "completion_time" | "created_at" | "updated_at", ExtArgs["result"]["testAttempts"]>
-  export type TestAttemptsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user_answers?: boolean | TestAttempts$user_answersArgs<ExtArgs>
-    test_result?: boolean | TestAttempts$test_resultArgs<ExtArgs>
-    _count?: boolean | TestAttemptsCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type TestAttemptsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type TestAttemptsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type TestAttemptsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "session_id" | "user_name" | "birth_date" | "user_email" | "phone_number" | "agreed_to_privacy" | "ip_address" | "user_agent" | "is_completed" | "completion_time" | "created_at" | "updated_at", ExtArgs["result"]["testAttempts"]>
 
   export type $TestAttemptsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TestAttempts"
-    objects: {
-      user_answers: Prisma.$UserAnswersPayload<ExtArgs>[]
-      test_result: Prisma.$TestResultsPayload<ExtArgs> | null
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
       session_id: string | null
       user_name: string | null
+      birth_date: string | null
       user_email: string | null
+      phone_number: string | null
+      agreed_to_privacy: boolean
       ip_address: string | null
       user_agent: string | null
       is_completed: boolean
@@ -4352,8 +4344,6 @@ export namespace Prisma {
    */
   export interface Prisma__TestAttemptsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user_answers<T extends TestAttempts$user_answersArgs<ExtArgs> = {}>(args?: Subset<T, TestAttempts$user_answersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserAnswersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    test_result<T extends TestAttempts$test_resultArgs<ExtArgs> = {}>(args?: Subset<T, TestAttempts$test_resultArgs<ExtArgs>>): Prisma__TestResultsClient<$Result.GetResult<Prisma.$TestResultsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4386,7 +4376,10 @@ export namespace Prisma {
     readonly id: FieldRef<"TestAttempts", 'String'>
     readonly session_id: FieldRef<"TestAttempts", 'String'>
     readonly user_name: FieldRef<"TestAttempts", 'String'>
+    readonly birth_date: FieldRef<"TestAttempts", 'String'>
     readonly user_email: FieldRef<"TestAttempts", 'String'>
+    readonly phone_number: FieldRef<"TestAttempts", 'String'>
+    readonly agreed_to_privacy: FieldRef<"TestAttempts", 'Boolean'>
     readonly ip_address: FieldRef<"TestAttempts", 'String'>
     readonly user_agent: FieldRef<"TestAttempts", 'String'>
     readonly is_completed: FieldRef<"TestAttempts", 'Boolean'>
@@ -4410,10 +4403,6 @@ export namespace Prisma {
      */
     omit?: TestAttemptsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TestAttemptsInclude<ExtArgs> | null
-    /**
      * Filter, which TestAttempts to fetch.
      */
     where: TestAttemptsWhereUniqueInput
@@ -4432,10 +4421,6 @@ export namespace Prisma {
      */
     omit?: TestAttemptsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TestAttemptsInclude<ExtArgs> | null
-    /**
      * Filter, which TestAttempts to fetch.
      */
     where: TestAttemptsWhereUniqueInput
@@ -4453,10 +4438,6 @@ export namespace Prisma {
      * Omit specific fields from the TestAttempts
      */
     omit?: TestAttemptsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TestAttemptsInclude<ExtArgs> | null
     /**
      * Filter, which TestAttempts to fetch.
      */
@@ -4506,10 +4487,6 @@ export namespace Prisma {
      */
     omit?: TestAttemptsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TestAttemptsInclude<ExtArgs> | null
-    /**
      * Filter, which TestAttempts to fetch.
      */
     where?: TestAttemptsWhereInput
@@ -4558,10 +4535,6 @@ export namespace Prisma {
      */
     omit?: TestAttemptsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TestAttemptsInclude<ExtArgs> | null
-    /**
      * Filter, which TestAttempts to fetch.
      */
     where?: TestAttemptsWhereInput
@@ -4604,10 +4577,6 @@ export namespace Prisma {
      * Omit specific fields from the TestAttempts
      */
     omit?: TestAttemptsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TestAttemptsInclude<ExtArgs> | null
     /**
      * The data needed to create a TestAttempts.
      */
@@ -4656,10 +4625,6 @@ export namespace Prisma {
      * Omit specific fields from the TestAttempts
      */
     omit?: TestAttemptsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TestAttemptsInclude<ExtArgs> | null
     /**
      * The data needed to update a TestAttempts.
      */
@@ -4727,10 +4692,6 @@ export namespace Prisma {
      */
     omit?: TestAttemptsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TestAttemptsInclude<ExtArgs> | null
-    /**
      * The filter to search for the TestAttempts to update in case it exists.
      */
     where: TestAttemptsWhereUniqueInput
@@ -4757,10 +4718,6 @@ export namespace Prisma {
      */
     omit?: TestAttemptsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TestAttemptsInclude<ExtArgs> | null
-    /**
      * Filter which TestAttempts to delete.
      */
     where: TestAttemptsWhereUniqueInput
@@ -4781,49 +4738,6 @@ export namespace Prisma {
   }
 
   /**
-   * TestAttempts.user_answers
-   */
-  export type TestAttempts$user_answersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAnswers
-     */
-    select?: UserAnswersSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAnswers
-     */
-    omit?: UserAnswersOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAnswersInclude<ExtArgs> | null
-    where?: UserAnswersWhereInput
-    orderBy?: UserAnswersOrderByWithRelationInput | UserAnswersOrderByWithRelationInput[]
-    cursor?: UserAnswersWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserAnswersScalarFieldEnum | UserAnswersScalarFieldEnum[]
-  }
-
-  /**
-   * TestAttempts.test_result
-   */
-  export type TestAttempts$test_resultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TestResults
-     */
-    select?: TestResultsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TestResults
-     */
-    omit?: TestResultsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TestResultsInclude<ExtArgs> | null
-    where?: TestResultsWhereInput
-  }
-
-  /**
    * TestAttempts without action
    */
   export type TestAttemptsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4835,10 +4749,6 @@ export namespace Prisma {
      * Omit specific fields from the TestAttempts
      */
     omit?: TestAttemptsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TestAttemptsInclude<ExtArgs> | null
   }
 
 
@@ -5064,7 +4974,6 @@ export namespace Prisma {
     score?: boolean
     answer_time?: boolean
     created_at?: boolean
-    test_attempt?: boolean | TestAttemptsDefaultArgs<ExtArgs>
     question?: boolean | QuestionsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userAnswers"]>
 
@@ -5076,7 +4985,6 @@ export namespace Prisma {
     score?: boolean
     answer_time?: boolean
     created_at?: boolean
-    test_attempt?: boolean | TestAttemptsDefaultArgs<ExtArgs>
     question?: boolean | QuestionsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userAnswers"]>
 
@@ -5088,7 +4996,6 @@ export namespace Prisma {
     score?: boolean
     answer_time?: boolean
     created_at?: boolean
-    test_attempt?: boolean | TestAttemptsDefaultArgs<ExtArgs>
     question?: boolean | QuestionsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userAnswers"]>
 
@@ -5104,22 +5011,18 @@ export namespace Prisma {
 
   export type UserAnswersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "test_attempt_id" | "question_id" | "answer_option" | "score" | "answer_time" | "created_at", ExtArgs["result"]["userAnswers"]>
   export type UserAnswersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    test_attempt?: boolean | TestAttemptsDefaultArgs<ExtArgs>
     question?: boolean | QuestionsDefaultArgs<ExtArgs>
   }
   export type UserAnswersIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    test_attempt?: boolean | TestAttemptsDefaultArgs<ExtArgs>
     question?: boolean | QuestionsDefaultArgs<ExtArgs>
   }
   export type UserAnswersIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    test_attempt?: boolean | TestAttemptsDefaultArgs<ExtArgs>
     question?: boolean | QuestionsDefaultArgs<ExtArgs>
   }
 
   export type $UserAnswersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "UserAnswers"
     objects: {
-      test_attempt: Prisma.$TestAttemptsPayload<ExtArgs>
       question: Prisma.$QuestionsPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -5524,7 +5427,6 @@ export namespace Prisma {
    */
   export interface Prisma__UserAnswersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    test_attempt<T extends TestAttemptsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TestAttemptsDefaultArgs<ExtArgs>>): Prisma__TestAttemptsClient<$Result.GetResult<Prisma.$TestAttemptsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     question<T extends QuestionsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuestionsDefaultArgs<ExtArgs>>): Prisma__QuestionsClient<$Result.GetResult<Prisma.$QuestionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6172,7 +6074,6 @@ export namespace Prisma {
     is_shared?: boolean
     created_at?: boolean
     updated_at?: boolean
-    test_attempt?: boolean | TestAttemptsDefaultArgs<ExtArgs>
     primary_personality_type?: boolean | TestResults$primary_personality_typeArgs<ExtArgs>
   }, ExtArgs["result"]["testResults"]>
 
@@ -6188,7 +6089,6 @@ export namespace Prisma {
     is_shared?: boolean
     created_at?: boolean
     updated_at?: boolean
-    test_attempt?: boolean | TestAttemptsDefaultArgs<ExtArgs>
     primary_personality_type?: boolean | TestResults$primary_personality_typeArgs<ExtArgs>
   }, ExtArgs["result"]["testResults"]>
 
@@ -6204,7 +6104,6 @@ export namespace Prisma {
     is_shared?: boolean
     created_at?: boolean
     updated_at?: boolean
-    test_attempt?: boolean | TestAttemptsDefaultArgs<ExtArgs>
     primary_personality_type?: boolean | TestResults$primary_personality_typeArgs<ExtArgs>
   }, ExtArgs["result"]["testResults"]>
 
@@ -6224,22 +6123,18 @@ export namespace Prisma {
 
   export type TestResultsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "test_attempt_id" | "primary_personality_type_id" | "total_scores" | "percentage_scores" | "detailed_analysis" | "recommendations" | "share_token" | "is_shared" | "created_at" | "updated_at", ExtArgs["result"]["testResults"]>
   export type TestResultsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    test_attempt?: boolean | TestAttemptsDefaultArgs<ExtArgs>
     primary_personality_type?: boolean | TestResults$primary_personality_typeArgs<ExtArgs>
   }
   export type TestResultsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    test_attempt?: boolean | TestAttemptsDefaultArgs<ExtArgs>
     primary_personality_type?: boolean | TestResults$primary_personality_typeArgs<ExtArgs>
   }
   export type TestResultsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    test_attempt?: boolean | TestAttemptsDefaultArgs<ExtArgs>
     primary_personality_type?: boolean | TestResults$primary_personality_typeArgs<ExtArgs>
   }
 
   export type $TestResultsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TestResults"
     objects: {
-      test_attempt: Prisma.$TestAttemptsPayload<ExtArgs>
       primary_personality_type: Prisma.$PersonalityTypesPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -6648,7 +6543,6 @@ export namespace Prisma {
    */
   export interface Prisma__TestResultsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    test_attempt<T extends TestAttemptsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TestAttemptsDefaultArgs<ExtArgs>>): Prisma__TestAttemptsClient<$Result.GetResult<Prisma.$TestAttemptsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     primary_personality_type<T extends TestResults$primary_personality_typeArgs<ExtArgs> = {}>(args?: Subset<T, TestResults$primary_personality_typeArgs<ExtArgs>>): Prisma__PersonalityTypesClient<$Result.GetResult<Prisma.$PersonalityTypesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7171,7 +7065,10 @@ export namespace Prisma {
     id: 'id',
     session_id: 'session_id',
     user_name: 'user_name',
+    birth_date: 'birth_date',
     user_email: 'user_email',
+    phone_number: 'phone_number',
+    agreed_to_privacy: 'agreed_to_privacy',
     ip_address: 'ip_address',
     user_agent: 'user_agent',
     is_completed: 'is_completed',
@@ -7511,30 +7408,32 @@ export namespace Prisma {
     id?: UuidFilter<"TestAttempts"> | string
     session_id?: StringNullableFilter<"TestAttempts"> | string | null
     user_name?: StringNullableFilter<"TestAttempts"> | string | null
+    birth_date?: StringNullableFilter<"TestAttempts"> | string | null
     user_email?: StringNullableFilter<"TestAttempts"> | string | null
+    phone_number?: StringNullableFilter<"TestAttempts"> | string | null
+    agreed_to_privacy?: BoolFilter<"TestAttempts"> | boolean
     ip_address?: StringNullableFilter<"TestAttempts"> | string | null
     user_agent?: StringNullableFilter<"TestAttempts"> | string | null
     is_completed?: BoolFilter<"TestAttempts"> | boolean
     completion_time?: IntNullableFilter<"TestAttempts"> | number | null
     created_at?: DateTimeFilter<"TestAttempts"> | Date | string
     updated_at?: DateTimeFilter<"TestAttempts"> | Date | string
-    user_answers?: UserAnswersListRelationFilter
-    test_result?: XOR<TestResultsNullableScalarRelationFilter, TestResultsWhereInput> | null
   }
 
   export type TestAttemptsOrderByWithRelationInput = {
     id?: SortOrder
     session_id?: SortOrderInput | SortOrder
     user_name?: SortOrderInput | SortOrder
+    birth_date?: SortOrderInput | SortOrder
     user_email?: SortOrderInput | SortOrder
+    phone_number?: SortOrderInput | SortOrder
+    agreed_to_privacy?: SortOrder
     ip_address?: SortOrderInput | SortOrder
     user_agent?: SortOrderInput | SortOrder
     is_completed?: SortOrder
     completion_time?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
-    user_answers?: UserAnswersOrderByRelationAggregateInput
-    test_result?: TestResultsOrderByWithRelationInput
   }
 
   export type TestAttemptsWhereUniqueInput = Prisma.AtLeast<{
@@ -7544,22 +7443,26 @@ export namespace Prisma {
     NOT?: TestAttemptsWhereInput | TestAttemptsWhereInput[]
     session_id?: StringNullableFilter<"TestAttempts"> | string | null
     user_name?: StringNullableFilter<"TestAttempts"> | string | null
+    birth_date?: StringNullableFilter<"TestAttempts"> | string | null
     user_email?: StringNullableFilter<"TestAttempts"> | string | null
+    phone_number?: StringNullableFilter<"TestAttempts"> | string | null
+    agreed_to_privacy?: BoolFilter<"TestAttempts"> | boolean
     ip_address?: StringNullableFilter<"TestAttempts"> | string | null
     user_agent?: StringNullableFilter<"TestAttempts"> | string | null
     is_completed?: BoolFilter<"TestAttempts"> | boolean
     completion_time?: IntNullableFilter<"TestAttempts"> | number | null
     created_at?: DateTimeFilter<"TestAttempts"> | Date | string
     updated_at?: DateTimeFilter<"TestAttempts"> | Date | string
-    user_answers?: UserAnswersListRelationFilter
-    test_result?: XOR<TestResultsNullableScalarRelationFilter, TestResultsWhereInput> | null
   }, "id">
 
   export type TestAttemptsOrderByWithAggregationInput = {
     id?: SortOrder
     session_id?: SortOrderInput | SortOrder
     user_name?: SortOrderInput | SortOrder
+    birth_date?: SortOrderInput | SortOrder
     user_email?: SortOrderInput | SortOrder
+    phone_number?: SortOrderInput | SortOrder
+    agreed_to_privacy?: SortOrder
     ip_address?: SortOrderInput | SortOrder
     user_agent?: SortOrderInput | SortOrder
     is_completed?: SortOrder
@@ -7580,7 +7483,10 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"TestAttempts"> | string
     session_id?: StringNullableWithAggregatesFilter<"TestAttempts"> | string | null
     user_name?: StringNullableWithAggregatesFilter<"TestAttempts"> | string | null
+    birth_date?: StringNullableWithAggregatesFilter<"TestAttempts"> | string | null
     user_email?: StringNullableWithAggregatesFilter<"TestAttempts"> | string | null
+    phone_number?: StringNullableWithAggregatesFilter<"TestAttempts"> | string | null
+    agreed_to_privacy?: BoolWithAggregatesFilter<"TestAttempts"> | boolean
     ip_address?: StringNullableWithAggregatesFilter<"TestAttempts"> | string | null
     user_agent?: StringNullableWithAggregatesFilter<"TestAttempts"> | string | null
     is_completed?: BoolWithAggregatesFilter<"TestAttempts"> | boolean
@@ -7600,7 +7506,6 @@ export namespace Prisma {
     score?: IntFilter<"UserAnswers"> | number
     answer_time?: IntNullableFilter<"UserAnswers"> | number | null
     created_at?: DateTimeFilter<"UserAnswers"> | Date | string
-    test_attempt?: XOR<TestAttemptsScalarRelationFilter, TestAttemptsWhereInput>
     question?: XOR<QuestionsScalarRelationFilter, QuestionsWhereInput>
   }
 
@@ -7612,7 +7517,6 @@ export namespace Prisma {
     score?: SortOrder
     answer_time?: SortOrderInput | SortOrder
     created_at?: SortOrder
-    test_attempt?: TestAttemptsOrderByWithRelationInput
     question?: QuestionsOrderByWithRelationInput
   }
 
@@ -7628,7 +7532,6 @@ export namespace Prisma {
     score?: IntFilter<"UserAnswers"> | number
     answer_time?: IntNullableFilter<"UserAnswers"> | number | null
     created_at?: DateTimeFilter<"UserAnswers"> | Date | string
-    test_attempt?: XOR<TestAttemptsScalarRelationFilter, TestAttemptsWhereInput>
     question?: XOR<QuestionsScalarRelationFilter, QuestionsWhereInput>
   }, "id" | "test_attempt_id_question_id">
 
@@ -7675,7 +7578,6 @@ export namespace Prisma {
     is_shared?: BoolFilter<"TestResults"> | boolean
     created_at?: DateTimeFilter<"TestResults"> | Date | string
     updated_at?: DateTimeFilter<"TestResults"> | Date | string
-    test_attempt?: XOR<TestAttemptsScalarRelationFilter, TestAttemptsWhereInput>
     primary_personality_type?: XOR<PersonalityTypesNullableScalarRelationFilter, PersonalityTypesWhereInput> | null
   }
 
@@ -7691,7 +7593,6 @@ export namespace Prisma {
     is_shared?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
-    test_attempt?: TestAttemptsOrderByWithRelationInput
     primary_personality_type?: PersonalityTypesOrderByWithRelationInput
   }
 
@@ -7710,7 +7611,6 @@ export namespace Prisma {
     is_shared?: BoolFilter<"TestResults"> | boolean
     created_at?: DateTimeFilter<"TestResults"> | Date | string
     updated_at?: DateTimeFilter<"TestResults"> | Date | string
-    test_attempt?: XOR<TestAttemptsScalarRelationFilter, TestAttemptsWhereInput>
     primary_personality_type?: XOR<PersonalityTypesNullableScalarRelationFilter, PersonalityTypesWhereInput> | null
   }, "id" | "test_attempt_id" | "share_token">
 
@@ -7928,67 +7828,74 @@ export namespace Prisma {
     id?: string
     session_id?: string | null
     user_name?: string | null
+    birth_date?: string | null
     user_email?: string | null
+    phone_number?: string | null
+    agreed_to_privacy?: boolean
     ip_address?: string | null
     user_agent?: string | null
     is_completed?: boolean
     completion_time?: number | null
     created_at?: Date | string
     updated_at?: Date | string
-    user_answers?: UserAnswersCreateNestedManyWithoutTest_attemptInput
-    test_result?: TestResultsCreateNestedOneWithoutTest_attemptInput
   }
 
   export type TestAttemptsUncheckedCreateInput = {
     id?: string
     session_id?: string | null
     user_name?: string | null
+    birth_date?: string | null
     user_email?: string | null
+    phone_number?: string | null
+    agreed_to_privacy?: boolean
     ip_address?: string | null
     user_agent?: string | null
     is_completed?: boolean
     completion_time?: number | null
     created_at?: Date | string
     updated_at?: Date | string
-    user_answers?: UserAnswersUncheckedCreateNestedManyWithoutTest_attemptInput
-    test_result?: TestResultsUncheckedCreateNestedOneWithoutTest_attemptInput
   }
 
   export type TestAttemptsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     session_id?: NullableStringFieldUpdateOperationsInput | string | null
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: NullableStringFieldUpdateOperationsInput | string | null
     user_email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    agreed_to_privacy?: BoolFieldUpdateOperationsInput | boolean
     ip_address?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     is_completed?: BoolFieldUpdateOperationsInput | boolean
     completion_time?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    user_answers?: UserAnswersUpdateManyWithoutTest_attemptNestedInput
-    test_result?: TestResultsUpdateOneWithoutTest_attemptNestedInput
   }
 
   export type TestAttemptsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     session_id?: NullableStringFieldUpdateOperationsInput | string | null
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: NullableStringFieldUpdateOperationsInput | string | null
     user_email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    agreed_to_privacy?: BoolFieldUpdateOperationsInput | boolean
     ip_address?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     is_completed?: BoolFieldUpdateOperationsInput | boolean
     completion_time?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    user_answers?: UserAnswersUncheckedUpdateManyWithoutTest_attemptNestedInput
-    test_result?: TestResultsUncheckedUpdateOneWithoutTest_attemptNestedInput
   }
 
   export type TestAttemptsCreateManyInput = {
     id?: string
     session_id?: string | null
     user_name?: string | null
+    birth_date?: string | null
     user_email?: string | null
+    phone_number?: string | null
+    agreed_to_privacy?: boolean
     ip_address?: string | null
     user_agent?: string | null
     is_completed?: boolean
@@ -8001,7 +7908,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     session_id?: NullableStringFieldUpdateOperationsInput | string | null
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: NullableStringFieldUpdateOperationsInput | string | null
     user_email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    agreed_to_privacy?: BoolFieldUpdateOperationsInput | boolean
     ip_address?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     is_completed?: BoolFieldUpdateOperationsInput | boolean
@@ -8014,7 +7924,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     session_id?: NullableStringFieldUpdateOperationsInput | string | null
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: NullableStringFieldUpdateOperationsInput | string | null
     user_email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    agreed_to_privacy?: BoolFieldUpdateOperationsInput | boolean
     ip_address?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     is_completed?: BoolFieldUpdateOperationsInput | boolean
@@ -8025,11 +7938,11 @@ export namespace Prisma {
 
   export type UserAnswersCreateInput = {
     id?: string
+    test_attempt_id: string
     answer_option?: string | null
     score: number
     answer_time?: number | null
     created_at?: Date | string
-    test_attempt: TestAttemptsCreateNestedOneWithoutUser_answersInput
     question: QuestionsCreateNestedOneWithoutUser_answersInput
   }
 
@@ -8045,11 +7958,11 @@ export namespace Prisma {
 
   export type UserAnswersUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    test_attempt_id?: StringFieldUpdateOperationsInput | string
     answer_option?: NullableStringFieldUpdateOperationsInput | string | null
     score?: IntFieldUpdateOperationsInput | number
     answer_time?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    test_attempt?: TestAttemptsUpdateOneRequiredWithoutUser_answersNestedInput
     question?: QuestionsUpdateOneRequiredWithoutUser_answersNestedInput
   }
 
@@ -8075,6 +7988,7 @@ export namespace Prisma {
 
   export type UserAnswersUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    test_attempt_id?: StringFieldUpdateOperationsInput | string
     answer_option?: NullableStringFieldUpdateOperationsInput | string | null
     score?: IntFieldUpdateOperationsInput | number
     answer_time?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8093,6 +8007,7 @@ export namespace Prisma {
 
   export type TestResultsCreateInput = {
     id?: string
+    test_attempt_id: string
     total_scores: JsonNullValueInput | InputJsonValue
     percentage_scores?: NullableJsonNullValueInput | InputJsonValue
     detailed_analysis?: NullableJsonNullValueInput | InputJsonValue
@@ -8101,7 +8016,6 @@ export namespace Prisma {
     is_shared?: boolean
     created_at?: Date | string
     updated_at?: Date | string
-    test_attempt: TestAttemptsCreateNestedOneWithoutTest_resultInput
     primary_personality_type?: PersonalityTypesCreateNestedOneWithoutTest_results_primaryInput
   }
 
@@ -8121,6 +8035,7 @@ export namespace Prisma {
 
   export type TestResultsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    test_attempt_id?: StringFieldUpdateOperationsInput | string
     total_scores?: JsonNullValueInput | InputJsonValue
     percentage_scores?: NullableJsonNullValueInput | InputJsonValue
     detailed_analysis?: NullableJsonNullValueInput | InputJsonValue
@@ -8129,7 +8044,6 @@ export namespace Prisma {
     is_shared?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    test_attempt?: TestAttemptsUpdateOneRequiredWithoutTest_resultNestedInput
     primary_personality_type?: PersonalityTypesUpdateOneWithoutTest_results_primaryNestedInput
   }
 
@@ -8163,6 +8077,7 @@ export namespace Prisma {
 
   export type TestResultsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    test_attempt_id?: StringFieldUpdateOperationsInput | string
     total_scores?: JsonNullValueInput | InputJsonValue
     percentage_scores?: NullableJsonNullValueInput | InputJsonValue
     detailed_analysis?: NullableJsonNullValueInput | InputJsonValue
@@ -8498,11 +8413,6 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type TestResultsNullableScalarRelationFilter = {
-    is?: TestResultsWhereInput | null
-    isNot?: TestResultsWhereInput | null
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -8512,7 +8422,10 @@ export namespace Prisma {
     id?: SortOrder
     session_id?: SortOrder
     user_name?: SortOrder
+    birth_date?: SortOrder
     user_email?: SortOrder
+    phone_number?: SortOrder
+    agreed_to_privacy?: SortOrder
     ip_address?: SortOrder
     user_agent?: SortOrder
     is_completed?: SortOrder
@@ -8529,7 +8442,10 @@ export namespace Prisma {
     id?: SortOrder
     session_id?: SortOrder
     user_name?: SortOrder
+    birth_date?: SortOrder
     user_email?: SortOrder
+    phone_number?: SortOrder
+    agreed_to_privacy?: SortOrder
     ip_address?: SortOrder
     user_agent?: SortOrder
     is_completed?: SortOrder
@@ -8542,7 +8458,10 @@ export namespace Prisma {
     id?: SortOrder
     session_id?: SortOrder
     user_name?: SortOrder
+    birth_date?: SortOrder
     user_email?: SortOrder
+    phone_number?: SortOrder
+    agreed_to_privacy?: SortOrder
     ip_address?: SortOrder
     user_agent?: SortOrder
     is_completed?: SortOrder
@@ -8587,11 +8506,6 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type TestAttemptsScalarRelationFilter = {
-    is?: TestAttemptsWhereInput
-    isNot?: TestAttemptsWhereInput
   }
 
   export type QuestionsScalarRelationFilter = {
@@ -8921,32 +8835,6 @@ export namespace Prisma {
     deleteMany?: UserAnswersScalarWhereInput | UserAnswersScalarWhereInput[]
   }
 
-  export type UserAnswersCreateNestedManyWithoutTest_attemptInput = {
-    create?: XOR<UserAnswersCreateWithoutTest_attemptInput, UserAnswersUncheckedCreateWithoutTest_attemptInput> | UserAnswersCreateWithoutTest_attemptInput[] | UserAnswersUncheckedCreateWithoutTest_attemptInput[]
-    connectOrCreate?: UserAnswersCreateOrConnectWithoutTest_attemptInput | UserAnswersCreateOrConnectWithoutTest_attemptInput[]
-    createMany?: UserAnswersCreateManyTest_attemptInputEnvelope
-    connect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
-  }
-
-  export type TestResultsCreateNestedOneWithoutTest_attemptInput = {
-    create?: XOR<TestResultsCreateWithoutTest_attemptInput, TestResultsUncheckedCreateWithoutTest_attemptInput>
-    connectOrCreate?: TestResultsCreateOrConnectWithoutTest_attemptInput
-    connect?: TestResultsWhereUniqueInput
-  }
-
-  export type UserAnswersUncheckedCreateNestedManyWithoutTest_attemptInput = {
-    create?: XOR<UserAnswersCreateWithoutTest_attemptInput, UserAnswersUncheckedCreateWithoutTest_attemptInput> | UserAnswersCreateWithoutTest_attemptInput[] | UserAnswersUncheckedCreateWithoutTest_attemptInput[]
-    connectOrCreate?: UserAnswersCreateOrConnectWithoutTest_attemptInput | UserAnswersCreateOrConnectWithoutTest_attemptInput[]
-    createMany?: UserAnswersCreateManyTest_attemptInputEnvelope
-    connect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
-  }
-
-  export type TestResultsUncheckedCreateNestedOneWithoutTest_attemptInput = {
-    create?: XOR<TestResultsCreateWithoutTest_attemptInput, TestResultsUncheckedCreateWithoutTest_attemptInput>
-    connectOrCreate?: TestResultsCreateOrConnectWithoutTest_attemptInput
-    connect?: TestResultsWhereUniqueInput
-  }
-
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
@@ -8959,72 +8847,10 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type UserAnswersUpdateManyWithoutTest_attemptNestedInput = {
-    create?: XOR<UserAnswersCreateWithoutTest_attemptInput, UserAnswersUncheckedCreateWithoutTest_attemptInput> | UserAnswersCreateWithoutTest_attemptInput[] | UserAnswersUncheckedCreateWithoutTest_attemptInput[]
-    connectOrCreate?: UserAnswersCreateOrConnectWithoutTest_attemptInput | UserAnswersCreateOrConnectWithoutTest_attemptInput[]
-    upsert?: UserAnswersUpsertWithWhereUniqueWithoutTest_attemptInput | UserAnswersUpsertWithWhereUniqueWithoutTest_attemptInput[]
-    createMany?: UserAnswersCreateManyTest_attemptInputEnvelope
-    set?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
-    disconnect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
-    delete?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
-    connect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
-    update?: UserAnswersUpdateWithWhereUniqueWithoutTest_attemptInput | UserAnswersUpdateWithWhereUniqueWithoutTest_attemptInput[]
-    updateMany?: UserAnswersUpdateManyWithWhereWithoutTest_attemptInput | UserAnswersUpdateManyWithWhereWithoutTest_attemptInput[]
-    deleteMany?: UserAnswersScalarWhereInput | UserAnswersScalarWhereInput[]
-  }
-
-  export type TestResultsUpdateOneWithoutTest_attemptNestedInput = {
-    create?: XOR<TestResultsCreateWithoutTest_attemptInput, TestResultsUncheckedCreateWithoutTest_attemptInput>
-    connectOrCreate?: TestResultsCreateOrConnectWithoutTest_attemptInput
-    upsert?: TestResultsUpsertWithoutTest_attemptInput
-    disconnect?: TestResultsWhereInput | boolean
-    delete?: TestResultsWhereInput | boolean
-    connect?: TestResultsWhereUniqueInput
-    update?: XOR<XOR<TestResultsUpdateToOneWithWhereWithoutTest_attemptInput, TestResultsUpdateWithoutTest_attemptInput>, TestResultsUncheckedUpdateWithoutTest_attemptInput>
-  }
-
-  export type UserAnswersUncheckedUpdateManyWithoutTest_attemptNestedInput = {
-    create?: XOR<UserAnswersCreateWithoutTest_attemptInput, UserAnswersUncheckedCreateWithoutTest_attemptInput> | UserAnswersCreateWithoutTest_attemptInput[] | UserAnswersUncheckedCreateWithoutTest_attemptInput[]
-    connectOrCreate?: UserAnswersCreateOrConnectWithoutTest_attemptInput | UserAnswersCreateOrConnectWithoutTest_attemptInput[]
-    upsert?: UserAnswersUpsertWithWhereUniqueWithoutTest_attemptInput | UserAnswersUpsertWithWhereUniqueWithoutTest_attemptInput[]
-    createMany?: UserAnswersCreateManyTest_attemptInputEnvelope
-    set?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
-    disconnect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
-    delete?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
-    connect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
-    update?: UserAnswersUpdateWithWhereUniqueWithoutTest_attemptInput | UserAnswersUpdateWithWhereUniqueWithoutTest_attemptInput[]
-    updateMany?: UserAnswersUpdateManyWithWhereWithoutTest_attemptInput | UserAnswersUpdateManyWithWhereWithoutTest_attemptInput[]
-    deleteMany?: UserAnswersScalarWhereInput | UserAnswersScalarWhereInput[]
-  }
-
-  export type TestResultsUncheckedUpdateOneWithoutTest_attemptNestedInput = {
-    create?: XOR<TestResultsCreateWithoutTest_attemptInput, TestResultsUncheckedCreateWithoutTest_attemptInput>
-    connectOrCreate?: TestResultsCreateOrConnectWithoutTest_attemptInput
-    upsert?: TestResultsUpsertWithoutTest_attemptInput
-    disconnect?: TestResultsWhereInput | boolean
-    delete?: TestResultsWhereInput | boolean
-    connect?: TestResultsWhereUniqueInput
-    update?: XOR<XOR<TestResultsUpdateToOneWithWhereWithoutTest_attemptInput, TestResultsUpdateWithoutTest_attemptInput>, TestResultsUncheckedUpdateWithoutTest_attemptInput>
-  }
-
-  export type TestAttemptsCreateNestedOneWithoutUser_answersInput = {
-    create?: XOR<TestAttemptsCreateWithoutUser_answersInput, TestAttemptsUncheckedCreateWithoutUser_answersInput>
-    connectOrCreate?: TestAttemptsCreateOrConnectWithoutUser_answersInput
-    connect?: TestAttemptsWhereUniqueInput
-  }
-
   export type QuestionsCreateNestedOneWithoutUser_answersInput = {
     create?: XOR<QuestionsCreateWithoutUser_answersInput, QuestionsUncheckedCreateWithoutUser_answersInput>
     connectOrCreate?: QuestionsCreateOrConnectWithoutUser_answersInput
     connect?: QuestionsWhereUniqueInput
-  }
-
-  export type TestAttemptsUpdateOneRequiredWithoutUser_answersNestedInput = {
-    create?: XOR<TestAttemptsCreateWithoutUser_answersInput, TestAttemptsUncheckedCreateWithoutUser_answersInput>
-    connectOrCreate?: TestAttemptsCreateOrConnectWithoutUser_answersInput
-    upsert?: TestAttemptsUpsertWithoutUser_answersInput
-    connect?: TestAttemptsWhereUniqueInput
-    update?: XOR<XOR<TestAttemptsUpdateToOneWithWhereWithoutUser_answersInput, TestAttemptsUpdateWithoutUser_answersInput>, TestAttemptsUncheckedUpdateWithoutUser_answersInput>
   }
 
   export type QuestionsUpdateOneRequiredWithoutUser_answersNestedInput = {
@@ -9035,24 +8861,10 @@ export namespace Prisma {
     update?: XOR<XOR<QuestionsUpdateToOneWithWhereWithoutUser_answersInput, QuestionsUpdateWithoutUser_answersInput>, QuestionsUncheckedUpdateWithoutUser_answersInput>
   }
 
-  export type TestAttemptsCreateNestedOneWithoutTest_resultInput = {
-    create?: XOR<TestAttemptsCreateWithoutTest_resultInput, TestAttemptsUncheckedCreateWithoutTest_resultInput>
-    connectOrCreate?: TestAttemptsCreateOrConnectWithoutTest_resultInput
-    connect?: TestAttemptsWhereUniqueInput
-  }
-
   export type PersonalityTypesCreateNestedOneWithoutTest_results_primaryInput = {
     create?: XOR<PersonalityTypesCreateWithoutTest_results_primaryInput, PersonalityTypesUncheckedCreateWithoutTest_results_primaryInput>
     connectOrCreate?: PersonalityTypesCreateOrConnectWithoutTest_results_primaryInput
     connect?: PersonalityTypesWhereUniqueInput
-  }
-
-  export type TestAttemptsUpdateOneRequiredWithoutTest_resultNestedInput = {
-    create?: XOR<TestAttemptsCreateWithoutTest_resultInput, TestAttemptsUncheckedCreateWithoutTest_resultInput>
-    connectOrCreate?: TestAttemptsCreateOrConnectWithoutTest_resultInput
-    upsert?: TestAttemptsUpsertWithoutTest_resultInput
-    connect?: TestAttemptsWhereUniqueInput
-    update?: XOR<XOR<TestAttemptsUpdateToOneWithWhereWithoutTest_resultInput, TestAttemptsUpdateWithoutTest_resultInput>, TestAttemptsUncheckedUpdateWithoutTest_resultInput>
   }
 
   export type PersonalityTypesUpdateOneWithoutTest_results_primaryNestedInput = {
@@ -9368,6 +9180,7 @@ export namespace Prisma {
 
   export type TestResultsCreateWithoutPrimary_personality_typeInput = {
     id?: string
+    test_attempt_id: string
     total_scores: JsonNullValueInput | InputJsonValue
     percentage_scores?: NullableJsonNullValueInput | InputJsonValue
     detailed_analysis?: NullableJsonNullValueInput | InputJsonValue
@@ -9376,7 +9189,6 @@ export namespace Prisma {
     is_shared?: boolean
     created_at?: Date | string
     updated_at?: Date | string
-    test_attempt: TestAttemptsCreateNestedOneWithoutTest_resultInput
   }
 
   export type TestResultsUncheckedCreateWithoutPrimary_personality_typeInput = {
@@ -9501,11 +9313,11 @@ export namespace Prisma {
 
   export type UserAnswersCreateWithoutQuestionInput = {
     id?: string
+    test_attempt_id: string
     answer_option?: string | null
     score: number
     answer_time?: number | null
     created_at?: Date | string
-    test_attempt: TestAttemptsCreateNestedOneWithoutUser_answersInput
   }
 
   export type UserAnswersUncheckedCreateWithoutQuestionInput = {
@@ -9597,151 +9409,6 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"UserAnswers"> | Date | string
   }
 
-  export type UserAnswersCreateWithoutTest_attemptInput = {
-    id?: string
-    answer_option?: string | null
-    score: number
-    answer_time?: number | null
-    created_at?: Date | string
-    question: QuestionsCreateNestedOneWithoutUser_answersInput
-  }
-
-  export type UserAnswersUncheckedCreateWithoutTest_attemptInput = {
-    id?: string
-    question_id: number
-    answer_option?: string | null
-    score: number
-    answer_time?: number | null
-    created_at?: Date | string
-  }
-
-  export type UserAnswersCreateOrConnectWithoutTest_attemptInput = {
-    where: UserAnswersWhereUniqueInput
-    create: XOR<UserAnswersCreateWithoutTest_attemptInput, UserAnswersUncheckedCreateWithoutTest_attemptInput>
-  }
-
-  export type UserAnswersCreateManyTest_attemptInputEnvelope = {
-    data: UserAnswersCreateManyTest_attemptInput | UserAnswersCreateManyTest_attemptInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type TestResultsCreateWithoutTest_attemptInput = {
-    id?: string
-    total_scores: JsonNullValueInput | InputJsonValue
-    percentage_scores?: NullableJsonNullValueInput | InputJsonValue
-    detailed_analysis?: NullableJsonNullValueInput | InputJsonValue
-    recommendations?: NullableJsonNullValueInput | InputJsonValue
-    share_token?: string | null
-    is_shared?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
-    primary_personality_type?: PersonalityTypesCreateNestedOneWithoutTest_results_primaryInput
-  }
-
-  export type TestResultsUncheckedCreateWithoutTest_attemptInput = {
-    id?: string
-    primary_personality_type_id?: string | null
-    total_scores: JsonNullValueInput | InputJsonValue
-    percentage_scores?: NullableJsonNullValueInput | InputJsonValue
-    detailed_analysis?: NullableJsonNullValueInput | InputJsonValue
-    recommendations?: NullableJsonNullValueInput | InputJsonValue
-    share_token?: string | null
-    is_shared?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type TestResultsCreateOrConnectWithoutTest_attemptInput = {
-    where: TestResultsWhereUniqueInput
-    create: XOR<TestResultsCreateWithoutTest_attemptInput, TestResultsUncheckedCreateWithoutTest_attemptInput>
-  }
-
-  export type UserAnswersUpsertWithWhereUniqueWithoutTest_attemptInput = {
-    where: UserAnswersWhereUniqueInput
-    update: XOR<UserAnswersUpdateWithoutTest_attemptInput, UserAnswersUncheckedUpdateWithoutTest_attemptInput>
-    create: XOR<UserAnswersCreateWithoutTest_attemptInput, UserAnswersUncheckedCreateWithoutTest_attemptInput>
-  }
-
-  export type UserAnswersUpdateWithWhereUniqueWithoutTest_attemptInput = {
-    where: UserAnswersWhereUniqueInput
-    data: XOR<UserAnswersUpdateWithoutTest_attemptInput, UserAnswersUncheckedUpdateWithoutTest_attemptInput>
-  }
-
-  export type UserAnswersUpdateManyWithWhereWithoutTest_attemptInput = {
-    where: UserAnswersScalarWhereInput
-    data: XOR<UserAnswersUpdateManyMutationInput, UserAnswersUncheckedUpdateManyWithoutTest_attemptInput>
-  }
-
-  export type TestResultsUpsertWithoutTest_attemptInput = {
-    update: XOR<TestResultsUpdateWithoutTest_attemptInput, TestResultsUncheckedUpdateWithoutTest_attemptInput>
-    create: XOR<TestResultsCreateWithoutTest_attemptInput, TestResultsUncheckedCreateWithoutTest_attemptInput>
-    where?: TestResultsWhereInput
-  }
-
-  export type TestResultsUpdateToOneWithWhereWithoutTest_attemptInput = {
-    where?: TestResultsWhereInput
-    data: XOR<TestResultsUpdateWithoutTest_attemptInput, TestResultsUncheckedUpdateWithoutTest_attemptInput>
-  }
-
-  export type TestResultsUpdateWithoutTest_attemptInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    total_scores?: JsonNullValueInput | InputJsonValue
-    percentage_scores?: NullableJsonNullValueInput | InputJsonValue
-    detailed_analysis?: NullableJsonNullValueInput | InputJsonValue
-    recommendations?: NullableJsonNullValueInput | InputJsonValue
-    share_token?: NullableStringFieldUpdateOperationsInput | string | null
-    is_shared?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    primary_personality_type?: PersonalityTypesUpdateOneWithoutTest_results_primaryNestedInput
-  }
-
-  export type TestResultsUncheckedUpdateWithoutTest_attemptInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    primary_personality_type_id?: NullableStringFieldUpdateOperationsInput | string | null
-    total_scores?: JsonNullValueInput | InputJsonValue
-    percentage_scores?: NullableJsonNullValueInput | InputJsonValue
-    detailed_analysis?: NullableJsonNullValueInput | InputJsonValue
-    recommendations?: NullableJsonNullValueInput | InputJsonValue
-    share_token?: NullableStringFieldUpdateOperationsInput | string | null
-    is_shared?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type TestAttemptsCreateWithoutUser_answersInput = {
-    id?: string
-    session_id?: string | null
-    user_name?: string | null
-    user_email?: string | null
-    ip_address?: string | null
-    user_agent?: string | null
-    is_completed?: boolean
-    completion_time?: number | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    test_result?: TestResultsCreateNestedOneWithoutTest_attemptInput
-  }
-
-  export type TestAttemptsUncheckedCreateWithoutUser_answersInput = {
-    id?: string
-    session_id?: string | null
-    user_name?: string | null
-    user_email?: string | null
-    ip_address?: string | null
-    user_agent?: string | null
-    is_completed?: boolean
-    completion_time?: number | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    test_result?: TestResultsUncheckedCreateNestedOneWithoutTest_attemptInput
-  }
-
-  export type TestAttemptsCreateOrConnectWithoutUser_answersInput = {
-    where: TestAttemptsWhereUniqueInput
-    create: XOR<TestAttemptsCreateWithoutUser_answersInput, TestAttemptsUncheckedCreateWithoutUser_answersInput>
-  }
-
   export type QuestionsCreateWithoutUser_answersInput = {
     question_text: string
     question_order_in_type?: number
@@ -9764,45 +9431,6 @@ export namespace Prisma {
   export type QuestionsCreateOrConnectWithoutUser_answersInput = {
     where: QuestionsWhereUniqueInput
     create: XOR<QuestionsCreateWithoutUser_answersInput, QuestionsUncheckedCreateWithoutUser_answersInput>
-  }
-
-  export type TestAttemptsUpsertWithoutUser_answersInput = {
-    update: XOR<TestAttemptsUpdateWithoutUser_answersInput, TestAttemptsUncheckedUpdateWithoutUser_answersInput>
-    create: XOR<TestAttemptsCreateWithoutUser_answersInput, TestAttemptsUncheckedCreateWithoutUser_answersInput>
-    where?: TestAttemptsWhereInput
-  }
-
-  export type TestAttemptsUpdateToOneWithWhereWithoutUser_answersInput = {
-    where?: TestAttemptsWhereInput
-    data: XOR<TestAttemptsUpdateWithoutUser_answersInput, TestAttemptsUncheckedUpdateWithoutUser_answersInput>
-  }
-
-  export type TestAttemptsUpdateWithoutUser_answersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    session_id?: NullableStringFieldUpdateOperationsInput | string | null
-    user_name?: NullableStringFieldUpdateOperationsInput | string | null
-    user_email?: NullableStringFieldUpdateOperationsInput | string | null
-    ip_address?: NullableStringFieldUpdateOperationsInput | string | null
-    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
-    is_completed?: BoolFieldUpdateOperationsInput | boolean
-    completion_time?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    test_result?: TestResultsUpdateOneWithoutTest_attemptNestedInput
-  }
-
-  export type TestAttemptsUncheckedUpdateWithoutUser_answersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    session_id?: NullableStringFieldUpdateOperationsInput | string | null
-    user_name?: NullableStringFieldUpdateOperationsInput | string | null
-    user_email?: NullableStringFieldUpdateOperationsInput | string | null
-    ip_address?: NullableStringFieldUpdateOperationsInput | string | null
-    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
-    is_completed?: BoolFieldUpdateOperationsInput | boolean
-    completion_time?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    test_result?: TestResultsUncheckedUpdateOneWithoutTest_attemptNestedInput
   }
 
   export type QuestionsUpsertWithoutUser_answersInput = {
@@ -9833,39 +9461,6 @@ export namespace Prisma {
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type TestAttemptsCreateWithoutTest_resultInput = {
-    id?: string
-    session_id?: string | null
-    user_name?: string | null
-    user_email?: string | null
-    ip_address?: string | null
-    user_agent?: string | null
-    is_completed?: boolean
-    completion_time?: number | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    user_answers?: UserAnswersCreateNestedManyWithoutTest_attemptInput
-  }
-
-  export type TestAttemptsUncheckedCreateWithoutTest_resultInput = {
-    id?: string
-    session_id?: string | null
-    user_name?: string | null
-    user_email?: string | null
-    ip_address?: string | null
-    user_agent?: string | null
-    is_completed?: boolean
-    completion_time?: number | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    user_answers?: UserAnswersUncheckedCreateNestedManyWithoutTest_attemptInput
-  }
-
-  export type TestAttemptsCreateOrConnectWithoutTest_resultInput = {
-    where: TestAttemptsWhereUniqueInput
-    create: XOR<TestAttemptsCreateWithoutTest_resultInput, TestAttemptsUncheckedCreateWithoutTest_resultInput>
   }
 
   export type PersonalityTypesCreateWithoutTest_results_primaryInput = {
@@ -9901,45 +9496,6 @@ export namespace Prisma {
   export type PersonalityTypesCreateOrConnectWithoutTest_results_primaryInput = {
     where: PersonalityTypesWhereUniqueInput
     create: XOR<PersonalityTypesCreateWithoutTest_results_primaryInput, PersonalityTypesUncheckedCreateWithoutTest_results_primaryInput>
-  }
-
-  export type TestAttemptsUpsertWithoutTest_resultInput = {
-    update: XOR<TestAttemptsUpdateWithoutTest_resultInput, TestAttemptsUncheckedUpdateWithoutTest_resultInput>
-    create: XOR<TestAttemptsCreateWithoutTest_resultInput, TestAttemptsUncheckedCreateWithoutTest_resultInput>
-    where?: TestAttemptsWhereInput
-  }
-
-  export type TestAttemptsUpdateToOneWithWhereWithoutTest_resultInput = {
-    where?: TestAttemptsWhereInput
-    data: XOR<TestAttemptsUpdateWithoutTest_resultInput, TestAttemptsUncheckedUpdateWithoutTest_resultInput>
-  }
-
-  export type TestAttemptsUpdateWithoutTest_resultInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    session_id?: NullableStringFieldUpdateOperationsInput | string | null
-    user_name?: NullableStringFieldUpdateOperationsInput | string | null
-    user_email?: NullableStringFieldUpdateOperationsInput | string | null
-    ip_address?: NullableStringFieldUpdateOperationsInput | string | null
-    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
-    is_completed?: BoolFieldUpdateOperationsInput | boolean
-    completion_time?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    user_answers?: UserAnswersUpdateManyWithoutTest_attemptNestedInput
-  }
-
-  export type TestAttemptsUncheckedUpdateWithoutTest_resultInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    session_id?: NullableStringFieldUpdateOperationsInput | string | null
-    user_name?: NullableStringFieldUpdateOperationsInput | string | null
-    user_email?: NullableStringFieldUpdateOperationsInput | string | null
-    ip_address?: NullableStringFieldUpdateOperationsInput | string | null
-    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
-    is_completed?: BoolFieldUpdateOperationsInput | boolean
-    completion_time?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    user_answers?: UserAnswersUncheckedUpdateManyWithoutTest_attemptNestedInput
   }
 
   export type PersonalityTypesUpsertWithoutTest_results_primaryInput = {
@@ -10035,6 +9591,7 @@ export namespace Prisma {
 
   export type TestResultsUpdateWithoutPrimary_personality_typeInput = {
     id?: StringFieldUpdateOperationsInput | string
+    test_attempt_id?: StringFieldUpdateOperationsInput | string
     total_scores?: JsonNullValueInput | InputJsonValue
     percentage_scores?: NullableJsonNullValueInput | InputJsonValue
     detailed_analysis?: NullableJsonNullValueInput | InputJsonValue
@@ -10043,7 +9600,6 @@ export namespace Prisma {
     is_shared?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    test_attempt?: TestAttemptsUpdateOneRequiredWithoutTest_resultNestedInput
   }
 
   export type TestResultsUncheckedUpdateWithoutPrimary_personality_typeInput = {
@@ -10083,11 +9639,11 @@ export namespace Prisma {
 
   export type UserAnswersUpdateWithoutQuestionInput = {
     id?: StringFieldUpdateOperationsInput | string
+    test_attempt_id?: StringFieldUpdateOperationsInput | string
     answer_option?: NullableStringFieldUpdateOperationsInput | string | null
     score?: IntFieldUpdateOperationsInput | number
     answer_time?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    test_attempt?: TestAttemptsUpdateOneRequiredWithoutUser_answersNestedInput
   }
 
   export type UserAnswersUncheckedUpdateWithoutQuestionInput = {
@@ -10102,42 +9658,6 @@ export namespace Prisma {
   export type UserAnswersUncheckedUpdateManyWithoutQuestionInput = {
     id?: StringFieldUpdateOperationsInput | string
     test_attempt_id?: StringFieldUpdateOperationsInput | string
-    answer_option?: NullableStringFieldUpdateOperationsInput | string | null
-    score?: IntFieldUpdateOperationsInput | number
-    answer_time?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserAnswersCreateManyTest_attemptInput = {
-    id?: string
-    question_id: number
-    answer_option?: string | null
-    score: number
-    answer_time?: number | null
-    created_at?: Date | string
-  }
-
-  export type UserAnswersUpdateWithoutTest_attemptInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    answer_option?: NullableStringFieldUpdateOperationsInput | string | null
-    score?: IntFieldUpdateOperationsInput | number
-    answer_time?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    question?: QuestionsUpdateOneRequiredWithoutUser_answersNestedInput
-  }
-
-  export type UserAnswersUncheckedUpdateWithoutTest_attemptInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    question_id?: IntFieldUpdateOperationsInput | number
-    answer_option?: NullableStringFieldUpdateOperationsInput | string | null
-    score?: IntFieldUpdateOperationsInput | number
-    answer_time?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserAnswersUncheckedUpdateManyWithoutTest_attemptInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    question_id?: IntFieldUpdateOperationsInput | number
     answer_option?: NullableStringFieldUpdateOperationsInput | string | null
     score?: IntFieldUpdateOperationsInput | number
     answer_time?: NullableIntFieldUpdateOperationsInput | number | null
