@@ -3644,6 +3644,7 @@ export namespace Prisma {
     session_id: string | null
     user_name: string | null
     birth_date: string | null
+    gender: string | null
     user_email: string | null
     phone_number: string | null
     agreed_to_privacy: boolean | null
@@ -3660,6 +3661,7 @@ export namespace Prisma {
     session_id: string | null
     user_name: string | null
     birth_date: string | null
+    gender: string | null
     user_email: string | null
     phone_number: string | null
     agreed_to_privacy: boolean | null
@@ -3676,6 +3678,7 @@ export namespace Prisma {
     session_id: number
     user_name: number
     birth_date: number
+    gender: number
     user_email: number
     phone_number: number
     agreed_to_privacy: number
@@ -3702,6 +3705,7 @@ export namespace Prisma {
     session_id?: true
     user_name?: true
     birth_date?: true
+    gender?: true
     user_email?: true
     phone_number?: true
     agreed_to_privacy?: true
@@ -3718,6 +3722,7 @@ export namespace Prisma {
     session_id?: true
     user_name?: true
     birth_date?: true
+    gender?: true
     user_email?: true
     phone_number?: true
     agreed_to_privacy?: true
@@ -3734,6 +3739,7 @@ export namespace Prisma {
     session_id?: true
     user_name?: true
     birth_date?: true
+    gender?: true
     user_email?: true
     phone_number?: true
     agreed_to_privacy?: true
@@ -3837,6 +3843,7 @@ export namespace Prisma {
     session_id: string | null
     user_name: string | null
     birth_date: string | null
+    gender: string | null
     user_email: string | null
     phone_number: string | null
     agreed_to_privacy: boolean
@@ -3872,6 +3879,7 @@ export namespace Prisma {
     session_id?: boolean
     user_name?: boolean
     birth_date?: boolean
+    gender?: boolean
     user_email?: boolean
     phone_number?: boolean
     agreed_to_privacy?: boolean
@@ -3888,6 +3896,7 @@ export namespace Prisma {
     session_id?: boolean
     user_name?: boolean
     birth_date?: boolean
+    gender?: boolean
     user_email?: boolean
     phone_number?: boolean
     agreed_to_privacy?: boolean
@@ -3904,6 +3913,7 @@ export namespace Prisma {
     session_id?: boolean
     user_name?: boolean
     birth_date?: boolean
+    gender?: boolean
     user_email?: boolean
     phone_number?: boolean
     agreed_to_privacy?: boolean
@@ -3920,6 +3930,7 @@ export namespace Prisma {
     session_id?: boolean
     user_name?: boolean
     birth_date?: boolean
+    gender?: boolean
     user_email?: boolean
     phone_number?: boolean
     agreed_to_privacy?: boolean
@@ -3931,7 +3942,7 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
-  export type TestAttemptsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "session_id" | "user_name" | "birth_date" | "user_email" | "phone_number" | "agreed_to_privacy" | "ip_address" | "user_agent" | "is_completed" | "completion_time" | "created_at" | "updated_at", ExtArgs["result"]["testAttempts"]>
+  export type TestAttemptsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "session_id" | "user_name" | "birth_date" | "gender" | "user_email" | "phone_number" | "agreed_to_privacy" | "ip_address" | "user_agent" | "is_completed" | "completion_time" | "created_at" | "updated_at", ExtArgs["result"]["testAttempts"]>
 
   export type $TestAttemptsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TestAttempts"
@@ -3941,6 +3952,7 @@ export namespace Prisma {
       session_id: string | null
       user_name: string | null
       birth_date: string | null
+      gender: string | null
       user_email: string | null
       phone_number: string | null
       agreed_to_privacy: boolean
@@ -4377,6 +4389,7 @@ export namespace Prisma {
     readonly session_id: FieldRef<"TestAttempts", 'String'>
     readonly user_name: FieldRef<"TestAttempts", 'String'>
     readonly birth_date: FieldRef<"TestAttempts", 'String'>
+    readonly gender: FieldRef<"TestAttempts", 'String'>
     readonly user_email: FieldRef<"TestAttempts", 'String'>
     readonly phone_number: FieldRef<"TestAttempts", 'String'>
     readonly agreed_to_privacy: FieldRef<"TestAttempts", 'Boolean'>
@@ -7066,6 +7079,7 @@ export namespace Prisma {
     session_id: 'session_id',
     user_name: 'user_name',
     birth_date: 'birth_date',
+    gender: 'gender',
     user_email: 'user_email',
     phone_number: 'phone_number',
     agreed_to_privacy: 'agreed_to_privacy',
@@ -7409,6 +7423,7 @@ export namespace Prisma {
     session_id?: StringNullableFilter<"TestAttempts"> | string | null
     user_name?: StringNullableFilter<"TestAttempts"> | string | null
     birth_date?: StringNullableFilter<"TestAttempts"> | string | null
+    gender?: StringNullableFilter<"TestAttempts"> | string | null
     user_email?: StringNullableFilter<"TestAttempts"> | string | null
     phone_number?: StringNullableFilter<"TestAttempts"> | string | null
     agreed_to_privacy?: BoolFilter<"TestAttempts"> | boolean
@@ -7425,6 +7440,7 @@ export namespace Prisma {
     session_id?: SortOrderInput | SortOrder
     user_name?: SortOrderInput | SortOrder
     birth_date?: SortOrderInput | SortOrder
+    gender?: SortOrderInput | SortOrder
     user_email?: SortOrderInput | SortOrder
     phone_number?: SortOrderInput | SortOrder
     agreed_to_privacy?: SortOrder
@@ -7444,6 +7460,7 @@ export namespace Prisma {
     session_id?: StringNullableFilter<"TestAttempts"> | string | null
     user_name?: StringNullableFilter<"TestAttempts"> | string | null
     birth_date?: StringNullableFilter<"TestAttempts"> | string | null
+    gender?: StringNullableFilter<"TestAttempts"> | string | null
     user_email?: StringNullableFilter<"TestAttempts"> | string | null
     phone_number?: StringNullableFilter<"TestAttempts"> | string | null
     agreed_to_privacy?: BoolFilter<"TestAttempts"> | boolean
@@ -7460,6 +7477,7 @@ export namespace Prisma {
     session_id?: SortOrderInput | SortOrder
     user_name?: SortOrderInput | SortOrder
     birth_date?: SortOrderInput | SortOrder
+    gender?: SortOrderInput | SortOrder
     user_email?: SortOrderInput | SortOrder
     phone_number?: SortOrderInput | SortOrder
     agreed_to_privacy?: SortOrder
@@ -7484,6 +7502,7 @@ export namespace Prisma {
     session_id?: StringNullableWithAggregatesFilter<"TestAttempts"> | string | null
     user_name?: StringNullableWithAggregatesFilter<"TestAttempts"> | string | null
     birth_date?: StringNullableWithAggregatesFilter<"TestAttempts"> | string | null
+    gender?: StringNullableWithAggregatesFilter<"TestAttempts"> | string | null
     user_email?: StringNullableWithAggregatesFilter<"TestAttempts"> | string | null
     phone_number?: StringNullableWithAggregatesFilter<"TestAttempts"> | string | null
     agreed_to_privacy?: BoolWithAggregatesFilter<"TestAttempts"> | boolean
@@ -7829,6 +7848,7 @@ export namespace Prisma {
     session_id?: string | null
     user_name?: string | null
     birth_date?: string | null
+    gender?: string | null
     user_email?: string | null
     phone_number?: string | null
     agreed_to_privacy?: boolean
@@ -7845,6 +7865,7 @@ export namespace Prisma {
     session_id?: string | null
     user_name?: string | null
     birth_date?: string | null
+    gender?: string | null
     user_email?: string | null
     phone_number?: string | null
     agreed_to_privacy?: boolean
@@ -7861,6 +7882,7 @@ export namespace Prisma {
     session_id?: NullableStringFieldUpdateOperationsInput | string | null
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
     user_email?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     agreed_to_privacy?: BoolFieldUpdateOperationsInput | boolean
@@ -7877,6 +7899,7 @@ export namespace Prisma {
     session_id?: NullableStringFieldUpdateOperationsInput | string | null
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
     user_email?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     agreed_to_privacy?: BoolFieldUpdateOperationsInput | boolean
@@ -7893,6 +7916,7 @@ export namespace Prisma {
     session_id?: string | null
     user_name?: string | null
     birth_date?: string | null
+    gender?: string | null
     user_email?: string | null
     phone_number?: string | null
     agreed_to_privacy?: boolean
@@ -7909,6 +7933,7 @@ export namespace Prisma {
     session_id?: NullableStringFieldUpdateOperationsInput | string | null
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
     user_email?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     agreed_to_privacy?: BoolFieldUpdateOperationsInput | boolean
@@ -7925,6 +7950,7 @@ export namespace Prisma {
     session_id?: NullableStringFieldUpdateOperationsInput | string | null
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
     user_email?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     agreed_to_privacy?: BoolFieldUpdateOperationsInput | boolean
@@ -8423,6 +8449,7 @@ export namespace Prisma {
     session_id?: SortOrder
     user_name?: SortOrder
     birth_date?: SortOrder
+    gender?: SortOrder
     user_email?: SortOrder
     phone_number?: SortOrder
     agreed_to_privacy?: SortOrder
@@ -8443,6 +8470,7 @@ export namespace Prisma {
     session_id?: SortOrder
     user_name?: SortOrder
     birth_date?: SortOrder
+    gender?: SortOrder
     user_email?: SortOrder
     phone_number?: SortOrder
     agreed_to_privacy?: SortOrder
@@ -8459,6 +8487,7 @@ export namespace Prisma {
     session_id?: SortOrder
     user_name?: SortOrder
     birth_date?: SortOrder
+    gender?: SortOrder
     user_email?: SortOrder
     phone_number?: SortOrder
     agreed_to_privacy?: SortOrder

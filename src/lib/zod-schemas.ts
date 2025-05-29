@@ -4,21 +4,32 @@ import { z } from 'zod';
  * 테스트 시작 요청 스키마
  */
 export const startTestSchema = z.object({
-  gender: z.string()
-    .min(1, '성별을 선택해주세요.')
-    .regex(/^(male|female)$/, '유효한 성별을 선택해주세요. (male 또는 female)'),
+  userName: z.string()
+    .min(1, '이름을 입력해주세요.')
+    .max(100, '이름은 100자 이하로 입력해주세요.'),
+  birthDate: z.string()
+    .regex(/^\d{8}$/, '생년월일은 YYYYMMDD 형식의 8자리 숫자여야 합니다.'),
   age: z.number()
     .int('나이는 정수여야 합니다.')
-    .min(1, '나이는 1세 이상이어야 합니다.')
-    .max(120, '나이는 120세 이하여야 합니다.'),
-  user_name: z.string()
-    .min(1, '이름을 입력해주세요.')
-    .max(100, '이름은 100자 이하로 입력해주세요.')
-    .optional(),
-  user_email: z.string()
+    .min(5, '나이는 5세 이상이어야 합니다.')
+    .max(100, '나이는 100세 이하여야 합니다.'),
+  gender: z.enum(['male', 'female'], {
+    required_error: '성별을 선택해주세요.',
+    invalid_type_error: '유효한 성별을 선택해주세요.'
+  }),
+  userEmail: z.string()
     .email('유효한 이메일 주소를 입력해주세요.')
-    .max(255, '이메일은 255자 이하로 입력해주세요.')
-    .optional()
+    .max(255, '이메일은 255자 이하로 입력해주세요.'),
+  phoneNumber: z.string()
+    .regex(/^\d{10,11}$/, '휴대폰 번호는 10-11자리 숫자여야 합니다.')
+    .max(15, '휴대폰 번호는 15자 이하로 입력해주세요.'),
+  agreedToPrivacy: z.boolean()
+    .refine(val => val === true, {
+      message: '개인정보 수집 및 이용에 동의해야 합니다.'
+    }),
+  // 기존 필드들은 사용하지 않으므로 제거
+  user_name: z.string().optional(), // 호환성을 위해 남겨둠
+  user_email: z.string().optional() // 호환성을 위해 남겨둠
 });
 
 /**

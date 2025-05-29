@@ -149,6 +149,7 @@ exports.Prisma.TestAttemptsScalarFieldEnum = {
   session_id: 'session_id',
   user_name: 'user_name',
   birth_date: 'birth_date',
+  gender: 'gender',
   user_email: 'user_email',
   phone_number: 'phone_number',
   agreed_to_privacy: 'agreed_to_privacy',
