@@ -259,7 +259,7 @@ export default function StartTestPage() {
         </div>
       </div>
       <p className="mt-8 text-xs text-slate-500 text-center">
-        © 2024 Octagnosis AI. 모든 권리 보유.
+        © Copyright 2004. 한국진로적성센터. All rights reserved.
       </p>
     </div>
   );
