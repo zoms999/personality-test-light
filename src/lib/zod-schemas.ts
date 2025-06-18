@@ -22,7 +22,9 @@ export const startTestSchema = z.object({
     .max(255, '이메일은 255자 이하로 입력해주세요.'),
   phoneNumber: z.string()
     .regex(/^\d{10,11}$/, '휴대폰 번호는 10-11자리 숫자여야 합니다.')
-    .max(15, '휴대폰 번호는 15자 이하로 입력해주세요.'),
+    .max(15, '휴대폰 번호는 15자 이하로 입력해주세요.')
+    .optional()
+    .default("00000000000"),
   agreedToPrivacy: z.boolean()
     .refine(val => val === true, {
       message: '개인정보 수집 및 이용에 동의해야 합니다.'

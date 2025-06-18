@@ -33,7 +33,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<StartTest
       age,       // Calculated age number
       gender, 
       userEmail, 
-      phoneNumber, 
+      phoneNumber = "00000000000", // 기본값 설정
       agreedToPrivacy 
     } = validation.data;
 

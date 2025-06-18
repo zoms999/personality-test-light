@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { User, Users, ArrowRight, Loader2, Check, CalendarDays, Mail, Phone, ShieldAlert, FileText } from 'lucide-react';
+import { User, Users, ArrowRight, Loader2, Check, CalendarDays, Mail, ShieldAlert, FileText } from 'lucide-react';
 
 type Gender = 'male' | 'female';
 
@@ -38,7 +38,6 @@ export default function StartTestPage() {
   const [name, setName] = useState('');
   const [birthDate, setBirthDate] = useState(''); // YYYYMMDD
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
   const [selectedGender, setSelectedGender] = useState<Gender | null>(null);
   const [agreedToPrivacy, setAgreedToPrivacy] = useState(false);
   
@@ -53,7 +52,7 @@ export default function StartTestPage() {
   const handleStartTest = async () => {
     setError(null);
 
-    if (!name.trim() || !birthDate.trim() || !selectedGender || !email.trim() || !phone.trim()) {
+    if (!name.trim() || !birthDate.trim() || !selectedGender || !email.trim()) {
       setError('모든 필수 정보를 입력해주세요.');
       return;
     }
@@ -70,10 +69,7 @@ export default function StartTestPage() {
         setError('유효한 이메일 주소를 입력해주세요.');
         return;
     }
-    if (!/^\d{10,11}$/.test(phone.replace(/-/g, ''))) {
-        setError('유효한 휴대폰 번호를 입력해주세요 (10-11자리 숫자).');
-        return;
-    }
+
     if (!agreedToPrivacy) {
       setError('개인정보 수집 및 이용 동의에 체크해주세요.');
       return;
@@ -88,7 +84,7 @@ export default function StartTestPage() {
         age: calculateAge(birthDate), // Calculated age for API (as per original design)
         gender: selectedGender,
         userEmail: email,
-        phoneNumber: phone,
+        phoneNumber: "00000000000", // 기본값으로 설정
         agreedToPrivacy,
       };
       
@@ -164,13 +160,7 @@ export default function StartTestPage() {
                   <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className={`${inputBaseStyle} pl-10`} placeholder="example@email.com" disabled={isLoading} />
                 </div>
               </div>
-              <div>
-                <label htmlFor="phone" className="block text-xs font-medium text-slate-600 mb-1">휴대폰 번호</label>
-                <div className="relative">
-                  <Phone size={16} className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-slate-400" />
-                  <input type="tel" id="phone" value={phone} onChange={(e) => setPhone(e.target.value.replace(/[^0-9]/g, ''))} maxLength={11} className={`${inputBaseStyle} pl-10`} placeholder="01012345678 ('-' 없이)" disabled={isLoading} />
-                </div>
-              </div>
+
               <div>
                 <label htmlFor="gender" className="block text-xs font-medium text-slate-600 mb-1">성별</label>
                 <div id="gender" className="grid grid-cols-2 gap-3">
@@ -199,7 +189,7 @@ export default function StartTestPage() {
             </h2>
             <div className="border border-slate-200 rounded-lg p-3 max-h-40 overflow-y-auto text-xs text-slate-600 bg-slate-50 space-y-2 prose prose-xs prose-slate">
               <p className="font-semibold">[개인정보 수집 및 이용 동의서]</p>
-              <p><strong className="font-medium">수집 항목:</strong> 이름, 생년월일, 이메일 주소, 휴대폰 번호, 성별, IP주소, User-Agent</p>
+              <p><strong className="font-medium">수집 항목:</strong> 이름, 생년월일, 이메일 주소, 성별, IP주소, User-Agent</p>
               <p><strong className="font-medium">수집 및 이용 목적:</strong> (1) 적성검사 서비스 제공 (개인 맞춤형 검사 결과, 사용자 맞춤형 온라인 서비스) (2) 마케팅 및 서비스 지원 (서비스 안내, 이벤트/프로모션 정보, 맞춤형 광고/마케팅 자료 발송) (3) 연구 및 개발 (품질 향상, 서비스 개선 데이터 분석, 신규 서비스/기능 연구)</p>
               <p><strong className="font-medium">보유 및 이용 기간:</strong> 검사 결과 제공 및 서비스 지원/활용: 수집일로부터 5년. 연구 및 결과 활용: 10년. (법령 의무 보관 기간 준수)</p>
               <p><strong className="font-medium">제공 및 처리 위탁:</strong> 원칙적 제3자 미제공 (법령 요구, 서비스 운영 위한 외부업체 위탁 시 사전 안내)</p>
@@ -236,10 +226,10 @@ export default function StartTestPage() {
           <button
             type="button"
             onClick={handleStartTest}
-            disabled={isLoading || !agreedToPrivacy || !name || !birthDate || !email || !phone || !selectedGender}
+            disabled={isLoading || !agreedToPrivacy || !name || !birthDate || !email || !selectedGender}
             className={`w-full flex items-center justify-center space-x-2 py-3.5 px-4 rounded-xl font-semibold text-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-opacity-50
               ${
-                isLoading || !agreedToPrivacy || !name || !birthDate || !email || !phone || !selectedGender
+                                  isLoading || !agreedToPrivacy || !name || !birthDate || !email || !selectedGender
                   ? 'bg-slate-300 text-slate-500 cursor-not-allowed focus:ring-slate-200'
                   : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl focus:ring-indigo-300'
               }`}
