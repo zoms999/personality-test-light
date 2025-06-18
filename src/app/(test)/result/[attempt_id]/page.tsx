@@ -17,9 +17,7 @@ import {
   Sparkles,
   Users,
   Eye, // 다른 유형 둘러보기 아이콘 추가
-  X, // 모달 닫기 아이콘
-  ChevronLeft,
-  ChevronRight
+  X // 모달 닫기 아이콘
 } from 'lucide-react';
 
 // --- 추가: 브랜드 아이콘 SVG 컴포넌트 ---
@@ -354,6 +352,9 @@ interface TypeDetailModalProps {
 
 function TypeDetailModal({ isOpen, onClose, initialIndex }: TypeDetailModalProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [startX, setStartX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragDistance, setDragDistance] = useState(0);
 
   useEffect(() => {
     setCurrentIndex(initialIndex);
@@ -366,6 +367,82 @@ function TypeDetailModal({ isOpen, onClose, initialIndex }: TypeDetailModalProps
   const handleNext = () => {
     setCurrentIndex((prev) => (prev < allTypesData.length - 1 ? prev + 1 : 0));
   };
+
+  // 터치 시작
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setStartX(e.touches[0].clientX);
+    setIsDragging(true);
+  };
+
+  // 터치 이동
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    const currentX = e.touches[0].clientX;
+    const distance = currentX - startX;
+    setDragDistance(distance);
+  };
+
+  // 터치 종료
+  const handleTouchEnd = () => {
+    if (!isDragging) return;
+    
+    const threshold = 50; // 최소 드래그 거리
+    
+    if (Math.abs(dragDistance) > threshold) {
+      if (dragDistance > 0) {
+        handlePrevious(); // 오른쪽으로 드래그 = 이전
+      } else {
+        handleNext(); // 왼쪽으로 드래그 = 다음
+      }
+    }
+    
+    setIsDragging(false);
+    setDragDistance(0);
+    setStartX(0);
+  };
+
+  // 마우스 이벤트 (데스크톱 지원)
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setStartX(e.clientX);
+    setIsDragging(true);
+    e.preventDefault();
+  };
+
+  // 전역 마우스 이벤트 리스너 추가
+  useEffect(() => {
+    if (!isDragging) return;
+
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      const distance = e.clientX - startX;
+      setDragDistance(distance);
+    };
+
+    const handleGlobalMouseUp = () => {
+      if (!isDragging) return;
+      
+      const threshold = 50;
+      
+      if (Math.abs(dragDistance) > threshold) {
+        if (dragDistance > 0) {
+          handlePrevious();
+        } else {
+          handleNext();
+        }
+      }
+      
+      setIsDragging(false);
+      setDragDistance(0);
+      setStartX(0);
+    };
+
+    document.addEventListener('mousemove', handleGlobalMouseMove);
+    document.addEventListener('mouseup', handleGlobalMouseUp);
+
+    return () => {
+      document.removeEventListener('mousemove', handleGlobalMouseMove);
+      document.removeEventListener('mouseup', handleGlobalMouseUp);
+    };
+  }, [isDragging, startX, dragDistance]);
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') onClose();
@@ -427,8 +504,18 @@ function TypeDetailModal({ isOpen, onClose, initialIndex }: TypeDetailModalProps
           </div>
         </div>
 
-        {/* 바디 */}
-        <div className="flex-1 p-6 overflow-y-auto">
+        {/* 바디 - 드래그 가능한 영역 */}
+        <div 
+          className={`flex-1 p-6 overflow-y-auto select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+          style={{
+            transform: isDragging ? `translateX(${dragDistance * 0.3}px)` : 'none',
+            transition: isDragging ? 'none' : 'transform 0.3s ease-out'
+          }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+        >
           <div className="flex flex-col items-center">
             {currentType.imageSrc && (
               <div className="mb-6">
@@ -437,7 +524,7 @@ function TypeDetailModal({ isOpen, onClose, initialIndex }: TypeDetailModalProps
                   alt={`${currentType.title} 이미지`}
                   width={150}
                   height={150}
-                  className="object-contain"
+                  className="object-contain pointer-events-none"
                 />
               </div>
             )}
@@ -447,16 +534,8 @@ function TypeDetailModal({ isOpen, onClose, initialIndex }: TypeDetailModalProps
           </div>
         </div>
 
-        {/* 네비게이션 버튼 */}
-        <div className="flex justify-between items-center p-4 bg-slate-50 border-t">
-          <button
-            onClick={handlePrevious}
-            className="flex items-center px-4 py-2 bg-white hover:bg-slate-100 rounded-lg border border-slate-200 transition-all duration-200 hover:shadow-md"
-          >
-            <ChevronLeft size={18} className="mr-1" />
-            이전
-          </button>
-          
+        {/* 하단 인디케이터 */}
+        <div className="flex justify-center items-center p-4 bg-slate-50 border-t">
           <div className="flex space-x-2">
             {allTypesData.map((_, index) => (
               <button
@@ -470,14 +549,11 @@ function TypeDetailModal({ isOpen, onClose, initialIndex }: TypeDetailModalProps
               />
             ))}
           </div>
-
-          <button
-            onClick={handleNext}
-            className="flex items-center px-4 py-2 bg-white hover:bg-slate-100 rounded-lg border border-slate-200 transition-all duration-200 hover:shadow-md"
-          >
-            다음
-            <ChevronRight size={18} className="ml-1" />
-          </button>
+          
+          {/* 드래그 안내 텍스트 */}
+          <div className="absolute right-4 text-xs text-slate-400 hidden sm:block">
+            좌우로 드래그하여 탐색
+          </div>
         </div>
       </div>
     </div>

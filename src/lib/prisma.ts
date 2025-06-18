@@ -5,7 +5,10 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 // 환경변수 명시적 로드 및 에러 핸들링
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = process.env.DATABASE_URL || "postgresql://postgres:1111@localhost:5433/findme?schema=public";
+
+console.log('DATABASE_URL 확인:', databaseUrl ? '설정됨' : '설정안됨');
+
 if (!databaseUrl) {
   throw new Error('DATABASE_URL 환경변수가 설정되지 않았습니다.');
 }
