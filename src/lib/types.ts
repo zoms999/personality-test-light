@@ -1,5 +1,5 @@
 /**
- * 성격 유형 타입
+ * 성향 유형 타입
  */
 export interface PersonalityType {
   id: string;

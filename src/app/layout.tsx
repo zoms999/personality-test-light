@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "나를 찾아줘! - 옥타그노시스 성격 검사",
+  title: "나를 찾아줘! - 옥타그노시스 성향 검사",
   description: "10만 1천 4백명의 성공을 만든 옥타그노시스 검사의 '나를 찾아줘!' 버전을 지금 시작하세요!",
 };
 

@@ -66,7 +66,7 @@ export async function GET(
     const scoresWithTypes = Object.entries(allTypeScores).map(([typeId, score]) => {
       const personalityType = personalityTypesMap.get(typeId);
       if (!personalityType) {
-        throw new Error(`성격 유형을 찾을 수 없습니다: ${typeId}`);
+        throw new Error(`성향 유형을 찾을 수 없습니다: ${typeId}`);
       }
       
       return {
@@ -112,8 +112,8 @@ export async function GET(
         total_questions_answered: 45, // 모든 질문에 답변했다고 가정
       },
       message: winningTypes.length > 1 
-        ? `${winningTypes.length}개의 성격 유형이 동점으로 나타났습니다.`
-        : '성격 검사 결과가 성공적으로 조회되었습니다.',
+        ? `${winningTypes.length}개의 성향 유형이 동점으로 나타났습니다.`
+        : '성향 검사 결과가 성공적으로 조회되었습니다.',
     }, { status: 200 });
 
   } catch (error) {

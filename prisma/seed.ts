@@ -545,7 +545,7 @@ async function main() {
     await prisma.personalityTypes.deleteMany();
 
     // PersonalityTypes 생성
-    console.log('🎯 성격 유형 데이터를 생성합니다...');
+    console.log('🎯 성향 유형 데이터를 생성합니다...');
     const createdPersonalityTypes = [];
     
     for (const typeData of personalityTypesData) {

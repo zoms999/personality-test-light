@@ -93,7 +93,7 @@ export const statisticsQuerySchema = z.object({
     .max(120, '최대 나이는 120세 이하여야 합니다.')
     .optional(),
   personality_type: z.string()
-    .min(1, '성격 유형을 입력해주세요.')
+    .min(1, '성향 유형을 입력해주세요.')
     .optional()
 }).refine(
   (data) => !data.age_min || !data.age_max || data.age_min <= data.age_max,
