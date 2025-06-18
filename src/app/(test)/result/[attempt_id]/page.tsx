@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import useSWR from 'swr';
 import Script from 'next/script';
@@ -360,13 +360,13 @@ function TypeDetailModal({ isOpen, onClose, initialIndex }: TypeDetailModalProps
     setCurrentIndex(initialIndex);
   }, [initialIndex]);
 
-  const handlePrevious = () => {
+  const handlePrevious = useCallback(() => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : allTypesData.length - 1));
-  };
+  }, []);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setCurrentIndex((prev) => (prev < allTypesData.length - 1 ? prev + 1 : 0));
-  };
+  }, []);
 
   // 터치 시작
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -442,13 +442,13 @@ function TypeDetailModal({ isOpen, onClose, initialIndex }: TypeDetailModalProps
       document.removeEventListener('mousemove', handleGlobalMouseMove);
       document.removeEventListener('mouseup', handleGlobalMouseUp);
     };
-  }, [isDragging, startX, dragDistance]);
+  }, [isDragging, startX, dragDistance, handlePrevious, handleNext]);
 
-  const handleKeyDown = (e: KeyboardEvent) => {
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') onClose();
     if (e.key === 'ArrowLeft') handlePrevious();
     if (e.key === 'ArrowRight') handleNext();
-  };
+  }, [onClose, handlePrevious, handleNext]);
 
   useEffect(() => {
     if (isOpen) {
@@ -462,7 +462,7 @@ function TypeDetailModal({ isOpen, onClose, initialIndex }: TypeDetailModalProps
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
-  }, [isOpen]);
+  }, [isOpen, handleKeyDown]);
 
   if (!isOpen) return null;
 

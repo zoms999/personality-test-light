@@ -3,7 +3,7 @@
 import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTestStore } from '@/stores/testStore';
-import { Loader2, AlertTriangle, ChevronLeft, ChevronRight, CheckCircle2, Info } from 'lucide-react';
+import { Loader2, AlertTriangle, ChevronRight, CheckCircle2, Info } from 'lucide-react';
 
 // --- ConfirmModal 컴포넌트 (변경 없음) ---
 interface ConfirmModalProps {
@@ -66,7 +66,6 @@ function QuestionsPageContent() {
     fetchQuestions,
     setAnswer,
     nextPage,
-    prevPage,
     submitAnswers,
     getCurrentPageQuestions,
     getTotalPages,
@@ -119,12 +118,6 @@ function QuestionsPageContent() {
     window.scrollTo(0, 0);
   };
 
-  const handlePrev = () => {
-    useTestStore.setState({ error: null });
-    prevPage();
-    window.scrollTo(0, 0);
-  };
-
   const handleSubmit = () => {
     if (!isCurrentPageComplete()) {
       useTestStore.setState({ error: '모든 질문에 답변해주세요.' });
@@ -162,7 +155,6 @@ function QuestionsPageContent() {
   if (!isLoading && allQuestions.length === 0) { /* 데이터 없음 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <AlertTriangle size={48} className="text-amber-500 mx-auto mb-5" /> <p className="text-lg font-semibold text-slate-700 mb-1">질문을 불러올 수 없습니다.</p> <p className="text-slate-500 mb-6">네트워크 연결을 확인하거나 잠시 후 다시 시도해주세요.</p> <button type="button" onClick={() => router.push('/start')} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all">처음으로 돌아가기</button> </div> ); }
 
   const navButtonBaseStyle = "h-12 px-6 rounded-xl font-semibold text-base transition-all duration-300 ease-in-out transform hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-opacity-50 flex items-center justify-center space-x-2";
-  const prevButtonStyle = `${navButtonBaseStyle} bg-white border-2 border-slate-400 text-slate-600 hover:bg-slate-50 hover:border-slate-500 focus:ring-slate-300 shadow-sm`;
   const nextButtonStyle = `${navButtonBaseStyle} bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl focus:ring-blue-300`;
   const submitButtonStyle = `${navButtonBaseStyle} bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white shadow-lg hover:shadow-xl focus:ring-emerald-300`;
 
