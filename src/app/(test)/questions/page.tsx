@@ -177,7 +177,7 @@ function QuestionsPageContent() {
             <Info size={20} className="text-sky-600 mt-0.5 flex-shrink-0" />
             <p className="text-sky-800 text-sm sm:text-base font-medium break-keep text-left sm:text-center">
               각 문항을 읽고 평소 자신의 모습과 얼마나 일치하는지 선택해주세요.
-              <span className="font-extrabold text-blue-700 text-base sm:text-lg align-baseline">나와 많이 비슷할수록 10점</span>에, 
+              <span className="font-extrabold text-blue-700 text-base sm:text-lg align-baseline">나와 많이 비슷할수록 10점에 가깝게</span>, 
               비슷하지 않다면 <span className="font-semibold text-emerald-600">1점</span>에 가깝게 선택하세요.
             </p>
           </div>
@@ -196,7 +196,7 @@ function QuestionsPageContent() {
                   <div className="space-y-4">
                     <div className="flex justify-between text-xs sm:text-sm font-semibold px-2">
                       <span className="text-blue-600">매우 그렇다</span> 
-                      <span className="text-emerald-600">전혀 아니다</span>
+                      {/* <span className="text-emerald-600">전혀 아니다</span> */}
                     </div>
                     
                     {/* --- [수정] 반응형 Flexbox 레이아웃 및 통일된 버튼 크기 적용 --- */}
