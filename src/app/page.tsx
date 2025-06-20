@@ -54,7 +54,7 @@ export default function Home() {
         <p className="text-lg md:text-xl text-slate-700 leading-relaxed max-w-xl mx-auto">
           <span className="font-semibold text-blue-600">10만 1천 4백명</span>의 성공을 만든 옥타그노시스 검사,
           <br />
-          무료 버전  <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-500">&apos;옥스, 나를 찾아줘!&apos;</span> 를 체험해보세요! 
+          무료 버전  <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-500">&apos;오리진, 나를 찾아줘!&apos;</span> 를 체험해보세요! 
         </p>
         
         <div className="pt-8">
@@ -66,12 +66,13 @@ export default function Home() {
               검사 시작하기
               <ChevronRight size={24} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
             </div>
-            {participantCount !== null && (
-              <div className="flex items-center text-sm font-normal mt-1 opacity-90">
-                <Users size={16} className="mr-1" />
-                현재 총 {participantCount.toLocaleString()}명이 참여했어요!
-              </div>
-            )}
+            <div className="flex items-center text-sm font-normal mt-1 opacity-90">
+              <Users size={16} className="mr-1" />
+              {participantCount !== null 
+                ? `현재 총 ${participantCount.toLocaleString()}명이 참여했어요!`
+                : '참여자 수를 불러오는 중...'
+              }
+            </div>
           </Link>
         </div>
         

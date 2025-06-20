@@ -164,7 +164,7 @@ function QuestionsPageContent() {
         <div className="max-w-2xl mx-auto">
           <header className="text-center mb-10">
             <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-2">
-              옥스, 나를 찾아줘!
+              오리진, 나를 찾아줘!
             </h1>
             <div className="flex items-center justify-center space-x-3 text-sm text-slate-500">
               <span>페이지 {currentPage + 1} / {totalPages}</span>
