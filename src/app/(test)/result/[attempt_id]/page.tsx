@@ -562,13 +562,13 @@ export default function ResultPage() {
             <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-600 mb-2">
               나를 찾았어!
             </h1>
-            <p className="text-base text-slate-600 break-keep">
+            <p className="text-base text-slate-600 break-keep text-balance">
               {isTie && personalityTypes.length > 1
                 ? `축하해요! ${personalityTypes.length}가지 다채로운 성향을 발견했어요!`
                 : '축하해요! 당신의 핵심 성향을 발견했어요!'}
             </p>
             {isTie && personalityTypes.length > 1 && (
-                 <p className="text-xs text-slate-500 mt-1.5 break-keep">아래 유형들이 비슷한 점수로 나타났어요!</p>
+                 <p className="text-xs text-slate-500 mt-1.5 break-keep text-balance">아래 유형들이 비슷한 점수로 나타났어요!</p>
             )}
           </header>
 
@@ -593,7 +593,7 @@ export default function ResultPage() {
                         </span>
                       </div>
                       <h2 className="text-2xl font-bold mb-1.5 drop-shadow-sm">{type.title}</h2>
-                      <p className="text-base font-semibold text-white/95 break-keep">&quot;{type.theme_sentence}&quot;</p>
+                      <p className="text-base font-semibold text-white/95 break-keep text-balance">&quot;{type.theme_sentence}&quot;</p>
                     </div>
                   </div>
 
@@ -651,8 +651,8 @@ export default function ResultPage() {
 
           <section className="bg-gradient-to-r from-sky-500 to-indigo-500 rounded-2xl shadow-xl p-6 mb-8 text-white text-center">
             <Users size={32} className="mx-auto mb-3 opacity-80" />
-            <h3 className="text-lg font-semibold mb-1.5 break-keep">나에게 꼭 맞는 진로가 궁금하다면?</h3>
-            <p className="text-sm opacity-90 mb-5 break-keep">전문적인 옥타그노시스 정식 검사로<br/>더 깊이있는 분석과 진로 정보를 확인하세요.</p>
+            <h3 className="text-lg font-semibold mb-1.5 break-keep text-balance">나에게 꼭 맞는 진로가 궁금하다면?</h3>
+            <p className="text-sm opacity-90 mb-5 break-keep text-balance">전문적인 옥타그노시스 정식 검사로 더 깊이있는 분석과 진로 정보를 확인하세요.</p>
             <a href="https://aptitude-x.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-2.5 bg-white text-blue-600 rounded-xl font-bold transition-transform shadow-md active:scale-95">
               <ExternalLink size={18} className="mr-2" />
               정식 검사 알아보기 

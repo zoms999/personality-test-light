@@ -51,9 +51,9 @@ export default function Home() {
           나를 찾아줘!!
         </h1>
         
-        <p className="text-lg md:text-xl text-slate-700 leading-relaxed max-w-xl mx-auto break-keep">
+        <p className="text-lg md:text-xl text-slate-700 leading-relaxed max-w-xl mx-auto break-keep text-balance">
           <span className="font-semibold text-blue-600">10만 1천 4백명</span>의 성공을 만든 옥타그노시스 검사,
-          <br />
+          {' '}
           무료 버전  <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-500">&apos;오리진, 나를 찾아줘!&apos;</span> 를 체험해보세요! 
         </p>
         
