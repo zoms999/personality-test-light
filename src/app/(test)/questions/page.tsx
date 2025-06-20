@@ -28,7 +28,7 @@ function ConfirmModal({ isOpen, onClose, onConfirm, title, message }: ConfirmMod
         onClick={(e) => e.stopPropagation()}
       >
         <AlertTriangle size={48} className="text-amber-500 mx-auto mb-4" />
-        <h2 className="text-xl font-bold text-slate-800 mb-2">{title}</h2>
+        <h2 className="text-xl font-bold text-slate-800 mb-2 break-keep">{title}</h2>
         <p className="text-slate-600 mb-6 break-keep">{message}</p>
         <div className="flex justify-center gap-3 sm:gap-4">
           <button
@@ -150,9 +150,9 @@ function QuestionsPageContent() {
   // --- [수정] 점수별 크기 함수 제거 ---
   // const getScoreSizeClass = ... (이 함수는 이제 필요 없습니다)
   
-  if (isLoading && allQuestions.length === 0) { /* 로딩 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <Loader2 size={48} className="text-blue-500 animate-spin mb-6" /> <p className="text-lg font-semibold text-slate-700 mb-1">잠시만 기다려주세요...</p> <p className="text-slate-500">질문을 준비하고 있습니다.</p> </div> ); }
-  if (error && allQuestions.length === 0) { /* 오류 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4"> <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-8 text-center border border-red-200"> <AlertTriangle size={48} className="text-red-500 mx-auto mb-5" /> <h2 className="text-xl font-semibold text-slate-800 mb-2">오류 발생</h2> <p className="text-slate-600 mb-6">{error}</p> <button type="button" onClick={() => router.push('/start')} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all">처음으로 돌아가기</button> </div> </div> ); }
-  if (!isLoading && allQuestions.length === 0) { /* 데이터 없음 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <AlertTriangle size={48} className="text-amber-500 mx-auto mb-5" /> <p className="text-lg font-semibold text-slate-700 mb-1">질문을 불러올 수 없습니다.</p> <p className="text-slate-500 mb-6">네트워크 연결을 확인하거나 잠시 후 다시 시도해주세요.</p> <button type="button" onClick={() => router.push('/start')} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all">처음으로 돌아가기</button> </div> ); }
+  if (isLoading && allQuestions.length === 0) { /* 로딩 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <Loader2 size={48} className="text-blue-500 animate-spin mb-6" /> <p className="text-lg font-semibold text-slate-700 mb-1 break-keep">잠시만 기다려주세요...</p> <p className="text-slate-500 break-keep">질문을 준비하고 있습니다.</p> </div> ); }
+  if (error && allQuestions.length === 0) { /* 오류 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4"> <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-8 text-center border border-red-200"> <AlertTriangle size={48} className="text-red-500 mx-auto mb-5" /> <h2 className="text-xl font-semibold text-slate-800 mb-2 break-keep">오류 발생</h2> <p className="text-slate-600 mb-6 break-keep">{error}</p> <button type="button" onClick={() => router.push('/start')} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all break-keep">처음으로 돌아가기</button> </div> </div> ); }
+  if (!isLoading && allQuestions.length === 0) { /* 데이터 없음 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <AlertTriangle size={48} className="text-amber-500 mx-auto mb-5" /> <p className="text-lg font-semibold text-slate-700 mb-1 break-keep">질문을 불러올 수 없습니다.</p> <p className="text-slate-500 mb-6 break-keep">네트워크 연결을 확인하거나 잠시 후 다시 시도해주세요.</p> <button type="button" onClick={() => router.push('/start')} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all break-keep">처음으로 돌아가기</button> </div> ); }
 
   const navButtonBaseStyle = "h-12 px-6 rounded-xl font-semibold text-base transition-all duration-300 ease-in-out transform hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-opacity-50 flex items-center justify-center space-x-2";
   const nextButtonStyle = `${navButtonBaseStyle} bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl focus:ring-blue-300`;
@@ -163,13 +163,13 @@ function QuestionsPageContent() {
       <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 py-8 sm:py-12 px-5">
         <div className="max-w-2xl mx-auto">
           <header className="text-center mb-10">
-            <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-2 break-keep">
               오리진, 나를 찾아줘!
             </h1>
             <div className="flex items-center justify-center space-x-3 text-sm text-slate-500">
-              <span>페이지 {currentPage + 1} / {totalPages}</span>
+              <span className="break-keep">페이지 {currentPage + 1} / {totalPages}</span>
               <span className="text-slate-300">•</span>
-              <span>총 {allQuestions.length}개 문항</span>
+              <span className="break-keep">총 {allQuestions.length}개 문항</span>
             </div>
           </header>
 
@@ -177,8 +177,8 @@ function QuestionsPageContent() {
             <Info size={20} className="text-sky-600 mt-0.5 flex-shrink-0" />
             <p className="text-sky-800 text-sm sm:text-base font-medium break-keep text-left sm:text-center">
               각 문항을 읽고 평소 자신의 모습과 얼마나 일치하는지 선택해주세요.
-              <span className="font-extrabold text-blue-700 text-base sm:text-lg align-baseline">나와 많이 비슷할수록 10점에 가깝게</span>, 
-              비슷하지 않다면 <span className="font-semibold text-emerald-600">1점</span>에 가깝게 선택하세요.
+              <span className="font-extrabold text-blue-700 text-base sm:text-lg align-baseline break-keep">나와 많이 비슷할수록 10점에 가깝게</span>, 
+              비슷하지 않다면 <span className="font-semibold text-emerald-600 break-keep">1점</span>에 가깝게 선택하세요.
             </p>
           </div>
 
@@ -195,7 +195,7 @@ function QuestionsPageContent() {
                   
                   <div className="space-y-4">
                     <div className="flex justify-between text-xs sm:text-sm font-semibold px-2">
-                      <span className="text-blue-600">매우 그렇다</span> 
+                      <span className="text-blue-600 break-keep">매우 그렇다</span> 
                       {/* <span className="text-emerald-600">전혀 아니다</span> */}
                     </div>
                     
@@ -238,7 +238,7 @@ function QuestionsPageContent() {
             </div>
           </main>
 
-          {error && ( /* 에러 메시지 */ <div role="alert" className="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mb-8 text-center shadow flex items-center justify-center space-x-2"> <AlertTriangle size={18} className="text-yellow-600" /> <p className="text-yellow-700 text-sm font-medium">{error}</p> </div> )}
+          {error && ( /* 에러 메시지 */ <div role="alert" className="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mb-8 text-center shadow flex items-center justify-center space-x-2"> <AlertTriangle size={18} className="text-yellow-600" /> <p className="text-yellow-700 text-sm font-medium break-keep">{error}</p> </div> )}
 
           <footer className={`flex flex-col sm:flex-row items-center gap-4 ${isFirstPage ? 'justify-end' : 'justify-between'}`}>
             {/* {!isFirstPage && (
@@ -283,7 +283,7 @@ function QuestionsPageContent() {
           <div className="mt-10">
             <div className="flex justify-between text-sm text-slate-600 mb-1.5 px-1">
               <span>진행 상황</span>
-              <span className='font-medium'>{Object.keys(answers).length} / {allQuestions.length}</span>
+              <span className='font-medium break-keep'>{Object.keys(answers).length} / {allQuestions.length}</span>
             </div>
             <div className="w-full bg-slate-200 rounded-full h-2.5 relative overflow-hidden">
               <div
@@ -312,8 +312,8 @@ export default function QuestionsPage() {
     <Suspense fallback={
       <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4">
         <Loader2 size={48} className="text-blue-500 animate-spin mb-6" />
-        <p className="text-lg font-semibold text-slate-700 mb-1">페이지를 불러오는 중입니다</p>
-        <p className="text-slate-500">잠시만 기다려주세요...</p>
+        <p className="text-lg font-semibold text-slate-700 mb-1 break-keep">페이지를 불러오는 중입니다</p>
+        <p className="text-slate-500 break-keep">잠시만 기다려주세요...</p>
       </div>
     }>
       <QuestionsPageContent />

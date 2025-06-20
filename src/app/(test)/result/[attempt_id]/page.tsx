@@ -285,8 +285,8 @@ function TypeDetailModal({ isOpen, onClose, initialIndex }: TypeDetailModalProps
           <div className="text-xs font-medium opacity-90 mb-3">
             {String(currentIndex + 1).padStart(2, '0')} / {String(allTypesData.length).padStart(2, '0')}
           </div>
-          <h2 className="text-2xl font-bold mb-1.5">{currentType.title}</h2>
-          <p className="text-base font-medium opacity-90 whitespace-pre-line">{currentType.subtitle}</p>
+          <h2 className="text-2xl font-bold mb-1.5 break-keep">{currentType.title}</h2>
+          <p className="text-base font-medium opacity-90 whitespace-pre-line break-keep">{currentType.subtitle}</p>
         </div>
         <div 
           className="flex-1 p-5 overflow-y-auto"
@@ -294,7 +294,7 @@ function TypeDetailModal({ isOpen, onClose, initialIndex }: TypeDetailModalProps
         >
           <div className="flex flex-col items-center">
             <Image src={currentType.imageSrc} alt={`${currentType.title} 이미지`} width={120} height={120} className="mb-5 object-contain" />
-            <p className="text-slate-700 text-sm leading-relaxed whitespace-pre-line text-center">{currentType.description}</p>
+            <p className="text-slate-700 text-sm leading-relaxed whitespace-pre-line text-center break-keep">{currentType.description}</p>
           </div>
         </div>
         <div className="flex justify-center items-center p-4 bg-slate-50 border-t">
@@ -330,7 +330,7 @@ function OtherTypesSection({ allTypes, userTypes }: OtherTypesSectionProps) {
   return (
     <>
       <section className="bg-white rounded-2xl shadow-xl p-5 mb-8 border border-slate-200">
-        <h3 className="text-lg font-semibold text-slate-700 mb-5 text-center flex items-center justify-center">
+        <h3 className="text-lg font-semibold text-slate-700 mb-5 text-center flex items-center justify-center break-keep">
           <Eye size={20} className="mr-2 text-sky-500" />
           옥타그노시스 15가지 성향 알아보기
         </h3>
@@ -385,9 +385,9 @@ function Dialog({ isOpen, onClose, title, message, type = 'info' }: DialogProps)
       <div className="relative w-full max-w-sm mx-4 bg-white rounded-2xl shadow-2xl p-5">
         <div className="flex items-center mb-3">
           {icons[type]}
-          <h3 className={`ml-3 text-base font-semibold ${colors[type]}`}>{title}</h3>
+          <h3 className={`ml-3 text-base font-semibold ${colors[type]} break-keep`}>{title}</h3>
         </div>
-        <p className="text-slate-600 text-sm leading-relaxed mb-5">{message}</p>
+        <p className="text-slate-600 text-sm leading-relaxed mb-5 break-keep">{message}</p>
         <div className="flex justify-end">
           <button onClick={onClose} className="px-5 py-2 bg-blue-600 text-white rounded-lg font-medium transition-colors active:bg-blue-700">
             확인
@@ -495,7 +495,7 @@ export default function ResultPage() {
     return (
       <div className="min-h-screen bg-sky-50 flex flex-col items-center justify-center text-center p-4">
         <Loader2 size={40} className="text-blue-500 animate-spin mb-4" />
-        <p className="text-base font-semibold text-slate-700">결과를 분석 중입니다...</p>
+        <p className="text-base font-semibold text-slate-700 break-keep">결과를 분석 중입니다...</p>
       </div>
     );
   }
@@ -505,8 +505,8 @@ export default function ResultPage() {
       <div className="min-h-screen bg-sky-50 flex flex-col items-center justify-center p-4">
         <div className="w-full max-w-sm bg-white rounded-xl shadow-xl p-6 text-center border border-red-200">
           <AlertTriangle size={40} className="text-red-500 mx-auto mb-4" />
-          <h2 className="text-lg font-semibold text-slate-800 mb-2">결과를 불러올 수 없습니다</h2>
-          <p className="text-sm text-slate-600 mb-5">{error?.message || data?.message || '알 수 없는 오류가 발생했습니다.'}</p>
+          <h2 className="text-lg font-semibold text-slate-800 mb-2 break-keep">결과를 불러올 수 없습니다</h2>
+          <p className="text-sm text-slate-600 mb-5 break-keep">{error?.message || data?.message || '알 수 없는 오류가 발생했습니다.'}</p>
           <div className="flex gap-3 justify-center">
             <button onClick={() => mutate()} className="flex-1 flex items-center justify-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md active:bg-blue-700">
               <RefreshCw size={16} className="mr-2" />다시 시도
@@ -526,8 +526,8 @@ export default function ResultPage() {
       <div className="min-h-screen bg-sky-50 flex flex-col items-center justify-center p-4">
         <div className="w-full max-w-sm bg-white rounded-xl shadow-xl p-6 text-center border border-amber-300">
           <Users size={40} className="text-amber-500 mx-auto mb-4" />
-          <h2 className="text-lg font-semibold text-slate-800 mb-2">결과 정보 없음</h2>
-          <p className="text-sm text-slate-600 mb-5">유효하지 않은 접근이거나, 테스트를 완료해주세요.</p>
+          <h2 className="text-lg font-semibold text-slate-800 mb-2 break-keep">결과 정보 없음</h2>
+          <p className="text-sm text-slate-600 mb-5 break-keep">유효하지 않은 접근이거나, 테스트를 완료해주세요.</p>
           <button onClick={() => router.push('/')} className="w-full px-5 py-2.5 bg-blue-600 text-white font-semibold rounded-lg shadow-md active:bg-blue-700">
             테스트 다시 시작하기
           </button>
@@ -562,13 +562,13 @@ export default function ResultPage() {
             <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-600 mb-2">
               나를 찾았어!
             </h1>
-            <p className="text-base text-slate-600">
+            <p className="text-base text-slate-600 break-keep">
               {isTie && personalityTypes.length > 1
                 ? `축하해요! ${personalityTypes.length}가지 다채로운 성향을 발견했어요!`
                 : '축하해요! 당신의 핵심 성향을 발견했어요!'}
             </p>
             {isTie && personalityTypes.length > 1 && (
-                 <p className="text-xs text-slate-500 mt-1.5">아래 유형들이 비슷한 점수로 나타났어요!</p>
+                 <p className="text-xs text-slate-500 mt-1.5 break-keep">아래 유형들이 비슷한 점수로 나타났어요!</p>
             )}
           </header>
 
@@ -593,7 +593,7 @@ export default function ResultPage() {
                         </span>
                       </div>
                       <h2 className="text-2xl font-bold mb-1.5 drop-shadow-sm">{type.title}</h2>
-                      <p className="text-base font-semibold text-white/95">&quot;{type.theme_sentence}&quot;</p>
+                      <p className="text-base font-semibold text-white/95 break-keep">&quot;{type.theme_sentence}&quot;</p>
                     </div>
                   </div>
 
@@ -613,14 +613,14 @@ export default function ResultPage() {
                     <div>
                       <h3 className="text-base font-semibold text-slate-700 mb-2.5">✨ 나의 강점 키워드</h3>
                       <div className="flex flex-wrap gap-2">
-                        {type.strength_keywords.map(kw => <span key={kw} className="px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">{kw}</span>)}
+                        {type.strength_keywords.map(kw => <span key={kw} className="px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 break-keep">{kw}</span>)}
                       </div>
                     </div>
 
                     <div>
                       <h3 className="text-base font-semibold text-slate-700 mb-2.5">🌱 함께 성장할 점</h3>
                       <div className="flex flex-wrap gap-2">
-                        {type.weakness_keywords.map(kw => <span key={kw} className="px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">{kw}</span>)}
+                        {type.weakness_keywords.map(kw => <span key={kw} className="px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200 break-keep">{kw}</span>)}
                       </div>
                     </div>
                   </div>
@@ -630,7 +630,7 @@ export default function ResultPage() {
           </section>
 
           <section className="bg-white rounded-2xl shadow-xl p-5 mb-8 border border-slate-200">
-            <h3 className="text-lg font-semibold text-slate-700 mb-4 text-center">결과를 공유해보세요!</h3>
+            <h3 className="text-lg font-semibold text-slate-700 mb-4 text-center break-keep">결과를 공유해보세요!</h3>
             <div className="grid grid-cols-3 gap-3">
               {[
                 { name: '카카오톡', Icon: Share2, handler: handleKakaoShare, disabled: !kakaoReady, style: `bg-yellow-400 text-slate-800 ${!kakaoReady ? 'bg-slate-300 text-slate-500' : 'active:bg-yellow-500'}` },
@@ -651,8 +651,8 @@ export default function ResultPage() {
 
           <section className="bg-gradient-to-r from-sky-500 to-indigo-500 rounded-2xl shadow-xl p-6 mb-8 text-white text-center">
             <Users size={32} className="mx-auto mb-3 opacity-80" />
-            <h3 className="text-lg font-semibold mb-1.5">나에게 꼭 맞는 진로가 궁금하다면?</h3>
-            <p className="text-sm opacity-90 mb-5">전문적인 옥타그노시스 정식 검사로<br/>더 깊이있는 분석과 진로 정보를 확인하세요.</p>
+            <h3 className="text-lg font-semibold mb-1.5 break-keep">나에게 꼭 맞는 진로가 궁금하다면?</h3>
+            <p className="text-sm opacity-90 mb-5 break-keep">전문적인 옥타그노시스 정식 검사로<br/>더 깊이있는 분석과 진로 정보를 확인하세요.</p>
             <a href="https://aptitude-x.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-2.5 bg-white text-blue-600 rounded-xl font-bold transition-transform shadow-md active:scale-95">
               <ExternalLink size={18} className="mr-2" />
               정식 검사 알아보기 
@@ -661,9 +661,9 @@ export default function ResultPage() {
           
           <div className="text-center mt-10">
             <button onClick={() => router.push('/')} className="px-8 py-3.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-xl font-semibold text-base transition-transform shadow-xl active:scale-95 inline-flex flex-col items-center">
-              <div>새로운 테스트 시작하기</div>
+              <div className="break-keep">새로운 테스트 시작하기</div>
               {participantCount && (
-                <div className="flex items-center text-xs font-normal mt-1 opacity-90">
+                <div className="flex items-center text-xs font-normal mt-1 opacity-90 break-keep">
                   <Users size={14} className="mr-1" />총 {participantCount.toLocaleString()}명 참여!
                 </div>
               )}
@@ -671,8 +671,8 @@ export default function ResultPage() {
           </div>
 
           <footer className="mt-12 pt-6 border-t border-slate-200 text-center">
-            <p className="text-xs text-slate-500">본 테스트는 옥타그노시스 검사의 무료버전입니다.</p>
-            <p className="text-xs text-slate-500 mt-1">© Copyright 2024. 한국진로적성센터. All rights reserved. </p>
+            <p className="text-xs text-slate-500 break-keep">본 테스트는 옥타그노시스 검사의 무료버전입니다.</p>
+            <p className="text-xs text-slate-500 mt-1 break-keep">© Copyright 2024. 한국진로적성센터. All rights reserved. </p>
           </footer>
         </div>
       </div>
