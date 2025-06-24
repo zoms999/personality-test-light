@@ -178,7 +178,7 @@ function QuestionsPageContent() {
             <p className="text-sky-800 text-sm sm:text-base font-medium break-keep text-left sm:text-center">
               각 문항을 읽고 평소 자신의 모습과 얼마나 일치하는지 선택해주세요.
               <span className="font-extrabold text-blue-700 text-base sm:text-lg align-baseline break-keep">나와 많이 비슷할수록 10점에 가깝게</span>, 
-              비슷하지 않다면 <span className="font-semibold text-emerald-600 break-keep">1점</span>에 가깝게 선택하세요.
+              <span className="font-extrabold text-green-700 text-base sm:text-lg align-baseline break-keep">비슷하지 않다면 1점에 가깝게</span> 선택하세요.
             </p>
           </div>
 

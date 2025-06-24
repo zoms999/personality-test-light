@@ -16,7 +16,6 @@ import {
   Award,
   Sparkles,
   Users,
-  Eye,
   X 
 } from 'lucide-react';
 
@@ -331,7 +330,7 @@ function OtherTypesSection({ allTypes, userTypes }: OtherTypesSectionProps) {
     <>
       <section className="bg-white rounded-2xl shadow-xl p-5 mb-8 border border-slate-200">
         <h3 className="text-lg font-semibold text-slate-700 mb-5 text-center flex items-center justify-center break-keep">
-          <Eye size={20} className="mr-2 text-sky-500" />
+          <Image src="/oct_logo.jpg" alt="옥타그노시스 로고" width={24} height={24} className="mr-2 rounded-full" />
           옥타그노시스 15가지 성향 알아보기
         </h3>
         <div className="grid grid-cols-3 gap-3">
@@ -672,7 +671,7 @@ export default function ResultPage() {
 
           <footer className="mt-12 pt-6 border-t border-slate-200 text-center">
             <p className="text-xs text-slate-500 break-keep">본 테스트는 옥타그노시스 검사의 무료버전입니다.</p>
-            <p className="text-xs text-slate-500 mt-1 break-keep">© Copyright 2024. 한국진로적성센터. All rights reserved. </p>
+            <p className="text-xs text-slate-500 mt-1 break-keep">© Copyright 2004. 한국진로적성센터. All rights reserved. </p>
           </footer>
         </div>
       </div>

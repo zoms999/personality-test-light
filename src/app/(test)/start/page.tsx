@@ -249,7 +249,7 @@ export default function StartTestPage() {
         </div>
       </div>
       <p className="mt-8 text-xs text-slate-500 text-center">
-        © Copyright 2024. 한국진로적성센터. All rights reserved. 
+        © Copyright 2004. 한국진로적성센터. All rights reserved. 
       </p>
     </div>
   );
