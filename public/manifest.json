@@ -1,0 +1,27 @@
+{
+  "name": "나를 찾아줘 - 성향 검사",
+  "short_name": "나를 찾아줘",
+  "description": "옥타그노시스 기반 성향 검사로 나의 진짜 모습을 발견하세요",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "lifestyle"],
+  "lang": "ko-KR",
+  "dir": "ltr"
+}

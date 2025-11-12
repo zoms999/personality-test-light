@@ -10,12 +10,21 @@
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:seed": "prisma db seed",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "cap:sync": "npm run build && npx cap sync android",
+    "cap:open": "npx cap open android",
+    "android:dev": "npm run cap:sync && npm run cap:open",
+    "android:build": "cd android && gradlew assembleRelease",
+    "android:bundle": "cd android && gradlew bundleRelease",
+    "icons:guide": "node scripts/generate-icons.js"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
+    "@capacitor/android": "^7.4.4",
+    "@capacitor/cli": "^7.4.4",
+    "@capacitor/core": "^7.4.4",
     "@hookform/resolvers": "^5.0.1",
     "@prisma/client": "^6.8.2",
     "lucide-react": "^0.511.0",

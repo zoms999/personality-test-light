@@ -15,6 +15,19 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "나를 찾아줘! - 옥타그노시스 성향 검사",
   description: "10만 1천 4백명의 성공을 만든 옥타그노시스 검사의 '나를 찾아줘!' 버전을 지금 시작하세요!",
+  manifest: "/manifest.json",
+  themeColor: "#3b82f6",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "나를 찾아줘",
+  },
 };
 
 export default function RootLayout({
@@ -23,7 +36,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#3b82f6" />
+        <link rel="apple-touch-icon" href="/icon-192.png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
