@@ -16,7 +16,8 @@
     "android:dev": "npm run cap:sync && npm run cap:open",
     "android:build": "cd android && gradlew assembleRelease",
     "android:bundle": "cd android && gradlew bundleRelease",
-    "icons:guide": "node scripts/generate-icons.js"
+    "icons:guide": "node scripts/generate-icons.js",
+    "icons:check": "node create-placeholder-icons.js"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
