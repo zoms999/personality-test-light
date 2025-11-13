@@ -1,46 +1,76 @@
-// 앱 아이콘 생성 스크립트
+// 앱 아이콘 생성 가이드 스크립트
 // 실행: node scripts/generate-icons.js
 
 const fs = require('fs');
 const path = require('path');
 
-console.log('📱 앱 아이콘 생성 가이드');
-console.log('='.repeat(50));
-console.log('');
-console.log('다음 단계를 따라 앱 아이콘을 준비하세요:');
-console.log('');
-console.log('1. 1024x1024 크기의 앱 아이콘 이미지를 준비하세요');
-console.log('   - PNG 형식 권장');
-console.log('   - 투명 배경 가능');
-console.log('   - 앱을 대표하는 심플한 디자인');
-console.log('');
-console.log('2. 온라인 아이콘 생성기 사용:');
-console.log('   🔗 https://icon.kitchen/');
-console.log('   🔗 https://www.pwabuilder.com/imageGenerator');
-console.log('');
-console.log('3. 생성된 아이콘들을 다음 위치에 저장:');
-console.log('   - public/icon-192.png (192x192)');
-console.log('   - public/icon-512.png (512x512)');
-console.log('   - android/app/src/main/res/ (안드로이드용)');
-console.log('');
-console.log('4. 또는 기존 로고 사용:');
-console.log('   - public/oct_logo.jpg를 변환하여 사용 가능');
-console.log('');
-console.log('='.repeat(50));
+console.log('\n');
+console.log('🎨 '.repeat(25));
+console.log('📱 PWA 아이콘 생성 가이드');
+console.log('🎨 '.repeat(25));
+console.log('\n');
 
-// 임시 아이콘 생성 (실제 프로덕션에서는 제대로 된 아이콘 사용 필요)
+// 아이콘 파일 확인
 const publicDir = path.join(__dirname, '..', 'public');
+const icon192 = path.join(publicDir, 'icon-192.png');
+const icon512 = path.join(publicDir, 'icon-512.png');
 
-// SVG 플레이스홀더 생성
-const svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#3b82f6"/>
-  <text x="256" y="280" font-family="Arial, sans-serif" font-size="200" font-weight="bold" text-anchor="middle" fill="white">나</text>
-</svg>`;
+const has192 = fs.existsSync(icon192);
+const has512 = fs.existsSync(icon512);
 
-console.log('');
-console.log('⚠️  임시 플레이스홀더 아이콘을 생성합니다...');
-console.log('   실제 배포 전에 반드시 전문적인 아이콘으로 교체하세요!');
-console.log('');
+if (has192 && has512) {
+  console.log('✅ 아이콘이 이미 존재합니다!');
+  console.log('   - icon-192.png ✓');
+  console.log('   - icon-512.png ✓');
+  console.log('\n');
+  console.log('🎉 PWA 배포 준비가 완료되었습니다!');
+  console.log('\n');
+  console.log('다음 단계:');
+  console.log('1. npm run build - 빌드 테스트');
+  console.log('2. vercel - 배포');
+  console.log('3. PWABuilder로 TWA 생성');
+  console.log('\n');
+} else {
+  console.log('⚠️  PNG 아이콘이 필요합니다!');
+  console.log('\n');
+  console.log('━'.repeat(50));
+  console.log('🚀 빠른 방법 (3가지 옵션)');
+  console.log('━'.repeat(50));
+  console.log('\n');
+  
+  console.log('📌 옵션 1: 브라우저에서 생성 (가장 빠름)');
+  console.log('   1. npm run dev');
+  console.log('   2. http://localhost:3000/generate-icons.html 접속');
+  console.log('   3. "모든 아이콘 다운로드" 클릭');
+  console.log('   4. public 폴더에 복사');
+  console.log('\n');
+  
+  console.log('📌 옵션 2: Icon Kitchen 사용 (전문적)');
+  console.log('   1. https://icon.kitchen/ 접속');
+  console.log('   2. 이미지 업로드 또는 텍스트 입력');
+  console.log('   3. 다운로드');
+  console.log('   4. public 폴더에 복사');
+  console.log('\n');
+  
+  console.log('📌 옵션 3: 기존 로고 변환');
+  console.log('   1. https://www.iloveimg.com/resize-image 접속');
+  console.log('   2. public/oct_logo.jpg 업로드');
+  console.log('   3. 192x192, 512x512로 리사이즈');
+  console.log('   4. public 폴더에 저장');
+  console.log('\n');
+  
+  console.log('━'.repeat(50));
+  console.log('📋 필요한 파일');
+  console.log('━'.repeat(50));
+  console.log('\n');
+  console.log('  public/');
+  console.log('  ├── icon-192.png  ← 192x192 PNG ' + (has192 ? '✓' : '✗'));
+  console.log('  └── icon-512.png  ← 512x512 PNG ' + (has512 ? '✓' : '✗'));
+  console.log('\n');
+  
+  console.log('💡 자세한 가이드: ICON-GENERATION-GUIDE.md 파일 참조');
+  console.log('\n');
+}
 
-// 참고: 실제 PNG 생성은 sharp 같은 라이브러리 필요
-// 여기서는 가이드만 제공
+console.log('🎨 '.repeat(25));
+console.log('\n');
