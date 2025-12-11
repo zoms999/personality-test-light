@@ -10,6 +10,17 @@
     "submit": "提出",
     "close": "閉じる"
   },
+  "home": {
+    "title": "わたしを見つけて!!",
+    "description": "{count}人の成功を生み出したオクタグノシス検査、",
+    "countText": "101,400人",
+    "programName": "「オリジン・わたしを見つけて！」",
+    "tryFree": "無料版 {programName} を体験してみましょう！",
+    "startTest": "検査を始める",
+    "participants": "現在までに {count} 人が参加しました！",
+    "loadingParticipants": "参加者数を読み込み中…",
+    "disclaimer": "* 本無料テストはオクタグノシス検査の簡易版であり、一部の傾向のみが表示される場合があります。より総合的で詳細な診断をご希望の方は、オクタグノシス STANDARD または PREMIUM 版をご利用ください。"
+  },
   "start": {
     "title": "自分の性向を知る",
     "subtitle": "テスト開始前に、いくつかの情報を入力してください。",

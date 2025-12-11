@@ -10,6 +10,17 @@
     "submit": "제출",
     "close": "닫기"
   },
+  "home": {
+    "title": "나를 찾아줘!!",
+    "description": "{count}의 성공을 만든 옥타그노시스 검사,",
+    "countText": "10만 1천 4백명",
+    "programName": "'오리진, 나를 찾아줘!'",
+    "tryFree": "무료 버전 {programName} 를 체험해보세요!",
+    "startTest": "검사 시작하기",
+    "participants": "현재 총 {count}명이 참여했어요!",
+    "loadingParticipants": "참여자 수를 불러오는 중...",
+    "disclaimer": "* 본 무료 테스트는 옥타그노시스 검사의 축약본으로, 일부 성향만 나타날 수 있습니다. 보다 종합적이고 상세한 진단을 원하시는 분은 옥타그노시스 STANDARD 또는 PREMIUM 버전을 신청하시기 바랍니다."
+  },
   "start": {
     "title": "나의 성향 알아보기",
     "subtitle": "테스트 시작 전, 몇 가지 정보를 입력해주세요.",

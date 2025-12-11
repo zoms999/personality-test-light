@@ -10,6 +10,17 @@
     "submit": "Submit",
     "close": "Close"
   },
+  "home": {
+    "title": "Find Me!!",
+    "description": "The Octagnosis test that created the success of {count},",
+    "countText": "101,400 people",
+    "programName": "'Origin, Find Me!'",
+    "tryFree": "Try the free version {programName}!",
+    "startTest": "Start Test",
+    "participants": "Currently {count} people have participated!",
+    "loadingParticipants": "Loading participant count...",
+    "disclaimer": "* This free test is an abbreviated version of the Octagnosis assessment and may only show some tendencies. If you want a more comprehensive and detailed diagnosis, please apply for the Octagnosis STANDARD or PREMIUM version."
+  },
   "start": {
     "title": "Discover Your Personality",
     "subtitle": "Please enter some information before starting the test.",

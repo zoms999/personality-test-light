@@ -4,9 +4,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronRight, Users } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTranslation } from '@/lib/i18n/useTranslation';
+import { useLocaleStore } from '@/stores/localeStore';
+import LanguageSelector from '@/components/LanguageSelector';
 
 export default function Home() {
   const [participantCount, setParticipantCount] = useState<number | null>(null);
+  const { t } = useTranslation();
+  const initLocale = useLocaleStore((state) => state.initLocale);
+
+  // 언어 초기화
+  useEffect(() => {
+    initLocale();
+  }, [initLocale]);
 
   useEffect(() => {
     const fetchParticipantCount = async () => {
@@ -26,6 +36,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center px-4 py-12 overflow-hidden relative">
+      {/* Language Selector */}
+      <div className="absolute top-4 right-4 z-50">
+        <LanguageSelector />
+      </div>
+
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute -top-1/4 -left-1/4 w-96 h-96 bg-blue-300 rounded-full opacity-20 animate-pulse-slow filter blur-3xl" />
@@ -48,13 +63,20 @@ export default function Home() {
         </div>
 
         <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-500 leading-tight drop-shadow-sm break-keep">
-          나를 찾아줘!!
+          {t('home.title')}
         </h1>
         
         <p className="text-lg md:text-xl text-slate-700 leading-relaxed max-w-xl mx-auto break-keep text-balance">
-          <span className="font-semibold text-blue-600">10만 1천 4백명</span>의 성공을 만든 옥타그노시스 검사,
-          {' '}
-          무료 버전  <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-500">&apos;오리진, 나를 찾아줘!&apos;</span> 를 체험해보세요! 
+          {t('home.description', { count: '' }).split(',')[0]},
+           {' '}
+           <span className="font-semibold text-blue-600">{t('home.countText')}</span>
+            {t('home.description', { count: '' }).split(',')[1]}
+          <br/>
+          {t('home.tryFree', { programName: '' }).split(t('home.programName'))[0]}
+          <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-500">
+            {t('home.programName')}
+          </span>
+          {t('home.tryFree', { programName: '' }).split(t('home.programName'))[1]}
         </p>
         
         <div className="pt-8">
@@ -63,14 +85,14 @@ export default function Home() {
             className="group inline-flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 via-cyan-500 to-sky-600 hover:from-blue-600 hover:via-cyan-600 hover:to-sky-700 text-white font-semibold text-xl px-10 py-4 rounded-xl shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-70"
           >
             <div className="flex items-center">
-              검사 시작하기
+              {t('home.startTest')}
               <ChevronRight size={24} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
             </div>
             <div className="flex items-center text-sm font-normal mt-1 opacity-90">
               <Users size={16} className="mr-1" />
               {participantCount !== null 
-                ? `현재 총 ${participantCount.toLocaleString()}명이 참여했어요!`
-                : '참여자 수를 불러오는 중...'
+                ? t('home.participants', { count: participantCount.toLocaleString() })
+                : t('home.loadingParticipants')
               }
             </div>
           </Link>
@@ -78,8 +100,7 @@ export default function Home() {
         
         <div className="pt-12">
           <p className="text-xs text-slate-600 leading-relaxed max-w-md mx-auto break-keep">
-            * 본 무료 테스트는 옥타그노시스 검사의 축약본으로, 일부 성향만 나타날 수 있습니다.
-            보다 종합적이고 상세한 진단을 원하시는 분은 옥타그노시스 STANDARD 또는 PREMIUM 버전을 신청하시기 바랍니다.  
+            {t('home.disclaimer')}
           </p>
         </div>
       </div>

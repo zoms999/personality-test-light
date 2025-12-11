@@ -10,6 +10,17 @@
     "submit": "Gửi",
     "close": "Đóng"
   },
+  "home": {
+    "title": "Hãy tìm chính mình!!",
+    "description": "Bài kiểm tra Octagnosis đã tạo nên thành công cho {count},",
+    "countText": "101.400 người",
+    "programName": "'Origin, Hãy tìm chính mình!'",
+    "tryFree": "Hãy trải nghiệm phiên bản miễn phí {programName}!",
+    "startTest": "Bắt đầu kiểm tra",
+    "participants": "Hiện đã có {count} người tham gia!",
+    "loadingParticipants": "Đang tải số lượng người tham gia...",
+    "disclaimer": "* Bài kiểm tra miễn phí này là phiên bản rút gọn của bài đánh giá Octagnosis và có thể chỉ hiển thị một số xu hướng. Nếu bạn muốn chẩn đoán đầy đủ và chi tiết hơn, hãy đăng ký phiên bản STANDARD hoặc PREMIUM."
+  },
   "start": {
     "title": "Khám Phá Tính Cách Của Bạn",
     "subtitle": "Vui lòng nhập một số thông tin trước khi bắt đầu bài kiểm tra.",
