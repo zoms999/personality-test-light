@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 // ... imports
-import { 
+import {
   Loader2,
   Globe,
   ChevronDown,
@@ -12,13 +12,17 @@ import {
   CheckCircle
 } from 'lucide-react';
 
-// ... interfaces
+import { PersonalityTypes, PersonalityTypeTranslations } from '@prisma/client';
+
+interface PersonalityType extends PersonalityTypes {
+  translations: PersonalityTypeTranslations[];
+}
 
 export default function ResultManagement() {
   const [types, setTypes] = useState<PersonalityType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  
+
   // Edit State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingType, setEditingType] = useState<PersonalityType | null>(null);
@@ -53,10 +57,10 @@ export default function ResultManagement() {
 
   const handleEdit = (type: PersonalityType) => {
     setEditingType(type);
-    
+
     // Helper to get trans safely
     const getTrans = (lang: string) => type.translations.find(t => t.language_code === lang) || { type_name: '', title: '', description: '' };
-    
+
     const ko = getTrans('ko');
     const en = getTrans('en');
     const ja = getTrans('ja');
@@ -86,7 +90,7 @@ export default function ResultManagement() {
         { language_code: 'en', type_name: formData.en_type_name, title: formData.en_title, description: formData.en_description },
         { language_code: 'ja', type_name: formData.ja_type_name, title: formData.ja_title, description: formData.ja_description },
         { language_code: 'vi', type_name: formData.vi_type_name, title: formData.vi_title, description: formData.vi_description },
-      ].filter(t => t.type_name || t.title || t.description); 
+      ].filter(t => t.type_name || t.title || t.description);
 
       const res = await fetch('/api/admin/results', {
         method: 'PUT',
@@ -129,7 +133,7 @@ export default function ResultManagement() {
 
             return (
               <div key={type.id} className="p-0">
-                <div 
+                <div
                   className="flex items-center justify-between p-6 hover:bg-slate-50 cursor-pointer transition-colors"
                 >
                   <div className="flex items-center space-x-6 flex-1" onClick={() => toggleExpand(type.id)}>
@@ -144,24 +148,24 @@ export default function ResultManagement() {
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <button 
-                         onClick={(e) => { e.stopPropagation(); handleEdit(type); }}
-                         className="p-2 text-slate-400 hover:text-blue-600 transition-colors rounded-full hover:bg-blue-50"
-                       >
-                         <Edit size={18} />
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleEdit(type); }}
+                      className="p-2 text-slate-400 hover:text-blue-600 transition-colors rounded-full hover:bg-blue-50"
+                    >
+                      <Edit size={18} />
                     </button>
                     <div className="flex space-x-1" onClick={() => toggleExpand(type.id)}>
-                        {type.translations.map(t => (
-                          <span 
-                            key={t.language_code}
-                            className="px-1.5 py-0.5 text-xs rounded uppercase bg-slate-100 text-slate-500 border border-slate-200"
-                          >
-                            {t.language_code}
-                          </span>
-                        ))}
+                      {type.translations.map(t => (
+                        <span
+                          key={t.language_code}
+                          className="px-1.5 py-0.5 text-xs rounded uppercase bg-slate-100 text-slate-500 border border-slate-200"
+                        >
+                          {t.language_code}
+                        </span>
+                      ))}
                     </div>
                     <div onClick={() => toggleExpand(type.id)}>
-                        {isExpanded ? <ChevronUp size={20} className="text-slate-400" /> : <ChevronDown size={20} className="text-slate-400" />}
+                      {isExpanded ? <ChevronUp size={20} className="text-slate-400" /> : <ChevronDown size={20} className="text-slate-400" />}
                     </div>
                   </div>
                 </div>
@@ -175,7 +179,7 @@ export default function ResultManagement() {
                           <Globe size={14} className="mr-2 text-blue-500" />
                           {trans.language_code} 번역
                         </h4>
-                        
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <span className="text-xs font-medium text-slate-500 block mb-1">유형 이름</span>
@@ -186,10 +190,10 @@ export default function ResultManagement() {
                             <div className="text-sm text-slate-800">{trans.title}</div>
                           </div>
                           <div className="col-span-2">
-                             <span className="text-xs font-medium text-slate-500 block mb-1">설명 (Description)</span>
-                             <div className="text-sm text-slate-600 whitespace-pre-line leading-relaxed">
-                               {trans.description}
-                             </div>
+                            <span className="text-xs font-medium text-slate-500 block mb-1">설명 (Description)</span>
+                            <div className="text-sm text-slate-600 whitespace-pre-line leading-relaxed">
+                              {trans.description}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -214,89 +218,89 @@ export default function ResultManagement() {
                 <XCircle size={24} />
               </button>
             </div>
-            
+
             <form onSubmit={handleSubmit} className="p-6 space-y-8">
-               {/* Korean */}
-               <div className="space-y-4">
-                 <h3 className="font-bold text-slate-800 flex items-center"><span className="text-lg mr-2">🇰🇷</span> 한국어 (KO)</h3>
-                 <div className="grid grid-cols-2 gap-4">
-                   <div>
-                     <label className="block text-sm font-medium text-slate-700 mb-1">유형 이름</label>
-                     <input type="text" value={formData.ko_type_name} onChange={e => setFormData({...formData, ko_type_name: e.target.value})} className="w-full px-3 py-2 border rounded-lg" />
-                   </div>
-                   <div>
-                     <label className="block text-sm font-medium text-slate-700 mb-1">제목</label>
-                     <input type="text" value={formData.ko_title} onChange={e => setFormData({...formData, ko_title: e.target.value})} className="w-full px-3 py-2 border rounded-lg" />
-                   </div>
-                   <div className="col-span-2">
-                     <label className="block text-sm font-medium text-slate-700 mb-1">설명</label>
-                     <textarea value={formData.ko_description} onChange={e => setFormData({...formData, ko_description: e.target.value})} className="w-full px-3 py-2 border rounded-lg min-h-[100px]" />
-                   </div>
-                 </div>
-               </div>
+              {/* Korean */}
+              <div className="space-y-4">
+                <h3 className="font-bold text-slate-800 flex items-center"><span className="text-lg mr-2">🇰🇷</span> 한국어 (KO)</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">유형 이름</label>
+                    <input type="text" value={formData.ko_type_name} onChange={e => setFormData({ ...formData, ko_type_name: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">제목</label>
+                    <input type="text" value={formData.ko_title} onChange={e => setFormData({ ...formData, ko_title: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
+                  </div>
+                  <div className="col-span-2">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">설명</label>
+                    <textarea value={formData.ko_description} onChange={e => setFormData({ ...formData, ko_description: e.target.value })} className="w-full px-3 py-2 border rounded-lg min-h-[100px]" />
+                  </div>
+                </div>
+              </div>
 
-               <hr className="border-slate-100" />
+              <hr className="border-slate-100" />
 
-               {/* English */}
-               <div className="space-y-4">
-                 <h3 className="font-bold text-slate-800 flex items-center"><span className="text-lg mr-2">🇺🇸</span> 영어 (EN)</h3>
-                 <div className="grid grid-cols-2 gap-4">
-                   <div>
-                     <label className="block text-sm font-medium text-slate-700 mb-1">Type Name</label>
-                     <input type="text" value={formData.en_type_name} onChange={e => setFormData({...formData, en_type_name: e.target.value})} className="w-full px-3 py-2 border rounded-lg" />
-                   </div>
-                   <div>
-                     <label className="block text-sm font-medium text-slate-700 mb-1">Title</label>
-                     <input type="text" value={formData.en_title} onChange={e => setFormData({...formData, en_title: e.target.value})} className="w-full px-3 py-2 border rounded-lg" />
-                   </div>
-                   <div className="col-span-2">
-                     <label className="block text-sm font-medium text-slate-700 mb-1">Description</label>
-                     <textarea value={formData.en_description} onChange={e => setFormData({...formData, en_description: e.target.value})} className="w-full px-3 py-2 border rounded-lg min-h-[100px]" />
-                   </div>
-                 </div>
-               </div>
+              {/* English */}
+              <div className="space-y-4">
+                <h3 className="font-bold text-slate-800 flex items-center"><span className="text-lg mr-2">🇺🇸</span> 영어 (EN)</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Type Name</label>
+                    <input type="text" value={formData.en_type_name} onChange={e => setFormData({ ...formData, en_type_name: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Title</label>
+                    <input type="text" value={formData.en_title} onChange={e => setFormData({ ...formData, en_title: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
+                  </div>
+                  <div className="col-span-2">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Description</label>
+                    <textarea value={formData.en_description} onChange={e => setFormData({ ...formData, en_description: e.target.value })} className="w-full px-3 py-2 border rounded-lg min-h-[100px]" />
+                  </div>
+                </div>
+              </div>
 
-               <hr className="border-slate-100" />
-               
-               {/* Japanese */}
-               <div className="space-y-4">
-                 <h3 className="font-bold text-slate-800 flex items-center"><span className="text-lg mr-2">🇯🇵</span> 일본어 (JA)</h3>
-                  <div className="grid grid-cols-2 gap-4">
-                   <div>
-                     <label className="block text-sm font-medium text-slate-700 mb-1">유형 이름</label>
-                     <input type="text" value={formData.ja_type_name} onChange={e => setFormData({...formData, ja_type_name: e.target.value})} className="w-full px-3 py-2 border rounded-lg" />
-                   </div>
-                   <div>
-                     <label className="block text-sm font-medium text-slate-700 mb-1">제목</label>
-                     <input type="text" value={formData.ja_title} onChange={e => setFormData({...formData, ja_title: e.target.value})} className="w-full px-3 py-2 border rounded-lg" />
-                   </div>
-                   <div className="col-span-2">
-                     <label className="block text-sm font-medium text-slate-700 mb-1">설명</label>
-                     <textarea value={formData.ja_description} onChange={e => setFormData({...formData, ja_description: e.target.value})} className="w-full px-3 py-2 border rounded-lg min-h-[100px]" />
-                   </div>
-                 </div>
-               </div>
+              <hr className="border-slate-100" />
 
-               <hr className="border-slate-100" />
+              {/* Japanese */}
+              <div className="space-y-4">
+                <h3 className="font-bold text-slate-800 flex items-center"><span className="text-lg mr-2">🇯🇵</span> 일본어 (JA)</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">유형 이름</label>
+                    <input type="text" value={formData.ja_type_name} onChange={e => setFormData({ ...formData, ja_type_name: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">제목</label>
+                    <input type="text" value={formData.ja_title} onChange={e => setFormData({ ...formData, ja_title: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
+                  </div>
+                  <div className="col-span-2">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">설명</label>
+                    <textarea value={formData.ja_description} onChange={e => setFormData({ ...formData, ja_description: e.target.value })} className="w-full px-3 py-2 border rounded-lg min-h-[100px]" />
+                  </div>
+                </div>
+              </div>
 
-               {/* Vietnamese */}
-               <div className="space-y-4">
-                 <h3 className="font-bold text-slate-800 flex items-center"><span className="text-lg mr-2">🇻🇳</span> 베트남어 (VI)</h3>
-                  <div className="grid grid-cols-2 gap-4">
-                   <div>
-                     <label className="block text-sm font-medium text-slate-700 mb-1">유형 이름</label>
-                     <input type="text" value={formData.vi_type_name} onChange={e => setFormData({...formData, vi_type_name: e.target.value})} className="w-full px-3 py-2 border rounded-lg" />
-                   </div>
-                   <div>
-                     <label className="block text-sm font-medium text-slate-700 mb-1">제목</label>
-                     <input type="text" value={formData.vi_title} onChange={e => setFormData({...formData, vi_title: e.target.value})} className="w-full px-3 py-2 border rounded-lg" />
-                   </div>
-                   <div className="col-span-2">
-                     <label className="block text-sm font-medium text-slate-700 mb-1">설명</label>
-                     <textarea value={formData.vi_description} onChange={e => setFormData({...formData, vi_description: e.target.value})} className="w-full px-3 py-2 border rounded-lg min-h-[100px]" />
-                   </div>
-                 </div>
-               </div>
+              <hr className="border-slate-100" />
+
+              {/* Vietnamese */}
+              <div className="space-y-4">
+                <h3 className="font-bold text-slate-800 flex items-center"><span className="text-lg mr-2">🇻🇳</span> 베트남어 (VI)</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">유형 이름</label>
+                    <input type="text" value={formData.vi_type_name} onChange={e => setFormData({ ...formData, vi_type_name: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">제목</label>
+                    <input type="text" value={formData.vi_title} onChange={e => setFormData({ ...formData, vi_title: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
+                  </div>
+                  <div className="col-span-2">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">설명</label>
+                    <textarea value={formData.vi_description} onChange={e => setFormData({ ...formData, vi_description: e.target.value })} className="w-full px-3 py-2 border rounded-lg min-h-[100px]" />
+                  </div>
+                </div>
+              </div>
 
 
               <div className="flex justify-end space-x-3 pt-6 border-t border-slate-100 sticky bottom-0 bg-white pb-0">
