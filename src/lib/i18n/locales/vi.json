@@ -1,0 +1,89 @@
+{
+  "common": {
+    "loading": "Vui lòng đợi...",
+    "error": "Đã xảy ra lỗi",
+    "retry": "Thử lại",
+    "confirm": "Xác nhận",
+    "cancel": "Hủy",
+    "next": "Tiếp theo",
+    "previous": "Trước",
+    "submit": "Gửi",
+    "close": "Đóng"
+  },
+  "start": {
+    "title": "Khám Phá Tính Cách Của Bạn",
+    "subtitle": "Vui lòng nhập một số thông tin trước khi bắt đầu bài kiểm tra.",
+    "basicInfo": "Thông Tin Cơ Bản",
+    "name": "Tên",
+    "namePlaceholder": "Nguyễn Văn A",
+    "birthDate": "Ngày sinh (8 chữ số)",
+    "birthDatePlaceholder": "YYYYMMDD (ví dụ: 19950115)",
+    "email": "Email",
+    "emailPlaceholder": "example@email.com",
+    "gender": "Giới tính",
+    "male": "Nam",
+    "female": "Nữ",
+    "privacyTitle": "Đồng ý Thu thập và Sử dụng Thông tin Cá nhân",
+    "privacyAgree": "Tôi đồng ý với việc thu thập và sử dụng thông tin cá nhân ở trên.",
+    "startTest": "Bắt Đầu Kiểm Tra",
+    "processing": "Đang xử lý...",
+    "errors": {
+      "allFieldsRequired": "Vui lòng điền tất cả các thông tin bắt buộc.",
+      "invalidBirthDate": "Vui lòng nhập ngày sinh đúng định dạng 8 chữ số (ví dụ: 19900101).",
+      "invalidAge": "Vui lòng nhập ngày sinh hợp lệ.",
+      "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ.",
+      "privacyRequired": "Vui lòng đồng ý với chính sách bảo mật."
+    }
+  },
+  "questions": {
+    "title": "Origin, Tìm Tôi!",
+    "pageInfo": "Trang {current} / {total}",
+    "totalQuestions": "Tổng {count} câu hỏi",
+    "instruction": "Đọc mỗi câu và chọn mức độ phù hợp với bản thân bạn.",
+    "instructionHighScore": "Chọn gần 10 điểm nếu rất giống bạn",
+    "instructionLowScore": "Chọn gần 1 điểm nếu không giống",
+    "veryTrue": "Rất đúng",
+    "notAtAll": "Hoàn toàn không",
+    "progress": "Tiến độ",
+    "viewResult": "Xem Kết Quả",
+    "submitting": "Đang gửi...",
+    "confirmSubmit": "Xác nhận Gửi",
+    "confirmMessage": "Bạn có muốn gửi tất cả câu trả lời không? Bạn không thể sửa đổi sau khi gửi.",
+    "errors": {
+      "answerAllQuestions": "Vui lòng trả lời tất cả câu hỏi trên trang này.",
+      "answerAllBeforeSubmit": "Vui lòng trả lời tất cả câu hỏi."
+    },
+    "languageChangeRestricted": "Không thể thay đổi ngôn ngữ trong khi làm bài kiểm tra. Vui lòng thay đổi trên trang kết quả sau khi hoàn thành."
+  },
+  "result": {
+    "title": "Đã Tìm Thấy Bạn!",
+    "congratsSingle": "Chúc mừng! Chúng tôi đã khám phá tính cách cốt lõi của bạn!",
+    "congratsMultiple": "Chúc mừng! Chúng tôi đã khám phá {count} khía cạnh đa dạng trong tính cách của bạn!",
+    "tieNote": "Các loại sau đây xuất hiện với điểm số tương tự!",
+    "myType": "Loại Chính Của Tôi",
+    "myAspect": "Khía Cạnh #{number} Của Tôi",
+    "score": "{score} / {max} điểm",
+    "strengths": "Điểm Mạnh Của Bạn!",
+    "strengthKeywords": "Từ Khóa Điểm Mạnh",
+    "weaknessKeywords": "Điểm Cần Phát Triển",
+    "shareTitle": "Chia Sẻ Kết Quả Của Bạn!",
+    "shareKakao": "KakaoTalk",
+    "shareFacebook": "Facebook",
+    "shareNaver": "Naver",
+    "shareInstagram": "Instagram",
+    "copyLink": "Sao Chép Liên Kết",
+    "linkCopied": "Đã Sao Chép Liên Kết!",
+    "otherTypes": "Khám Phá 15 Loại Octagnosis",
+    "officialTestTitle": "Muốn biết con đường sự nghiệp hoàn hảo của bạn?",
+    "officialTestDesc": "Nhận phân tích sâu hơn và thông tin nghề nghiệp với bài đánh giá Octagnosis chính thức.",
+    "officialTestButton": "Tìm Hiểu Về Bài Kiểm Tra Chính Thức",
+    "newTest": "Bắt Đầu Bài Kiểm Tra Mới",
+    "participants": "{count} người tham gia!",
+    "freeVersion": "Đây là phiên bản miễn phí của đánh giá Octagnosis.",
+    "copyright": "© Copyright 2004. Trung Tâm Năng Khiếu Nghề Nghiệp Hàn Quốc. Tất cả quyền được bảo lưu."
+  },
+  "language": {
+    "select": "Chọn Ngôn Ngữ",
+    "current": "Ngôn Ngữ Hiện Tại"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "common": {
+    "loading": "잠시만 기다려주세요...",
+    "error": "오류가 발생했습니다",
+    "retry": "다시 시도",
+    "confirm": "확인",
+    "cancel": "취소",
+    "next": "다음",
+    "previous": "이전",
+    "submit": "제출",
+    "close": "닫기"
+  },
+  "start": {
+    "title": "나의 성향 알아보기",
+    "subtitle": "테스트 시작 전, 몇 가지 정보를 입력해주세요.",
+    "basicInfo": "기본 정보",
+    "name": "이름",
+    "namePlaceholder": "홍길동",
+    "birthDate": "생년월일 (8자리)",
+    "birthDatePlaceholder": "YYYYMMDD (예: 19950115)",
+    "email": "이메일",
+    "emailPlaceholder": "example@email.com",
+    "gender": "성별",
+    "male": "남자",
+    "female": "여자",
+    "privacyTitle": "개인정보 수집 및 이용 동의",
+    "privacyAgree": "위 개인정보 수집 및 이용에 모두 동의합니다.",
+    "startTest": "검사 시작하기",
+    "processing": "처리 중...",
+    "errors": {
+      "allFieldsRequired": "모든 필수 정보를 입력해주세요.",
+      "invalidBirthDate": "생년월일을 8자리 숫자로 올바르게 입력해주세요 (예: 19900101).",
+      "invalidAge": "유효한 생년월일을 입력해주세요.",
+      "invalidEmail": "유효한 이메일 주소를 입력해주세요.",
+      "privacyRequired": "개인정보 수집 및 이용 동의에 체크해주세요."
+    }
+  },
+  "questions": {
+    "title": "오리진, 나를 찾아줘!",
+    "pageInfo": "페이지 {current} / {total}",
+    "totalQuestions": "총 {count}개 문항",
+    "instruction": "각 문항을 읽고 평소 자신의 모습과 얼마나 일치하는지 선택해주세요.",
+    "instructionHighScore": "나와 많이 비슷할수록 10점에 가깝게",
+    "instructionLowScore": "비슷하지 않다면 1점에 가깝게 선택하세요.",
+    "veryTrue": "매우 그렇다",
+    "notAtAll": "전혀 아니다",
+    "progress": "진행 상황",
+    "viewResult": "결과 보기",
+    "submitting": "제출 중...",
+    "confirmSubmit": "답변 제출 확인",
+    "confirmMessage": "모든 답변을 제출하시겠습니까? 제출 후에는 수정할 수 없습니다.",
+    "errors": {
+      "answerAllQuestions": "현재 페이지의 모든 질문에 답변해주세요.",
+      "answerAllBeforeSubmit": "모든 질문에 답변해주세요."
+    },
+    "languageChangeRestricted": "검사 진행 중에는 언어를 변경할 수 없습니다. 종료 후 결과 페이지에서 변경해주세요."
+  },
+  "result": {
+    "title": "나를 찾았어!",
+    "congratsSingle": "축하해요! 당신의 핵심 성향을 발견했어요!",
+    "congratsMultiple": "축하해요! {count}가지 다채로운 성향을 발견했어요!",
+    "tieNote": "아래 유형들이 비슷한 점수로 나타났어요!",
+    "myType": "나의 대표 유형",
+    "myAspect": "내 안의 모습 #{number}",
+    "score": "{score}점 / {max}점",
+    "strengths": "이런 점이 돋보여요!",
+    "strengthKeywords": "나의 강점 키워드",
+    "weaknessKeywords": "함께 성장할 점",
+    "shareTitle": "결과를 공유해보세요!",
+    "shareKakao": "카카오톡",
+    "shareFacebook": "페이스북",
+    "shareNaver": "네이버",
+    "shareInstagram": "인스타",
+    "copyLink": "링크복사",
+    "linkCopied": "링크 복사 완료!",
+    "otherTypes": "옥타그노시스 15가지 성향 알아보기",
+    "officialTestTitle": "나에게 꼭 맞는 진로가 궁금하다면?",
+    "officialTestDesc": "전문적인 옥타그노시스 정식 검사로 더 깊이있는 분석과 진로 정보를 확인하세요.",
+    "officialTestButton": "정식 검사 알아보기",
+    "newTest": "새로운 테스트 시작하기",
+    "participants": "총 {count}명 참여!",
+    "freeVersion": "본 테스트는 옥타그노시스 검사의 무료버전입니다.",
+    "copyright": "© Copyright 2004. 한국진로적성센터. All rights reserved."
+  },
+  "language": {
+    "select": "언어 선택",
+    "current": "현재 언어"
+  }
+}

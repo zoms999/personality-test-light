@@ -1,0 +1,89 @@
+{
+  "common": {
+    "loading": "Please wait...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "close": "Close"
+  },
+  "start": {
+    "title": "Discover Your Personality",
+    "subtitle": "Please enter some information before starting the test.",
+    "basicInfo": "Basic Information",
+    "name": "Name",
+    "namePlaceholder": "John Doe",
+    "birthDate": "Date of Birth (8 digits)",
+    "birthDatePlaceholder": "YYYYMMDD (e.g., 19950115)",
+    "email": "Email",
+    "emailPlaceholder": "example@email.com",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "privacyTitle": "Privacy Policy Agreement",
+    "privacyAgree": "I agree to the collection and use of personal information.",
+    "startTest": "Start Test",
+    "processing": "Processing...",
+    "errors": {
+      "allFieldsRequired": "Please fill in all required fields.",
+      "invalidBirthDate": "Please enter a valid 8-digit birth date (e.g., 19900101).",
+      "invalidAge": "Please enter a valid birth date.",
+      "invalidEmail": "Please enter a valid email address.",
+      "privacyRequired": "Please agree to the privacy policy."
+    }
+  },
+  "questions": {
+    "title": "Origin, Find Me!",
+    "pageInfo": "Page {current} / {total}",
+    "totalQuestions": "Total {count} questions",
+    "instruction": "Read each statement and select how much it matches your usual self.",
+    "instructionHighScore": "Select closer to 10 if it's very similar to you",
+    "instructionLowScore": "Select closer to 1 if it's not similar",
+    "veryTrue": "Very True",
+    "notAtAll": "Not at All",
+    "progress": "Progress",
+    "viewResult": "View Results",
+    "submitting": "Submitting...",
+    "confirmSubmit": "Confirm Submission",
+    "confirmMessage": "Do you want to submit all answers? You cannot modify them after submission.",
+    "errors": {
+      "answerAllQuestions": "Please answer all questions on this page.",
+      "answerAllBeforeSubmit": "Please answer all questions."
+    },
+    "languageChangeRestricted": "You cannot change the language during the test. Please change it on the results page after completion."
+  },
+  "result": {
+    "title": "Found You!",
+    "congratsSingle": "Congratulations! We've discovered your core personality!",
+    "congratsMultiple": "Congratulations! We've discovered {count} diverse aspects of your personality!",
+    "tieNote": "The following types appeared with similar scores!",
+    "myType": "My Primary Type",
+    "myAspect": "My Aspect #{number}",
+    "score": "{score} / {max} points",
+    "strengths": "Your Strengths!",
+    "strengthKeywords": "Strength Keywords",
+    "weaknessKeywords": "Growth Areas",
+    "shareTitle": "Share Your Results!",
+    "shareKakao": "KakaoTalk",
+    "shareFacebook": "Facebook",
+    "shareNaver": "Naver",
+    "shareInstagram": "Instagram",
+    "copyLink": "Copy Link",
+    "linkCopied": "Link Copied!",
+    "otherTypes": "Explore All 15 Octagnosis Types",
+    "officialTestTitle": "Want to know your perfect career path?",
+    "officialTestDesc": "Get deeper analysis and career information with the official Octagnosis assessment.",
+    "officialTestButton": "Learn About Official Test",
+    "newTest": "Start New Test",
+    "participants": "{count} participants!",
+    "freeVersion": "This is a free version of the Octagnosis assessment.",
+    "copyright": "© Copyright 2004. Korea Career Aptitude Center. All rights reserved."
+  },
+  "language": {
+    "select": "Select Language",
+    "current": "Current Language"
+  }
+}

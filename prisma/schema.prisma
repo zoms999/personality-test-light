@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -9,67 +8,100 @@ datasource db {
 }
 
 model PersonalityTypes {
-  id                   String        @id @default(uuid()) @db.Uuid
-  type_code            String        @unique @db.VarChar(20)
-  type_name            String        @db.VarChar(100)
-  title                String        @db.VarChar(500)
-  theme_sentence       String
-  description          String
-  description_points   Json
-  strength_keywords    Json
-  weakness_keywords    Json
-  created_at           DateTime      @default(now())
-  updated_at           DateTime      @updatedAt
+  id                   String                        @id @default(uuid()) @db.Uuid
+  type_code            String                        @unique @db.VarChar(20)
+  created_at           DateTime                      @default(now())
+  updated_at           DateTime                      @updatedAt
   questions            Questions[]
-  test_results_primary TestResults[] @relation("PrimaryResultForType")
+  test_results_primary TestResults[]                 @relation("PrimaryResultForType")
+  translations         PersonalityTypeTranslations[]
 
   @@map("personality_types")
 }
 
+model PersonalityTypeTranslations {
+  id                  String           @id @default(uuid()) @db.Uuid
+  personality_type_id String           @db.Uuid
+  language_code       String           @db.VarChar(5)
+  type_name           String           @db.VarChar(100)
+  title               String           @db.VarChar(500)
+  theme_sentence      String
+  description         String
+  description_points  Json
+  strength_keywords   Json
+  weakness_keywords   Json
+  created_at          DateTime         @default(now())
+  updated_at          DateTime         @updatedAt
+  personality_type    PersonalityTypes @relation(fields: [personality_type_id], references: [id], onDelete: Cascade)
+
+  @@unique([personality_type_id, language_code])
+  @@index([language_code])
+  @@map("personality_type_translations")
+}
+
 model Questions {
-  id                     Int              @id @default(autoincrement())
-  personality_type_id    String           @db.Uuid
-  question_text          String
-  question_order_in_type Int              @default(1)
-  is_active              Boolean          @default(true)
-  created_at             DateTime         @default(now())
-  updated_at             DateTime         @updatedAt
-  personality_type       PersonalityTypes @relation(fields: [personality_type_id], references: [id], onDelete: Cascade)
+  id                     Int                    @id @default(autoincrement())
+  personality_type_id    String                 @db.Uuid
+  question_order_in_type Int                    @default(1)
+  is_active              Boolean                @default(true)
+  created_at             DateTime               @default(now())
+  updated_at             DateTime               @updatedAt
+  personality_type       PersonalityTypes       @relation(fields: [personality_type_id], references: [id], onDelete: Cascade)
   user_answers           UserAnswers[]
+  translations           QuestionTranslations[]
 
   @@map("questions")
 }
 
+model QuestionTranslations {
+  id            Int       @id @default(autoincrement())
+  question_id   Int
+  language_code String    @db.VarChar(5)
+  question_text String
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+  question      Questions @relation(fields: [question_id], references: [id], onDelete: Cascade)
+
+  @@unique([question_id, language_code])
+  @@index([language_code])
+  @@map("question_translations")
+}
+
 model TestAttempts {
-  id                String   @id @default(uuid()) @db.Uuid
-  session_id        String?  @db.VarChar(255)
-  user_name         String?  @db.VarChar(100)
-  birth_date        String?  @db.VarChar(8)
-  gender            String?  @db.VarChar(10)
-  user_email        String?  @db.VarChar(255)
-  phone_number      String?  @db.VarChar(15)
-  agreed_to_privacy Boolean  @default(false)
-  ip_address        String?  @db.VarChar(45)
+  id                String        @id @default(uuid()) @db.Uuid
+  session_id        String?       @db.VarChar(255)
+  user_name         String?       @db.VarChar(100)
+  birth_date        String?       @db.VarChar(8)
+  gender            String?       @db.VarChar(10)
+  user_email        String?       @db.VarChar(255)
+  phone_number      String?       @db.VarChar(15)
+  agreed_to_privacy Boolean       @default(false)
+  ip_address        String?       @db.VarChar(45)
   user_agent        String?
-  is_completed      Boolean  @default(false)
+  is_completed      Boolean       @default(false)
   completion_time   Int?
-  created_at        DateTime @default(now())
-  updated_at        DateTime @updatedAt
+  created_at        DateTime      @default(now())
+  updated_at        DateTime      @updatedAt
+  language_code     String        @default("ko") @db.VarChar(5)
+  test_results      TestResults[]
+  user_answers      UserAnswers[]
 
   @@index([phone_number])
   @@index([user_email])
+  @@index([language_code])
   @@map("test_attempts")
 }
 
 model UserAnswers {
-  id              String    @id @default(uuid()) @db.Uuid
-  test_attempt_id String    @db.Uuid
+  id              String       @id @default(uuid()) @db.Uuid
+  test_attempt_id String       @db.Uuid
   question_id     Int
-  answer_option   String?   @db.VarChar(10)
+  answer_option   String?      @db.VarChar(10)
   score           Int
   answer_time     Int?
-  created_at      DateTime  @default(now())
-  question        Questions @relation(fields: [question_id], references: [id], onDelete: Cascade)
+  created_at      DateTime     @default(now())
+  test_attempt    TestAttempts @relation(fields: [test_attempt_id], references: [id], onDelete: Cascade)
+  question        Questions    @relation(fields: [question_id], references: [id], onDelete: Cascade)
 
   @@unique([test_attempt_id, question_id])
   @@map("user_answers")
@@ -87,6 +119,7 @@ model TestResults {
   is_shared                   Boolean           @default(false)
   created_at                  DateTime          @default(now())
   updated_at                  DateTime          @updatedAt
+  test_attempt                TestAttempts      @relation(fields: [test_attempt_id], references: [id], onDelete: Cascade)
   primary_personality_type    PersonalityTypes? @relation("PrimaryResultForType", fields: [primary_personality_type_id], references: [id])
 
   @@map("test_results")

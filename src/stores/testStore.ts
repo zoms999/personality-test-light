@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import type { Question } from '@/lib/types';
 import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { useLocaleStore } from './localeStore';
 
 interface TestState {
   // 상태
@@ -51,7 +52,8 @@ export const useTestStore = create<TestState>((set, get) => ({
     set({ isLoading: true, error: null });
 
     try {
-      const response = await fetch('/api/questions');
+      const locale = useLocaleStore.getState().locale;
+      const response = await fetch(`/api/questions?lang=${locale}`);
       
       if (!response.ok) {
         throw new Error('질문을 불러오는데 실패했습니다.');

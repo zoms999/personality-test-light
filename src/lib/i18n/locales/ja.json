@@ -1,0 +1,89 @@
+{
+  "common": {
+    "loading": "お待ちください...",
+    "error": "エラーが発生しました",
+    "retry": "再試行",
+    "confirm": "確認",
+    "cancel": "キャンセル",
+    "next": "次へ",
+    "previous": "前へ",
+    "submit": "提出",
+    "close": "閉じる"
+  },
+  "start": {
+    "title": "自分の性向を知る",
+    "subtitle": "テスト開始前に、いくつかの情報を入力してください。",
+    "basicInfo": "基本情報",
+    "name": "名前",
+    "namePlaceholder": "山田太郎",
+    "birthDate": "生年月日（8桁）",
+    "birthDatePlaceholder": "YYYYMMDD（例：19950115）",
+    "email": "メールアドレス",
+    "emailPlaceholder": "example@email.com",
+    "gender": "性別",
+    "male": "男性",
+    "female": "女性",
+    "privacyTitle": "個人情報の収集および利用への同意",
+    "privacyAgree": "上記の個人情報の収集および利用に同意します。",
+    "startTest": "テスト開始",
+    "processing": "処理中...",
+    "errors": {
+      "allFieldsRequired": "すべての必須項目を入力してください。",
+      "invalidBirthDate": "生年月日を8桁の数字で正しく入力してください（例：19900101）。",
+      "invalidAge": "有効な生年月日を入力してください。",
+      "invalidEmail": "有効なメールアドレスを入力してください。",
+      "privacyRequired": "個人情報の収集および利用への同意にチェックしてください。"
+    }
+  },
+  "questions": {
+    "title": "オリジン、私を見つけて！",
+    "pageInfo": "ページ {current} / {total}",
+    "totalQuestions": "全{count}問",
+    "instruction": "各項目を読んで、普段の自分とどれくらい一致するか選択してください。",
+    "instructionHighScore": "自分と非常に似ている場合は10点に近く",
+    "instructionLowScore": "似ていない場合は1点に近く選択してください",
+    "veryTrue": "非常にそう思う",
+    "notAtAll": "全くそう思わない",
+    "progress": "進行状況",
+    "viewResult": "結果を見る",
+    "submitting": "提出中...",
+    "confirmSubmit": "回答提出の確認",
+    "confirmMessage": "すべての回答を提出しますか？提出後は修正できません。",
+    "errors": {
+      "answerAllQuestions": "このページのすべての質問に回答してください。",
+      "answerAllBeforeSubmit": "すべての質問に回答してください。"
+    },
+    "languageChangeRestricted": "テスト進行中は言語を変更できません。終了後、結果ページで変更してください。"
+  },
+  "result": {
+    "title": "見つけました！",
+    "congratsSingle": "おめでとうございます！あなたの核心性向を発見しました！",
+    "congratsMultiple": "おめでとうございます！{count}つの多彩な性向を発見しました！",
+    "tieNote": "以下のタイプが同様のスコアで現れました！",
+    "myType": "私の代表タイプ",
+    "myAspect": "私の中の姿 #{number}",
+    "score": "{score}点 / {max}点",
+    "strengths": "こんな点が際立っています！",
+    "strengthKeywords": "私の強みキーワード",
+    "weaknessKeywords": "一緒に成長する点",
+    "shareTitle": "結果を共有してみてください！",
+    "shareKakao": "カカオトーク",
+    "shareFacebook": "Facebook",
+    "shareNaver": "Naver",
+    "shareInstagram": "Instagram",
+    "copyLink": "リンクをコピー",
+    "linkCopied": "リンクをコピーしました！",
+    "otherTypes": "オクタグノシス15種類の性向を知る",
+    "officialTestTitle": "自分にぴったりの進路が気になりますか？",
+    "officialTestDesc": "専門的なオクタグノシス正式検査で、より深い分析と進路情報を確認してください。",
+    "officialTestButton": "正式検査について",
+    "newTest": "新しいテストを始める",
+    "participants": "合計{count}名参加！",
+    "freeVersion": "このテストはオクタグノシス検査の無料版です。",
+    "copyright": "© Copyright 2004. 韓国進路適性センター. All rights reserved."
+  },
+  "language": {
+    "select": "言語選択",
+    "current": "現在の言語"
+  }
+}

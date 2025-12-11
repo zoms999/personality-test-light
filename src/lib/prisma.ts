@@ -1,11 +1,11 @@
-import { PrismaClient } from '@/generated/prisma';
+import { PrismaClient } from '@prisma/client';
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
 // 환경변수 명시적 로드 및 에러 핸들링
-const databaseUrl = process.env.DATABASE_URL || "postgresql://postgres:1111@localhost:5433/findme?schema=public";
+const databaseUrl = process.env.DATABASE_URL;
 
 console.log('DATABASE_URL 확인:', databaseUrl ? '설정됨' : '설정안됨');
 

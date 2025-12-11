@@ -4,6 +4,10 @@ import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTestStore } from '@/stores/testStore';
 import { Loader2, AlertTriangle, ChevronRight, CheckCircle2, Info } from 'lucide-react';
+import Header from '@/components/Header';
+import LanguageChangeModal from '@/components/LanguageChangeModal';
+import { useTranslation } from '@/lib/i18n/useTranslation';
+import { useLocaleStore } from '@/stores/localeStore';
 
 // --- ConfirmModal 컴포넌트 (변경 없음) ---
 interface ConfirmModalProps {
@@ -15,6 +19,7 @@ interface ConfirmModalProps {
 }
 
 function ConfirmModal({ isOpen, onClose, onConfirm, title, message }: ConfirmModalProps) {
+  const { t } = useTranslation();
   const backdropClass = isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none';
   const modalClass = isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none';
 
@@ -36,14 +41,14 @@ function ConfirmModal({ isOpen, onClose, onConfirm, title, message }: ConfirmMod
             onClick={onClose}
             className="w-full px-4 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-lg transition-colors"
           >
-            취소
+            {t('common.cancel')}
           </button>
           <button
             type="button"
             onClick={onConfirm}
             className="w-full px-4 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
           >
-            확인
+            {t('common.confirm')}
           </button>
         </div>
       </div>
@@ -55,6 +60,9 @@ function ConfirmModal({ isOpen, onClose, onConfirm, title, message }: ConfirmMod
 function QuestionsPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { t } = useTranslation();
+  const initLocale = useLocaleStore((state) => state.initLocale);
+  const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
 
   const {
     allQuestions,
@@ -74,6 +82,11 @@ function QuestionsPageContent() {
   } = useTestStore();
 
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+
+  // 언어 초기화
+  useEffect(() => {
+    initLocale();
+  }, [initLocale]);
 
   useEffect(() => {
     const attemptIdParam = searchParams.get('attemptId');
@@ -109,7 +122,7 @@ function QuestionsPageContent() {
 
   const handleNext = () => {
     if (!isCurrentPageComplete() && !isLastPage) {
-        useTestStore.setState({ error: '현재 페이지의 모든 질문에 답변해주세요.' });
+        useTestStore.setState({ error: t('questions.errors.answerAllQuestions') });
         setTimeout(() => useTestStore.setState({ error: null }), 3000);
         return;
     }
@@ -120,7 +133,7 @@ function QuestionsPageContent() {
 
   const handleSubmit = () => {
     if (!isCurrentPageComplete()) {
-      useTestStore.setState({ error: '모든 질문에 답변해주세요.' });
+      useTestStore.setState({ error: t('questions.errors.answerAllBeforeSubmit') });
       setTimeout(() => useTestStore.setState({ error: null }), 3000);
       return;
     }
@@ -150,7 +163,7 @@ function QuestionsPageContent() {
   // --- [수정] 점수별 크기 함수 제거 ---
   // const getScoreSizeClass = ... (이 함수는 이제 필요 없습니다)
   
-  if (isLoading && allQuestions.length === 0) { /* 로딩 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <Loader2 size={48} className="text-blue-500 animate-spin mb-6" /> <p className="text-lg font-semibold text-slate-700 mb-1 break-keep">잠시만 기다려주세요...</p> <p className="text-slate-500 break-keep">질문을 준비하고 있습니다.</p> </div> ); }
+  if (isLoading && allQuestions.length === 0) { /* 로딩 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <Loader2 size={48} className="text-blue-500 animate-spin mb-6" /> <p className="text-lg font-semibold text-slate-700 mb-1 break-keep">{t('common.loading')}</p> <p className="text-slate-500 break-keep">{t('start.processing')}</p> </div> ); }
   if (error && allQuestions.length === 0) { /* 오류 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4"> <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-8 text-center border border-red-200"> <AlertTriangle size={48} className="text-red-500 mx-auto mb-5" /> <h2 className="text-xl font-semibold text-slate-800 mb-2 break-keep">오류 발생</h2> <p className="text-slate-600 mb-6 break-keep">{error}</p> <button type="button" onClick={() => router.push('/start')} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all break-keep">처음으로 돌아가기</button> </div> </div> ); }
   if (!isLoading && allQuestions.length === 0) { /* 데이터 없음 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <AlertTriangle size={48} className="text-amber-500 mx-auto mb-5" /> <p className="text-lg font-semibold text-slate-700 mb-1 break-keep">질문을 불러올 수 없습니다.</p> <p className="text-slate-500 mb-6 break-keep">네트워크 연결을 확인하거나 잠시 후 다시 시도해주세요.</p> <button type="button" onClick={() => router.push('/start')} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all break-keep">처음으로 돌아가기</button> </div> ); }
 
@@ -160,25 +173,34 @@ function QuestionsPageContent() {
 
   return (
     <>
+      <Header 
+        disableLanguageChange={true}
+        onLanguageChangeAttempt={() => setIsLanguageModalOpen(true)}
+      />
+      <LanguageChangeModal
+        isOpen={isLanguageModalOpen}
+        onClose={() => setIsLanguageModalOpen(false)}
+        message={t('questions.languageChangeRestricted')}
+      />
       <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 py-8 sm:py-12 px-5">
         <div className="max-w-2xl mx-auto">
           <header className="text-center mb-10">
             <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-2 break-keep">
-              오리진, 나를 찾아줘!
+              {t('questions.title')}
             </h1>
             <div className="flex items-center justify-center space-x-3 text-sm text-slate-500">
-              <span className="break-keep">페이지 {currentPage + 1} / {totalPages}</span>
+              <span className="break-keep">{t('questions.pageInfo', { current: String(currentPage + 1), total: String(totalPages) })}</span>
               <span className="text-slate-300">•</span>
-              <span className="break-keep">총 {allQuestions.length}개 문항</span>
+              <span className="break-keep">{t('questions.totalQuestions', { count: String(allQuestions.length) })}</span>
             </div>
           </header>
 
           <div className="bg-sky-50/80 backdrop-blur-sm border border-sky-200 rounded-lg p-4 mb-10 shadow-sm flex items-start space-x-3">
             <Info size={20} className="text-sky-600 mt-0.5 flex-shrink-0" />
             <p className="text-sky-800 text-sm sm:text-base font-medium break-keep text-left sm:text-center">
-              각 문항을 읽고 평소 자신의 모습과 얼마나 일치하는지 선택해주세요.
-              <span className="font-extrabold text-blue-700 text-base sm:text-lg align-baseline break-keep">나와 많이 비슷할수록 10점에 가깝게</span>, 
-              <span className="font-extrabold text-green-700 text-base sm:text-lg align-baseline break-keep">비슷하지 않다면 1점에 가깝게</span> 선택하세요.
+              {t('questions.instruction')}
+              <span className="font-extrabold text-blue-700 text-base sm:text-lg align-baseline break-keep"> {t('questions.instructionHighScore')}</span>, 
+              <span className="font-extrabold text-green-700 text-base sm:text-lg align-baseline break-keep"> {t('questions.instructionLowScore')}</span>
             </p>
           </div>
 
@@ -195,7 +217,7 @@ function QuestionsPageContent() {
                   
                   <div className="space-y-4">
                     <div className="flex justify-between text-xs sm:text-sm font-semibold px-2">
-                      <span className="text-blue-600 break-keep">매우 그렇다</span> 
+                    <span className="text-blue-600 break-keep">{t('questions.veryTrue')}</span> 
                       {/* <span className="text-emerald-600">전혀 아니다</span> */}
                     </div>
                     
@@ -264,7 +286,7 @@ function QuestionsPageContent() {
                 disabled={isLoading}
                 className={`${isLoading ? navButtonBaseStyle + ' bg-slate-300' : submitButtonStyle} w-full sm:w-auto`}
               >
-                <span>{isLoading ? '제출 중...' : '결과 보기'}</span>
+                <span>{isLoading ? t('questions.submitting') : t('questions.viewResult')}</span>
                 {!isLoading && <CheckCircle2 size={20} />}
               </button>
             ) : (
@@ -274,7 +296,7 @@ function QuestionsPageContent() {
                 disabled={isLoading}
                 className={`${isLoading ? navButtonBaseStyle + ' bg-slate-300' : nextButtonStyle} w-full sm:w-auto`}
               >
-                <span>다음</span>
+                <span>{t('common.next')}</span>
                 <ChevronRight size={20} />
               </button>
             )}
@@ -282,7 +304,7 @@ function QuestionsPageContent() {
 
           <div className="mt-10">
             <div className="flex justify-between text-sm text-slate-600 mb-1.5 px-1">
-              <span>진행 상황</span>
+              <span>{t('questions.progress')}</span>
               <span className='font-medium break-keep'>{Object.keys(answers).length} / {allQuestions.length}</span>
             </div>
             <div className="w-full bg-slate-200 rounded-full h-2.5 relative overflow-hidden">
@@ -299,8 +321,8 @@ function QuestionsPageContent() {
         isOpen={isConfirmModalOpen}
         onClose={() => setIsConfirmModalOpen(false)}
         onConfirm={handleConfirmSubmit}
-        title="답변 제출 확인"
-        message="모든 답변을 제출하시겠습니까? 제출 후에는 수정할 수 없습니다."
+        title={t('questions.confirmSubmit')}
+        message={t('questions.confirmMessage')}
       />
     </>
   );

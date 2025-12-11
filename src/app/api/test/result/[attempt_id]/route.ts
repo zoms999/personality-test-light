@@ -58,8 +58,12 @@ export async function GET(
     // 3. total_scores JSON에서 모든 유형별 점수 추출
     const allTypeScores = testResult.total_scores as Record<string, number>;
     
-    // 4. 모든 성격 유형 정보 조회
-    const allPersonalityTypes = await prisma.personalityTypes.findMany();
+    // 4. 모든 성격 유형 정보 조회 (모든 번역 포함)
+    const allPersonalityTypes = await prisma.personalityTypes.findMany({
+      include: {
+        translations: true
+      }
+    });
     const personalityTypesMap = new Map(allPersonalityTypes.map(type => [type.id, type]));
 
     // 5. 점수와 성격 유형 정보 매핑
@@ -82,25 +86,44 @@ export async function GET(
     // 7. 최고 점수와 동일한 점수를 가진 모든 유형들 찾기 (동점 처리)
     const winningTypes = scoresWithTypes.filter(item => item.score === maxScore);
 
-    // 8. 각 우승 유형의 상세 정보 구성
-    const resultPersonalityTypes = winningTypes.map(winning => {
-      const personalityType = winning.personality_type;
+    // Lang 파라미터 추출
+    const searchParams = request.nextUrl.searchParams;
+    const lang = searchParams.get('lang') || 'ko';
+
+    // 번역 헬퍼 함수
+    const getTranslatedType = (personalityType: any) => {
+      const translations = personalityType.translations;
+      const t = translations.find((t: any) => t.language_code === lang) 
+             || translations.find((t: any) => t.language_code === 'ko') 
+             || translations[0];
       
+      // 이미지 매핑을 위한 한국어 타이틀 (항상 'ko' 검색)
+      const koTitle = translations.find((t: any) => t.language_code === 'ko')?.title || t?.title || '';
+
       return {
         id: personalityType.id,
         type_code: personalityType.type_code,
-        type_name: personalityType.type_name,
-        title: personalityType.title,
-        theme_sentence: personalityType.theme_sentence,
-        description: personalityType.description,
-        description_points: personalityType.description_points,
-        strength_keywords: personalityType.strength_keywords,
-        weakness_keywords: personalityType.weakness_keywords,
-        calculated_score: winning.score,
+        type_name: t?.type_name || '',
+        title: t?.title || '',
+        original_title: koTitle, // 에셋 매핑용
+        theme_sentence: t?.theme_sentence || '',
+        description: t?.description || '',
+        description_points: typeof t?.description_points === 'object' ? t?.description_points as string[] : [],
+        strength_keywords: typeof t?.strength_keywords === 'object' ? t?.strength_keywords as string[] : [],
+        weakness_keywords: typeof t?.weakness_keywords === 'object' ? t?.weakness_keywords as string[] : [],
       };
-    });
+    };
 
-    // 9. 최종 결과 반환
+    // 8. 각 우승 유형의 상세 정보 구성
+    const resultPersonalityTypes = winningTypes.map(winning => ({
+      ...getTranslatedType(winning.personality_type),
+      calculated_score: winning.score
+    }));
+
+    // 9. 전체 유형 목록 구성 (프론트엔드 "다른 유형 보기" 용)
+    const allTypesList = allPersonalityTypes.map(type => getTranslatedType(type));
+
+    // 10. 최종 결과 반환
     return NextResponse.json({
       success: true,
       data: {
@@ -108,8 +131,9 @@ export async function GET(
         test_completed_at: testAttempt.updated_at,
         max_score: maxScore,
         personality_types: resultPersonalityTypes,
-        is_tie: winningTypes.length > 1, // 동점 여부
-        total_questions_answered: 45, // 모든 질문에 답변했다고 가정
+        all_types: allTypesList, // 전체 유형 목록 추가
+        is_tie: winningTypes.length > 1, 
+        total_questions_answered: 45, 
       },
       message: winningTypes.length > 1 
         ? `${winningTypes.length}개의 성향 유형이 동점으로 나타났습니다.`
