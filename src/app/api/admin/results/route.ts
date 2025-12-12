@@ -11,6 +11,10 @@ const updateTypeSchema = z.object({
     type_name: z.string().min(1),
     title: z.string().min(1),
     description: z.string().min(1),
+    theme_sentence: z.string(),
+    description_points: z.array(z.string()),
+    strength_keywords: z.array(z.string()),
+    weakness_keywords: z.array(z.string()),
   })).min(1),
 });
 
@@ -69,23 +73,31 @@ export async function PUT(req: NextRequest) {
 
         if (existingTrans) {
           await tx.personalityTypeTranslations.update({
-             where: { id: existingTrans.id },
-             data: { 
-               type_name: t.type_name,
-               title: t.title,
-               description: t.description
-             }
+            where: { id: existingTrans.id },
+            data: {
+              type_name: t.type_name,
+              title: t.title,
+              description: t.description,
+              theme_sentence: t.theme_sentence,
+              description_points: t.description_points,
+              strength_keywords: t.strength_keywords,
+              weakness_keywords: t.weakness_keywords
+            }
           });
         } else {
-           await tx.personalityTypeTranslations.create({
-             data: {
-               personality_type_id: id,
-               language_code: t.language_code,
-               type_name: t.type_name,
-               title: t.title,
-               description: t.description
-             }
-           });
+          await tx.personalityTypeTranslations.create({
+            data: {
+              personality_type_id: id,
+              language_code: t.language_code,
+              type_name: t.type_name,
+              title: t.title,
+              description: t.description,
+              theme_sentence: t.theme_sentence,
+              description_points: t.description_points,
+              strength_keywords: t.strength_keywords,
+              weakness_keywords: t.weakness_keywords
+            }
+          });
         }
       }
 
