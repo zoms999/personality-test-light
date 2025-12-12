@@ -51,7 +51,7 @@ export default function Home() {
 
       <div className="max-w-3xl mx-auto text-center space-y-10 relative z-10">
         <div className="flex justify-center mb-6">
-        <div className="inline-block p-3 bg-white bg-opacity-60 backdrop-blur-md rounded-xl border border-slate-200 shadow-lg">
+          <div className="inline-block p-3 bg-white bg-opacity-60 backdrop-blur-md rounded-xl border border-slate-200 shadow-lg">
             <Image
               src="/ORIGIN.png" // ★★★ 이 파일의 배경이 투명해야 합니다 ★★★
               alt="ORIGIN"
@@ -65,22 +65,22 @@ export default function Home() {
         <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-500 leading-tight drop-shadow-sm break-keep">
           {t('home.title')}
         </h1>
-        
+
         <p className="text-lg md:text-xl text-slate-700 leading-relaxed max-w-xl mx-auto break-keep text-balance">
-          {t('home.description', { count: '' }).split(',')[0]},
-           {' '}
-           <span className="font-semibold text-blue-600">{t('home.countText')}</span>
-            {t('home.description', { count: '' }).split(',')[1]}
-          <br/>
+          {t('home.description', { count: '{count}' }).split('{count}')[0]}
+          {' '}
+          <span className="font-semibold text-blue-600">{t('home.countText')}</span>
+          {t('home.description', { count: '{count}' }).split('{count}')[1]}
+          <br />
           {t('home.tryFree', { programName: '' }).split(t('home.programName'))[0]}
           <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-500">
             {t('home.programName')}
           </span>
           {t('home.tryFree', { programName: '' }).split(t('home.programName'))[1]}
         </p>
-        
+
         <div className="pt-8">
-          <Link 
+          <Link
             href="/start"
             className="group inline-flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 via-cyan-500 to-sky-600 hover:from-blue-600 hover:via-cyan-600 hover:to-sky-700 text-white font-semibold text-xl px-10 py-4 rounded-xl shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-70"
           >
@@ -90,21 +90,21 @@ export default function Home() {
             </div>
             <div className="flex items-center text-sm font-normal mt-1 opacity-90">
               <Users size={16} className="mr-1" />
-              {participantCount !== null 
+              {participantCount !== null
                 ? t('home.participants', { count: participantCount.toLocaleString() })
                 : t('home.loadingParticipants')
               }
             </div>
           </Link>
         </div>
-        
+
         <div className="pt-12">
           <p className="text-xs text-slate-600 leading-relaxed max-w-md mx-auto break-keep">
             {t('home.disclaimer')}
           </p>
         </div>
       </div>
-      
+
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-indigo-100/80 to-transparent pointer-events-none" />
     </div>
   );
