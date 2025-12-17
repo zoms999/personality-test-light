@@ -8,18 +8,19 @@
     "next": "次へ",
     "previous": "前へ",
     "submit": "提出",
-    "close": "閉じる"
+    "close": "閉じる",
+    "tagline": "私を見つけて"
   },
   "home": {
     "title": "わたしを見つけて!!",
-    "description": "{count}人の成功を生み出したオクタグノシス検査、",
-    "countText": "101,400人",
-    "programName": "「オリジン・わたしを見つけて！」",
-    "tryFree": "無料版 {programName} を体験してみましょう！",
+    "description": "{count}の成功体験を生み出してきた、",
+    "countText": "10万1,400人",
+    "programName": "「オリジン、わたしを見つけて！」",
+    "tryFree": "オクタグノーシス検査無料版を、体験してみましょう！",
     "startTest": "検査を始める",
     "participants": "現在までに {count} 人が参加しました！",
     "loadingParticipants": "参加者数を読み込み中…",
-    "disclaimer": "* 本無料テストはオクタグノシス検査の簡易版であり、一部の傾向のみが表示される場合があります。より総合的で詳細な診断をご希望の方は、オクタグノシス STANDARD または PREMIUM 版をご利用ください。"
+    "disclaimer": "* 本無料版テストはオクタグノーシス検査の簡易版であり、一部の傾向のみが表示される場合があります。より総合的で詳細な診断をご希望の方は、オクタグノーシススタンダードまたは プレミアム版をご利用ください。"
   },
   "start": {
     "title": "自分の性向を知る",
@@ -50,9 +51,9 @@
     "title": "オリジン、私を見つけて！",
     "pageInfo": "ページ {current} / {total}",
     "totalQuestions": "全{count}問",
-    "instruction": "各項目を読んで、普段の自分とどれくらい一致するか選択してください。",
-    "instructionHighScore": "自分と非常に似ている場合は10点に近く",
-    "instructionLowScore": "似ていない場合は1点に近く選択してください",
+    "instruction": "各項目を読み、普段の自分とどれくらい一致するか選んでください。",
+    "instructionHighScore": "自分と非常に似ている場合は10に、",
+    "instructionLowScore": "似ていない場合は1に近い数字を選んでください。",
     "veryTrue": "非常にそう思う",
     "notAtAll": "全くそう思わない",
     "progress": "進行状況",

@@ -2,6 +2,7 @@
 
 import { Users } from 'lucide-react';
 import LanguageSelector from './LanguageSelector';
+import { useTranslation } from '@/lib/i18n/useTranslation';
 
 interface HeaderProps {
   disableLanguageChange?: boolean;
@@ -9,6 +10,8 @@ interface HeaderProps {
 }
 
 export default function Header({ disableLanguageChange = false, onLanguageChangeAttempt }: HeaderProps) {
+  const { t } = useTranslation();
+
   return (
     <header className="w-full bg-white border-b border-slate-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,7 +22,7 @@ export default function Header({ disableLanguageChange = false, onLanguageChange
               <Users size={20} className="text-white" />
             </div>
             <span className="text-lg font-bold text-slate-800 hidden sm:inline">
-              ORIGIN | 나를 찾아줘
+              ORIGIN | {t('common.tagline')}
             </span>
             <span className="text-lg font-bold text-slate-800 sm:hidden">
               ORIGIN
@@ -28,7 +31,7 @@ export default function Header({ disableLanguageChange = false, onLanguageChange
 
           {/* 우측: 언어 선택기 */}
           <div>
-            <LanguageSelector 
+            <LanguageSelector
               disabled={disableLanguageChange}
               onDisabledClick={onLanguageChangeAttempt}
             />
