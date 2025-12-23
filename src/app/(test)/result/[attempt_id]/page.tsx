@@ -5,10 +5,10 @@ import { useParams, useRouter } from 'next/navigation';
 import useSWR from 'swr';
 import Script from 'next/script';
 import Image from 'next/image';
-import { 
-  Share2, 
-  Copy, 
-  CheckCircle, 
+import {
+  Share2,
+  Copy,
+  CheckCircle,
   AlertTriangle,
   ExternalLink,
   Loader2,
@@ -16,7 +16,7 @@ import {
   Award,
   Sparkles,
   Users,
-  X 
+  X
 } from 'lucide-react';
 import Header from '@/components/Header';
 import { useTranslation } from '@/lib/i18n/useTranslation';
@@ -31,7 +31,7 @@ const IconFacebook = (props: React.SVGProps<SVGSVGElement>) => (
 
 const IconNaver = (props: React.SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" {...props}>
-    <path d="M16.273 12.845 7.727 0H0v24h7.727V11.155L16.273 24H24V0h-7.727v12.845z"/>
+    <path d="M16.273 12.845 7.727 0H0v24h7.727V11.155L16.273 24H24V0h-7.727v12.845z" />
   </svg>
 );
 
@@ -46,7 +46,7 @@ const IconInstagram = (props: React.SVGProps<SVGSVGElement>) => (
 
 // --- 타입 선언 ---
 declare global {
-  interface Window { 
+  interface Window {
     Kakao: {
       init: (key: string) => void;
       isInitialized: () => boolean;
@@ -75,32 +75,32 @@ declare global {
   }
 }
 
-interface ResultPersonalityType { 
-  id: string; 
-  type_code: string; 
-  type_name: string; 
-  title: string; 
-  theme_sentence: string; 
-  description: string; 
-  description_points: string[]; 
-  strength_keywords: string[]; 
-  weakness_keywords: string[]; 
-  calculated_score: number; 
+interface ResultPersonalityType {
+  id: string;
+  type_code: string;
+  type_name: string;
+  title: string;
+  theme_sentence: string;
+  description: string;
+  description_points: string[];
+  strength_keywords: string[];
+  weakness_keywords: string[];
+  calculated_score: number;
 }
 
-interface TestResultData { 
-  attempt_id: string; 
-  test_completed_at: string; 
-  max_score: number; 
-  personality_types: ResultPersonalityType[]; 
-  is_tie: boolean; 
-  total_questions_answered: number; 
+interface TestResultData {
+  attempt_id: string;
+  test_completed_at: string;
+  max_score: number;
+  personality_types: ResultPersonalityType[];
+  is_tie: boolean;
+  total_questions_answered: number;
 }
 
-interface ApiResponse { 
-  success: boolean; 
-  data?: TestResultData; 
-  message: string; 
+interface ApiResponse {
+  success: boolean;
+  data?: TestResultData;
+  message: string;
 }
 
 // SWR fetcher 함수
@@ -187,21 +187,21 @@ function TypeDetailModal({ isOpen, onClose, initialIndex, types }: TypeDetailMod
   // 여기서는 기존 로직 유지를 위해 하드코딩된 색상 매퍼 사용 가능, 혹은 임의의 색상 로직
   // 일단 기존 데이터 구조와 맞춤
   const getColor = (title: string) => {
-     // 간단한 해시 또는 매핑
-     const colorMap: Record<string, string> = {
-         '관찰형': 'rgb(51, 184, 232)', '교육형': 'rgb(76, 175, 80)', '규범형': 'rgb(63, 81, 181)', 
-         '복합형': 'rgb(156, 39, 176)', '봉사형': 'rgb(255, 152, 0)', '분석형': 'rgb(244, 67, 54)',
-         '생명형': 'rgb(139, 195, 74)', '소통형': 'rgb(255, 193, 7)', '실용형': 'rgb(96, 125, 139)',
-         '운동형': 'rgb(255, 87, 34)', '원리형': 'rgb(121, 85, 72)', '제작형': 'rgb(158, 158, 158)',
-         '진취형': 'rgb(233, 30, 99)', '창조형': 'rgb(103, 58, 183)', '추리형': 'rgb(0, 150, 136)'
-     };
-     return colorMap[currentType.original_title] || 'rgb(100, 100, 100)';
+    // 간단한 해시 또는 매핑
+    const colorMap: Record<string, string> = {
+      '관찰형': 'rgb(51, 184, 232)', '교육형': 'rgb(76, 175, 80)', '규범형': 'rgb(63, 81, 181)',
+      '복합형': 'rgb(156, 39, 176)', '봉사형': 'rgb(255, 152, 0)', '분석형': 'rgb(244, 67, 54)',
+      '생명형': 'rgb(139, 195, 74)', '소통형': 'rgb(255, 193, 7)', '실용형': 'rgb(96, 125, 139)',
+      '운동형': 'rgb(255, 87, 34)', '원리형': 'rgb(121, 85, 72)', '제작형': 'rgb(158, 158, 158)',
+      '진취형': 'rgb(233, 30, 99)', '창조형': 'rgb(103, 58, 183)', '추리형': 'rgb(0, 150, 136)'
+    };
+    return colorMap[currentType.original_title] || 'rgb(100, 100, 100)';
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" onClick={onClose} />
-      <div 
+      <div
         className="relative w-full max-w-md mx-4 bg-white rounded-2xl shadow-2xl overflow-hidden max-h-[85vh] flex flex-col"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -217,7 +217,7 @@ function TypeDetailModal({ isOpen, onClose, initialIndex, types }: TypeDetailMod
           <h2 className="text-2xl font-bold mb-1.5 break-keep">{currentType.title}</h2>
           <p className="text-base font-medium opacity-90 whitespace-pre-line break-keep">{currentType.theme_sentence}</p>
         </div>
-        <div 
+        <div
           className="flex-1 p-5 overflow-y-auto"
           style={{ transform: isDragging ? `translateX(${dragDistance * 0.3}px)` : 'none' }}
         >
@@ -288,7 +288,7 @@ export default function ResultPage() {
   const { t } = useTranslation();
   const initLocale = useLocaleStore((state) => state.initLocale);
   const locale = useLocaleStore((state) => state.locale);
-  
+
   const [copySuccess, setCopySuccess] = useState(false);
   const [kakaoReady, setKakaoReady] = useState(false);
   const [participantCount, setParticipantCount] = useState<number | null>(null);
@@ -344,8 +344,8 @@ export default function ResultPage() {
       showDialog('URL 복사 실패', 'URL 복사에 실패했어요. 브라우저 주소창에서 직접 복사해주세요.', 'error');
     }
   };
-  
-    const shareCommon = (url: string) => window.open(url, '_blank', 'noopener,noreferrer,width=600,height=600');
+
+  const shareCommon = (url: string) => window.open(url, '_blank', 'noopener,noreferrer,width=600,height=600');
 
   const handleFacebookShare = () => shareCommon(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`);
 
@@ -370,8 +370,8 @@ export default function ResultPage() {
       objectType: 'feed',
       content: {
         title: `[나를 찾아줘!] ${firstType.title} 유형 결과!`,
-        description: `&quot;${firstType.theme_sentence}&quot;\n내 성향 유형을 확인해보세요!`,
-        imageUrl: `${window.location.origin}/og-image.png`, 
+        description: `${firstType.theme_sentence}\n내 성향 유형을 확인해보세요!`,
+        imageUrl: `${window.location.origin}/og-image.png`,
         link: { mobileWebUrl: window.location.href, webUrl: window.location.href },
       },
       buttons: [
@@ -380,7 +380,7 @@ export default function ResultPage() {
       ],
     });
   };
-  
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-sky-50 flex flex-col items-center justify-center text-center p-4">
@@ -425,7 +425,7 @@ export default function ResultPage() {
       </div>
     );
   }
-  
+
   // any 타입 캐스팅 제거 또는 구체적인 타입 정의 권장
   const { personality_types: personalityTypes, is_tie: isTie, all_types: allTypes } = resultData as any;
   const primaryType = personalityTypes[0];
@@ -460,7 +460,7 @@ export default function ResultPage() {
                 : t('result.congratsSingle')}
             </p>
             {isTie && personalityTypes.length > 1 && (
-                 <p className="text-xs text-slate-500 mt-1.5 break-keep text-balance">{t('result.tieNote')}</p>
+              <p className="text-xs text-slate-500 mt-1.5 break-keep text-balance">{t('result.tieNote')}</p>
             )}
           </header>
 
@@ -501,7 +501,7 @@ export default function ResultPage() {
                         ))}
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-base font-semibold text-slate-700 mb-2.5">{t('result.strengthKeywords')}</h3>
                       <div className="flex flex-wrap gap-2">
@@ -547,10 +547,10 @@ export default function ResultPage() {
             <p className="text-sm opacity-90 mb-5 break-keep text-balance">{t('result.officialTestDesc')}</p>
             <a href="https://aptitude-x.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-2.5 bg-white text-blue-600 rounded-xl font-bold transition-transform shadow-md active:scale-95">
               <ExternalLink size={18} className="mr-2" />
-              {t('result.officialTestButton')} 
+              {t('result.officialTestButton')}
             </a>
           </section>
-          
+
           <div className="text-center mt-10">
             <button onClick={() => router.push('/')} className="px-8 py-3.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-xl font-semibold text-base transition-transform shadow-xl active:scale-95 inline-flex flex-col items-center">
               <div className="break-keep">{t('result.newTest')}</div>
