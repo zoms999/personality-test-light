@@ -22,6 +22,13 @@ body {
   font-family: 'Noto Sans', 'Noto Sans KR', 'Noto Sans JP', sans-serif;
 }
 
+/* Fluid scaling for mobile devices */
+@media (max-width: 640px) {
+  html {
+    font-size: clamp(12px, 4vw, 16px);
+  }
+}
+
 /* 다크 모드 배경 애니메이션 */
 @keyframes pulse-slow {
   0%, 100% { opacity: 0.3; transform: scale(1); }

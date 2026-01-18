@@ -54,6 +54,9 @@ export default function StartTestPage() {
     initLocale();
   }, [initLocale]);
 
+  // 로케일에 따른 word-break 클래스 결정 (일본어 등에서 텍스트가 화면 밖으로 나가는 현상 수정)
+  const wordBreakClass = locale === 'ko' ? 'break-keep' : (locale === 'ja' ? 'break-all whitespace-normal' : 'break-words whitespace-normal');
+
   const genderOptions = [
     { value: 'male' as Gender, label: t('start.male'), icon: <User size={18} /> },
     { value: 'female' as Gender, label: t('start.female'), icon: <User size={18} /> }
@@ -140,10 +143,10 @@ export default function StartTestPage() {
           <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg">
             <Users size={32} className="text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-slate-800 mb-2">
+          <h1 className={`text-2xl sm:text-3xl font-bold text-slate-800 mb-2 ${wordBreakClass}`}>
             {t('start.title')}
           </h1>
-          <p className="text-md text-slate-600">{t('start.subtitle')}</p>
+          <p className={`text-md text-slate-600 ${wordBreakClass}`}>{t('start.subtitle')}</p>
         </div>
 
         <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-slate-200">

@@ -44,6 +44,12 @@ const IconInstagram = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const IconLine = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" />
+  </svg>
+);
+
 // --- 타입 선언 ---
 declare global {
   interface Window {
@@ -360,6 +366,15 @@ export default function ResultPage() {
     showDialog('링크 복사 완료!', '결과 링크가 복사되었어요. 인스타그램 스토리나 게시물에 붙여넣어 공유해주세요!', 'info');
   };
 
+  const handleLineShare = () => {
+    if (!data?.data) return;
+    const firstType = data.data.personality_types[0];
+    const title = `[나를 찾아줘!] ${firstType.title} 유형 결과!`;
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent(`${title}\n${firstType.theme_sentence}`);
+    shareCommon(`https://social-plugins.line.me/lineit/share?url=${url}&text=${text}`);
+  };
+
   const handleKakaoShare = () => {
     if (!kakaoReady || !data?.data) {
       showDialog('카카오톡 공유 불가', '공유 기능을 사용할 수 없거나 데이터가 없습니다.', 'warning');
@@ -528,6 +543,7 @@ export default function ResultPage() {
                 { name: t('result.shareKakao'), Icon: Share2, handler: handleKakaoShare, disabled: !kakaoReady, style: `bg-yellow-400 text-slate-800 ${!kakaoReady ? 'bg-slate-300 text-slate-500' : 'active:bg-yellow-500'}` },
                 { name: t('result.shareFacebook'), Icon: IconFacebook, handler: handleFacebookShare, style: 'bg-[#1877F2] text-white active:bg-[#166fe5]' },
                 { name: t('result.shareNaver'), Icon: IconNaver, handler: handleNaverBlogShare, style: 'bg-[#03C75A] text-white active:bg-[#02b350]' },
+                ...(locale === 'ja' ? [{ name: t('result.shareLine'), Icon: IconLine, handler: handleLineShare, style: 'bg-[#00B900] text-white active:bg-[#00a000]' }] : []),
                 { name: t('result.shareInstagram'), Icon: IconInstagram, handler: handleInstagramShare, style: 'bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 text-white' },
                 { name: copySuccess ? t('result.linkCopied') : t('result.copyLink'), Icon: copySuccess ? CheckCircle : Copy, handler: handleCopyUrl, style: `bg-slate-600 text-white active:bg-slate-700 ${copySuccess ? 'text-green-400' : ''}` },
               ].map(({ name, Icon, handler, style, disabled }) => (

@@ -267,13 +267,13 @@ export default function ResultManagement() {
                 <div
                   className="flex items-center justify-between p-6 hover:bg-slate-50 cursor-pointer transition-colors"
                 >
-                  <div className="flex items-center space-x-6 flex-1" onClick={() => toggleExpand(type.id)}>
-                    <div className="bg-blue-100 text-blue-700 font-bold px-3 py-1.5 rounded text-sm w-20 text-center">
+                  <div className="flex items-center space-x-6 flex-1 min-w-0" onClick={() => toggleExpand(type.id)}>
+                    <div className="bg-blue-100 text-blue-700 font-bold px-3 py-1.5 rounded text-sm w-20 text-center flex-shrink-0">
                       {type.type_code}
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-slate-900">{koTrans?.type_name || '이름 없음'}</h3>
-                      <p className="text-sm text-slate-500 max-w-2xl truncate">
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-semibold text-slate-900 break-all">{koTrans?.type_name || '이름 없음'}</h3>
+                      <p className="text-sm text-slate-500 max-w-2xl truncate break-all">
                         {koTrans?.title || '제목 없음'}
                       </p>
                     </div>
@@ -314,15 +314,15 @@ export default function ResultManagement() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <span className="text-xs font-medium text-slate-500 block mb-1">유형 이름</span>
-                            <div className="text-sm text-slate-800">{trans.type_name}</div>
+                            <div className="text-sm text-slate-800 break-all">{trans.type_name}</div>
                           </div>
                           <div>
                             <span className="text-xs font-medium text-slate-500 block mb-1">제목 (Title)</span>
-                            <div className="text-sm text-slate-800">{trans.title}</div>
+                            <div className="text-sm text-slate-800 break-all">{trans.title}</div>
                           </div>
                           <div className="col-span-2">
                             <span className="text-xs font-medium text-slate-500 block mb-1">설명 (Description)</span>
-                            <div className="text-sm text-slate-600 whitespace-pre-line leading-relaxed">
+                            <div className="text-sm text-slate-600 whitespace-pre-line leading-relaxed break-all">
                               {trans.description}
                             </div>
                           </div>

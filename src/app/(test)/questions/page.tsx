@@ -19,7 +19,8 @@ interface ConfirmModalProps {
 }
 
 function ConfirmModal({ isOpen, onClose, onConfirm, title, message }: ConfirmModalProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
+  const wordBreakClass = locale === 'ko' ? 'break-keep' : (locale === 'ja' ? 'break-all whitespace-normal' : 'break-words whitespace-normal');
   const backdropClass = isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none';
   const modalClass = isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none';
 
@@ -33,8 +34,8 @@ function ConfirmModal({ isOpen, onClose, onConfirm, title, message }: ConfirmMod
         onClick={(e) => e.stopPropagation()}
       >
         <AlertTriangle size={48} className="text-amber-500 mx-auto mb-4" />
-        <h2 className="text-xl font-bold text-slate-800 mb-2 break-keep">{title}</h2>
-        <p className="text-slate-600 mb-6 break-keep">{message}</p>
+        <h2 className={`text-xl font-bold text-slate-800 mb-2 ${wordBreakClass}`}>{title}</h2>
+        <p className={`text-slate-600 mb-6 ${wordBreakClass}`}>{message}</p>
         <div className="flex justify-center gap-3 sm:gap-4">
           <button
             type="button"
@@ -60,7 +61,7 @@ function ConfirmModal({ isOpen, onClose, onConfirm, title, message }: ConfirmMod
 function QuestionsPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const initLocale = useLocaleStore((state) => state.initLocale);
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
 
@@ -82,6 +83,9 @@ function QuestionsPageContent() {
   } = useTestStore();
 
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+
+  // 로케일에 따른 word-break 클래스 결정
+  const wordBreakClass = locale === 'ko' ? 'break-keep' : (locale === 'ja' ? 'break-all whitespace-normal' : 'break-words whitespace-normal');
 
   // 언어 초기화
   useEffect(() => {
@@ -163,9 +167,9 @@ function QuestionsPageContent() {
   // --- [수정] 점수별 크기 함수 제거 ---
   // const getScoreSizeClass = ... (이 함수는 이제 필요 없습니다)
   
-  if (isLoading && allQuestions.length === 0) { /* 로딩 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <Loader2 size={48} className="text-blue-500 animate-spin mb-6" /> <p className="text-lg font-semibold text-slate-700 mb-1 break-keep">{t('common.loading')}</p> <p className="text-slate-500 break-keep">{t('start.processing')}</p> </div> ); }
-  if (error && allQuestions.length === 0) { /* 오류 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4"> <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-8 text-center border border-red-200"> <AlertTriangle size={48} className="text-red-500 mx-auto mb-5" /> <h2 className="text-xl font-semibold text-slate-800 mb-2 break-keep">오류 발생</h2> <p className="text-slate-600 mb-6 break-keep">{error}</p> <button type="button" onClick={() => router.push('/start')} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all break-keep">처음으로 돌아가기</button> </div> </div> ); }
-  if (!isLoading && allQuestions.length === 0) { /* 데이터 없음 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <AlertTriangle size={48} className="text-amber-500 mx-auto mb-5" /> <p className="text-lg font-semibold text-slate-700 mb-1 break-keep">질문을 불러올 수 없습니다.</p> <p className="text-slate-500 mb-6 break-keep">네트워크 연결을 확인하거나 잠시 후 다시 시도해주세요.</p> <button type="button" onClick={() => router.push('/start')} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all break-keep">처음으로 돌아가기</button> </div> ); }
+  if (isLoading && allQuestions.length === 0) { /* 로딩 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <Loader2 size={48} className="text-blue-500 animate-spin mb-6" /> <p className={`text-lg font-semibold text-slate-700 mb-1 ${wordBreakClass}`}>{t('common.loading')}</p> <p className={`text-slate-500 ${wordBreakClass}`}>{t('start.processing')}</p> </div> ); }
+  if (error && allQuestions.length === 0) { /* 오류 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4"> <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-8 text-center border border-red-200"> <AlertTriangle size={48} className="text-red-500 mx-auto mb-5" /> <h2 className={`text-xl font-semibold text-slate-800 mb-2 ${wordBreakClass}`}>오류 발생</h2> <p className={`text-slate-600 mb-6 ${wordBreakClass}`}>{error}</p> <button type="button" onClick={() => router.push('/start')} className={`bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all ${wordBreakClass}`}>처음으로 돌아가기</button> </div> </div> ); }
+  if (!isLoading && allQuestions.length === 0) { /* 데이터 없음 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <AlertTriangle size={48} className="text-amber-500 mx-auto mb-5" /> <p className={`text-lg font-semibold text-slate-700 mb-1 ${wordBreakClass}`}>질문을 불러올 수 없습니다.</p> <p className={`text-slate-500 mb-6 ${wordBreakClass}`}>네트워크 연결을 확인하거나 잠시 후 다시 시도해주세요.</p> <button type="button" onClick={() => router.push('/start')} className={`bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all ${wordBreakClass}`}>처음으로 돌아가기</button> </div> ); }
 
   const navButtonBaseStyle = "h-12 px-6 rounded-xl font-semibold text-base transition-all duration-300 ease-in-out transform hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-opacity-50 flex items-center justify-center space-x-2";
   const nextButtonStyle = `${navButtonBaseStyle} bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl focus:ring-blue-300`;
@@ -185,22 +189,22 @@ function QuestionsPageContent() {
       <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 py-8 sm:py-12 px-5">
         <div className="max-w-2xl mx-auto">
           <header className="text-center mb-10">
-            <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-2 break-keep">
+            <h1 className={`text-2xl sm:text-3xl font-bold text-slate-800 mb-2 ${wordBreakClass}`}>
               {t('questions.title')}
             </h1>
             <div className="flex items-center justify-center space-x-3 text-sm text-slate-500">
-              <span className="break-keep">{t('questions.pageInfo', { current: String(currentPage + 1), total: String(totalPages) })}</span>
+              <span className={`${wordBreakClass}`}>{t('questions.pageInfo', { current: String(currentPage + 1), total: String(totalPages) })}</span>
               <span className="text-slate-300">•</span>
-              <span className="break-keep">{t('questions.totalQuestions', { count: String(allQuestions.length) })}</span>
+              <span className={`${wordBreakClass}`}>{t('questions.totalQuestions', { count: String(allQuestions.length) })}</span>
             </div>
           </header>
 
           <div className="bg-sky-50/80 backdrop-blur-sm border border-sky-200 rounded-lg p-4 mb-10 shadow-sm flex items-start space-x-3">
             <Info size={20} className="text-sky-600 mt-0.5 flex-shrink-0" />
-            <p className="text-sky-800 text-sm sm:text-base font-medium break-keep text-left sm:text-center">
+            <p className={`text-sky-800 text-sm sm:text-base font-medium text-left sm:text-center flex-1 min-w-0 ${wordBreakClass}`}>
               {t('questions.instruction')}
-              <span className="font-extrabold text-blue-700 text-base sm:text-lg align-baseline break-keep"> {t('questions.instructionHighScore')}</span>, 
-              <span className="font-extrabold text-green-700 text-base sm:text-lg align-baseline break-keep"> {t('questions.instructionLowScore')}</span>
+              <span className={`font-extrabold text-blue-700 text-base sm:text-lg align-baseline ${wordBreakClass}`}> {t('questions.instructionHighScore')}</span>
+              <span className={`font-extrabold text-green-700 text-base sm:text-lg align-baseline ${wordBreakClass}`}> {t('questions.instructionLowScore')}</span>
             </p>
           </div>
 
@@ -212,12 +216,12 @@ function QuestionsPageContent() {
                     <span className="mr-3 flex-shrink-0 font-normal text-slate-400">
                       {allQuestions.findIndex(q => q.id === question.id) + 1}.
                     </span>
-                    <span className="break-keep">{question.question_text}</span>
+                    <span className={`${wordBreakClass}`}>{question.question_text}</span>
                   </h3>
                   
                   <div className="space-y-4">
                     <div className="flex justify-between text-xs sm:text-sm font-semibold px-2">
-                    <span className="text-blue-600 break-keep">{t('questions.veryTrue')}</span> 
+                    <span className={`text-blue-600 ${wordBreakClass}`}>{t('questions.veryTrue')}</span> 
                       {/* <span className="text-emerald-600">전혀 아니다</span> */}
                     </div>
                     
@@ -260,7 +264,7 @@ function QuestionsPageContent() {
             </div>
           </main>
 
-          {error && ( /* 에러 메시지 */ <div role="alert" className="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mb-8 text-center shadow flex items-center justify-center space-x-2"> <AlertTriangle size={18} className="text-yellow-600" /> <p className="text-yellow-700 text-sm font-medium break-keep">{error}</p> </div> )}
+          {error && ( /* 에러 메시지 */ <div role="alert" className="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mb-8 text-center shadow flex items-center justify-center space-x-2"> <AlertTriangle size={18} className="text-yellow-600" /> <p className={`text-yellow-700 text-sm font-medium ${wordBreakClass}`}>{error}</p> </div> )}
 
           <footer className={`flex flex-col sm:flex-row items-center gap-4 ${isFirstPage ? 'justify-end' : 'justify-between'}`}>
             {/* {!isFirstPage && (
@@ -305,7 +309,7 @@ function QuestionsPageContent() {
           <div className="mt-10">
             <div className="flex justify-between text-sm text-slate-600 mb-1.5 px-1">
               <span>{t('questions.progress')}</span>
-              <span className='font-medium break-keep'>{Object.keys(answers).length} / {allQuestions.length}</span>
+              <span className={`font-medium ${wordBreakClass}`}>{Object.keys(answers).length} / {allQuestions.length}</span>
             </div>
             <div className="w-full bg-slate-200 rounded-full h-2.5 relative overflow-hidden">
               <div
