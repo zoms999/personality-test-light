@@ -5,7 +5,7 @@
  * npx ts-node scripts/verify-multilingual-migration.ts
  */
 
-import { PrismaClient } from '@/generated/prisma';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
