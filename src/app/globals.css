@@ -20,6 +20,14 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: 'Noto Sans', 'Noto Sans KR', 'Noto Sans JP', sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 /* Fluid scaling for mobile devices */
