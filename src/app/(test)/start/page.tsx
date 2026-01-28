@@ -55,7 +55,7 @@ export default function StartTestPage() {
   }, [initLocale]);
 
   // 로케일에 따른 word-break 클래스 결정 (일본어 등에서 텍스트가 화면 밖으로 나가는 현상 수정)
-  const wordBreakClass = locale === 'ko' ? 'break-keep' : (locale === 'ja' ? 'break-all whitespace-normal' : 'break-words whitespace-normal');
+  const wordBreakClass = locale === 'ko' ? 'break-keep' : 'break-words';
 
   const genderOptions = [
     { value: 'male' as Gender, label: t('start.male'), icon: <User size={18} /> },
