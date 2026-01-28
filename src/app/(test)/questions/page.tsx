@@ -20,7 +20,7 @@ interface ConfirmModalProps {
 
 function ConfirmModal({ isOpen, onClose, onConfirm, title, message }: ConfirmModalProps) {
   const { t, locale } = useTranslation();
-  const wordBreakClass = locale === 'ko' ? 'break-keep' : (locale === 'ja' ? 'break-all whitespace-normal' : 'break-words whitespace-normal');
+  const wordBreakClass = locale === 'ko' ? 'break-keep' : 'break-words';
   const backdropClass = isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none';
   const modalClass = isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none';
 
@@ -85,7 +85,7 @@ function QuestionsPageContent() {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
 
   // 로케일에 따른 word-break 클래스 결정
-  const wordBreakClass = locale === 'ko' ? 'break-keep' : (locale === 'ja' ? 'break-all whitespace-normal' : 'break-words whitespace-normal');
+  const wordBreakClass = locale === 'ko' ? 'break-keep' : 'break-words';
 
   // 언어 초기화
   useEffect(() => {
@@ -126,9 +126,9 @@ function QuestionsPageContent() {
 
   const handleNext = () => {
     if (!isCurrentPageComplete() && !isLastPage) {
-        useTestStore.setState({ error: t('questions.errors.answerAllQuestions') });
-        setTimeout(() => useTestStore.setState({ error: null }), 3000);
-        return;
+      useTestStore.setState({ error: t('questions.errors.answerAllQuestions') });
+      setTimeout(() => useTestStore.setState({ error: null }), 3000);
+      return;
     }
     useTestStore.setState({ error: null });
     nextPage();
@@ -153,23 +153,23 @@ function QuestionsPageContent() {
   // 점수별 색상: 10~6 파랑, 5~1 녹색, 점수 낮을수록 옅어짐 (변경 없음)
   const getScoreColorClass = (score: number): string => {
     if (score >= 10) return 'peer-checked:bg-blue-600 peer-checked:border-blue-700 group-hover:bg-blue-50';
-    if (score >= 9)  return 'peer-checked:bg-blue-500 peer-checked:border-blue-600 group-hover:bg-blue-50';
-    if (score >= 8)  return 'peer-checked:bg-blue-500 peer-checked:border-blue-600 group-hover:bg-blue-50';
-    if (score >= 7)  return 'peer-checked:bg-blue-400 peer-checked:border-blue-500 group-hover:bg-blue-50';
-    if (score >= 6)  return 'peer-checked:bg-blue-300 peer-checked:border-blue-400 peer-checked:text-blue-800 group-hover:bg-blue-50';
-    if (score >= 5)  return 'peer-checked:bg-emerald-500 peer-checked:border-emerald-600 group-hover:bg-emerald-50';
-    if (score >= 4)  return 'peer-checked:bg-emerald-400 peer-checked:border-emerald-500 group-hover:bg-emerald-50';
-    if (score >= 3)  return 'peer-checked:bg-emerald-400 peer-checked:border-emerald-500 group-hover:bg-emerald-50';
-    if (score >= 2)  return 'peer-checked:bg-emerald-300 peer-checked:border-emerald-400 peer-checked:text-emerald-800 group-hover:bg-emerald-50';
+    if (score >= 9) return 'peer-checked:bg-blue-500 peer-checked:border-blue-600 group-hover:bg-blue-50';
+    if (score >= 8) return 'peer-checked:bg-blue-500 peer-checked:border-blue-600 group-hover:bg-blue-50';
+    if (score >= 7) return 'peer-checked:bg-blue-400 peer-checked:border-blue-500 group-hover:bg-blue-50';
+    if (score >= 6) return 'peer-checked:bg-blue-300 peer-checked:border-blue-400 peer-checked:text-blue-800 group-hover:bg-blue-50';
+    if (score >= 5) return 'peer-checked:bg-emerald-500 peer-checked:border-emerald-600 group-hover:bg-emerald-50';
+    if (score >= 4) return 'peer-checked:bg-emerald-400 peer-checked:border-emerald-500 group-hover:bg-emerald-50';
+    if (score >= 3) return 'peer-checked:bg-emerald-400 peer-checked:border-emerald-500 group-hover:bg-emerald-50';
+    if (score >= 2) return 'peer-checked:bg-emerald-300 peer-checked:border-emerald-400 peer-checked:text-emerald-800 group-hover:bg-emerald-50';
     return 'peer-checked:bg-emerald-200 peer-checked:border-emerald-300 peer-checked:text-emerald-900 group-hover:bg-emerald-50';
   };
 
   // --- [수정] 점수별 크기 함수 제거 ---
   // const getScoreSizeClass = ... (이 함수는 이제 필요 없습니다)
-  
-  if (isLoading && allQuestions.length === 0) { /* 로딩 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <Loader2 size={48} className="text-blue-500 animate-spin mb-6" /> <p className={`text-lg font-semibold text-slate-700 mb-1 ${wordBreakClass}`}>{t('common.loading')}</p> <p className={`text-slate-500 ${wordBreakClass}`}>{t('start.processing')}</p> </div> ); }
-  if (error && allQuestions.length === 0) { /* 오류 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4"> <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-8 text-center border border-red-200"> <AlertTriangle size={48} className="text-red-500 mx-auto mb-5" /> <h2 className={`text-xl font-semibold text-slate-800 mb-2 ${wordBreakClass}`}>오류 발생</h2> <p className={`text-slate-600 mb-6 ${wordBreakClass}`}>{error}</p> <button type="button" onClick={() => router.push('/start')} className={`bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all ${wordBreakClass}`}>처음으로 돌아가기</button> </div> </div> ); }
-  if (!isLoading && allQuestions.length === 0) { /* 데이터 없음 화면 */ return ( <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <AlertTriangle size={48} className="text-amber-500 mx-auto mb-5" /> <p className={`text-lg font-semibold text-slate-700 mb-1 ${wordBreakClass}`}>질문을 불러올 수 없습니다.</p> <p className={`text-slate-500 mb-6 ${wordBreakClass}`}>네트워크 연결을 확인하거나 잠시 후 다시 시도해주세요.</p> <button type="button" onClick={() => router.push('/start')} className={`bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all ${wordBreakClass}`}>처음으로 돌아가기</button> </div> ); }
+
+  if (isLoading && allQuestions.length === 0) { /* 로딩 화면 */ return (<div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <Loader2 size={48} className="text-blue-500 animate-spin mb-6" /> <p className={`text-lg font-semibold text-slate-700 mb-1 ${wordBreakClass}`}>{t('common.loading')}</p> <p className={`text-slate-500 ${wordBreakClass}`}>{t('start.processing')}</p> </div>); }
+  if (error && allQuestions.length === 0) { /* 오류 화면 */ return (<div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4"> <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-8 text-center border border-red-200"> <AlertTriangle size={48} className="text-red-500 mx-auto mb-5" /> <h2 className={`text-xl font-semibold text-slate-800 mb-2 ${wordBreakClass}`}>오류 발생</h2> <p className={`text-slate-600 mb-6 ${wordBreakClass}`}>{error}</p> <button type="button" onClick={() => router.push('/start')} className={`bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all ${wordBreakClass}`}>처음으로 돌아가기</button> </div> </div>); }
+  if (!isLoading && allQuestions.length === 0) { /* 데이터 없음 화면 */ return (<div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center text-center p-4"> <AlertTriangle size={48} className="text-amber-500 mx-auto mb-5" /> <p className={`text-lg font-semibold text-slate-700 mb-1 ${wordBreakClass}`}>질문을 불러올 수 없습니다.</p> <p className={`text-slate-500 mb-6 ${wordBreakClass}`}>네트워크 연결을 확인하거나 잠시 후 다시 시도해주세요.</p> <button type="button" onClick={() => router.push('/start')} className={`bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all ${wordBreakClass}`}>처음으로 돌아가기</button> </div>); }
 
   const navButtonBaseStyle = "h-12 px-6 rounded-xl font-semibold text-base transition-all duration-300 ease-in-out transform hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-opacity-50 flex items-center justify-center space-x-2";
   const nextButtonStyle = `${navButtonBaseStyle} bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl focus:ring-blue-300`;
@@ -177,7 +177,7 @@ function QuestionsPageContent() {
 
   return (
     <>
-      <Header 
+      <Header
         disableLanguageChange={true}
         onLanguageChangeAttempt={() => setIsLanguageModalOpen(true)}
       />
@@ -199,7 +199,7 @@ function QuestionsPageContent() {
             </div>
           </header>
 
-          <div className="bg-sky-50/80 backdrop-blur-sm border border-sky-200 rounded-lg p-4 mb-10 shadow-sm flex items-start space-x-3">
+          <div className="bg-sky-50/80 backdrop-blur-sm border border-sky-200 rounded-lg p-4 mb-10 shadow-sm flex items-start space-x-3 overflow-hidden">
             <Info size={20} className="text-sky-600 mt-0.5 flex-shrink-0" />
             <p className={`text-sky-800 text-sm sm:text-base font-medium text-left sm:text-center flex-1 min-w-0 ${wordBreakClass}`}>
               {t('questions.instruction')}
@@ -208,33 +208,32 @@ function QuestionsPageContent() {
             </p>
           </div>
 
-          <main className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 mb-10 border border-slate-200/80">
-            <div className="space-y-12">
+          <main className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 mb-10 border border-slate-200/80 overflow-hidden">
+            <div className="space-y-12 w-full">
               {currentQuestions.map((question) => (
-                <div key={question.id} className="border-b border-slate-100 last:border-b-0 pb-10 last:pb-0">
-                  <h3 className="text-lg sm:text-xl font-semibold text-slate-700 mb-6 leading-relaxed flex items-baseline">
+                <div key={question.id} className="border-b border-slate-100 last:border-b-0 pb-10 last:pb-0 w-full overflow-hidden">
+                  <h3 className="text-lg sm:text-xl font-semibold text-slate-700 mb-6 leading-relaxed flex items-baseline w-full">
                     <span className="mr-3 flex-shrink-0 font-normal text-slate-400">
                       {allQuestions.findIndex(q => q.id === question.id) + 1}.
                     </span>
-                    <span className={`${wordBreakClass}`}>{question.question_text}</span>
+                    <span className={`${wordBreakClass} flex-1 min-w-0`}>{question.question_text}</span>
                   </h3>
-                  
-                  <div className="space-y-4">
+
+                  <div className="space-y-4 w-full overflow-hidden">
                     <div className="flex justify-between text-xs sm:text-sm font-semibold px-2">
-                    <span className={`text-blue-600 ${wordBreakClass}`}>{t('questions.veryTrue')}</span> 
+                      <span className={`text-blue-600 ${wordBreakClass}`}>{t('questions.veryTrue')}</span>
                       {/* <span className="text-emerald-600">전혀 아니다</span> */}
                     </div>
-                    
+
                     {/* --- [수정] 반응형 Flexbox 레이아웃 및 통일된 버튼 크기 적용 --- */}
                     <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-                      {[10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((score) => ( 
+                      {[10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((score) => (
                         <label
                           key={`${question.id}-${score}`}
-                          className={`flex flex-col items-center cursor-pointer transition-all duration-200 group ${
-                            answers[question.id] === score
-                              ? 'transform scale-110'
-                              : 'hover:scale-105'
-                          }`}
+                          className={`flex flex-col items-center cursor-pointer transition-all duration-200 group ${answers[question.id] === score
+                            ? 'transform scale-110'
+                            : 'hover:scale-105'
+                            }`}
                         >
                           <input
                             type="radio"
@@ -264,7 +263,7 @@ function QuestionsPageContent() {
             </div>
           </main>
 
-          {error && ( /* 에러 메시지 */ <div role="alert" className="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mb-8 text-center shadow flex items-center justify-center space-x-2"> <AlertTriangle size={18} className="text-yellow-600" /> <p className={`text-yellow-700 text-sm font-medium ${wordBreakClass}`}>{error}</p> </div> )}
+          {error && ( /* 에러 메시지 */ <div role="alert" className="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mb-8 text-center shadow flex items-center justify-center space-x-2"> <AlertTriangle size={18} className="text-yellow-600" /> <p className={`text-yellow-700 text-sm font-medium ${wordBreakClass}`}>{error}</p> </div>)}
 
           <footer className={`flex flex-col sm:flex-row items-center gap-4 ${isFirstPage ? 'justify-end' : 'justify-between'}`}>
             {/* {!isFirstPage && (
@@ -278,9 +277,9 @@ function QuestionsPageContent() {
                 <span>이전</span>
               </button>
             )} */}
-            
+
             <div className={`hidden sm:flex items-center space-x-1.5 ${isFirstPage ? 'sm:hidden' : ''}`}>
-              {Array.from({ length: totalPages }, (_, i) => ( <div key={`page-dot-${i}`} className={`h-2 rounded-full transition-all duration-300 ease-in-out ${ i === currentPage ? 'bg-blue-500 w-5' : 'bg-slate-300 w-2 hover:bg-slate-400' }`} title={`페이지 ${i + 1}`} /> ))}
+              {Array.from({ length: totalPages }, (_, i) => (<div key={`page-dot-${i}`} className={`h-2 rounded-full transition-all duration-300 ease-in-out ${i === currentPage ? 'bg-blue-500 w-5' : 'bg-slate-300 w-2 hover:bg-slate-400'}`} title={`페이지 ${i + 1}`} />))}
             </div>
 
             {isLastPage ? (
