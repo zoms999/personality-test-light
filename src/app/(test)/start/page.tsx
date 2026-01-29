@@ -138,8 +138,8 @@ export default function StartTestPage() {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-purple-100 py-10 px-4 flex flex-col items-center justify-center">
-        <div className="text-center mb-8">
+      <div className="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-purple-100 py-10 px-4 flex flex-col items-center justify-center overflow-x-hidden">
+        <div className="text-center mb-8 w-full max-w-lg px-2">
           <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg">
             <Users size={32} className="text-white" />
           </div>
@@ -149,48 +149,48 @@ export default function StartTestPage() {
           <p className={`text-md text-slate-600 ${wordBreakClass}`}>{t('start.subtitle')}</p>
         </div>
 
-        <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-slate-200">
-          <div className="space-y-5">
+        <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-slate-200 overflow-hidden">
+          <div className="space-y-5 w-full">
             {/* User Info Section */}
-            <div>
-              <h2 className="text-lg font-semibold text-slate-700 mb-3">{t('start.basicInfo')}</h2>
-              <div className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-xs font-medium text-slate-600 mb-1">{t('start.name')}</label>
-                  <div className="relative">
+            <div className="w-full">
+              <h2 className={`text-lg font-semibold text-slate-700 mb-3 ${wordBreakClass}`}>{t('start.basicInfo')}</h2>
+              <div className="space-y-4 w-full">
+                <div className="w-full">
+                  <label htmlFor="name" className={`block text-xs font-medium text-slate-600 mb-1 ${wordBreakClass}`}>{t('start.name')}</label>
+                  <div className="relative w-full">
                     <User size={16} className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-slate-400" />
-                    <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} className={`${inputBaseStyle} pl-10`} placeholder={t('start.namePlaceholder')} disabled={isLoading} />
+                    <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} className={`${inputBaseStyle} pl-10 w-full`} placeholder={t('start.namePlaceholder')} disabled={isLoading} />
                   </div>
                 </div>
-                <div>
-                  <label htmlFor="birthDate" className="block text-xs font-medium text-slate-600 mb-1">{t('start.birthDate')}</label>
-                  <div className="relative">
+                <div className="w-full">
+                  <label htmlFor="birthDate" className={`block text-xs font-medium text-slate-600 mb-1 ${wordBreakClass}`}>{t('start.birthDate')}</label>
+                  <div className="relative w-full">
                     <CalendarDays size={16} className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-slate-400" />
-                    <input type="text" id="birthDate" value={birthDate} onChange={(e) => setBirthDate(e.target.value.replace(/[^0-9]/g, ''))} maxLength={8} className={`${inputBaseStyle} pl-10`} placeholder={t('start.birthDatePlaceholder')} disabled={isLoading} />
+                    <input type="text" id="birthDate" value={birthDate} onChange={(e) => setBirthDate(e.target.value.replace(/[^0-9]/g, ''))} maxLength={8} className={`${inputBaseStyle} pl-10 w-full`} placeholder={t('start.birthDatePlaceholder')} disabled={isLoading} />
                   </div>
                 </div>
-                <div>
-                  <label htmlFor="email" className="block text-xs font-medium text-slate-600 mb-1">{t('start.email')}</label>
-                  <div className="relative">
+                <div className="w-full">
+                  <label htmlFor="email" className={`block text-xs font-medium text-slate-600 mb-1 ${wordBreakClass}`}>{t('start.email')}</label>
+                  <div className="relative w-full">
                     <Mail size={16} className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-slate-400" />
-                    <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className={`${inputBaseStyle} pl-10`} placeholder={t('start.emailPlaceholder')} disabled={isLoading} />
+                    <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className={`${inputBaseStyle} pl-10 w-full`} placeholder={t('start.emailPlaceholder')} disabled={isLoading} />
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="gender" className="block text-xs font-medium text-slate-600 mb-1">{t('start.gender')}</label>
-                  <div id="gender" className="grid grid-cols-2 gap-3">
+                <div className="w-full">
+                  <label htmlFor="gender" className={`block text-xs font-medium text-slate-600 mb-1 ${wordBreakClass}`}>{t('start.gender')}</label>
+                  <div id="gender" className="grid grid-cols-2 gap-3 w-full">
                     {genderOptions.map((option) => (
                       <button
                         key={option.value}
                         type="button"
                         onClick={() => setSelectedGender(option.value)}
-                        className={`${buttonBaseStyle} ${selectedGender === option.value ? buttonSelectedStyle : buttonUnselectedStyle}`}
+                        className={`${buttonBaseStyle} ${selectedGender === option.value ? buttonSelectedStyle : buttonUnselectedStyle} min-w-0`}
                         disabled={isLoading}
                       >
-                        {selectedGender === option.value && <Check size={16} className="mr-1" />}
-                        {option.icon}
-                        <span>{option.label}</span>
+                        {selectedGender === option.value && <Check size={16} className="mr-1 flex-shrink-0" />}
+                        <span className="flex-shrink-0">{option.icon}</span>
+                        <span className={`truncate ${wordBreakClass}`}>{option.label}</span>
                       </button>
                     ))}
                   </div>
@@ -199,115 +199,115 @@ export default function StartTestPage() {
             </div>
 
             {/* Privacy Consent Section */}
-            <div>
-              <h2 className="text-lg font-semibold text-slate-700 mb-2 flex items-center">
-                <FileText size={20} className="mr-2 text-indigo-600" /> {t('start.privacyTitle')}
+            <div className="w-full">
+              <h2 className={`text-lg font-semibold text-slate-700 mb-2 flex items-center ${wordBreakClass}`}>
+                <FileText size={20} className="mr-2 text-indigo-600 flex-shrink-0" /> {t('start.privacyTitle')}
               </h2>
-              <div className="border border-slate-200 rounded-lg p-3 max-h-40 overflow-y-auto text-xs text-slate-600 bg-slate-50 space-y-2 prose prose-xs prose-slate">
+              <div className="border border-slate-200 rounded-lg p-3 max-h-40 overflow-y-auto text-xs text-slate-600 bg-slate-50 space-y-2 prose prose-xs prose-slate w-full overflow-x-hidden">
                 {locale === 'ko' && (
                   <>
-                    <p className="font-semibold">[개인정보 수집 및 이용 동의서]</p>
-                    <p><strong className="font-medium">수집 항목:</strong> 이름, 생년월일, 이메일 주소, 성별, IP주소, User-Agent</p>
-                    <p><strong className="font-medium">수집 및 이용 목적:</strong> (1) 적성검사 서비스 제공 (개인 맞춤형 검사 결과, 사용자 맞춤형 온라인 서비스) (2) 마케팅 및 서비스 지원 (서비스 안내, 이벤트/프로모션 정보, 맞춤형 광고/마케팅 자료 발송) (3) 연구 및 개발 (품질 향상, 서비스 개선 데이터 분석, 신규 서비스/기능 연구)</p>
-                    <p><strong className="font-medium">보유 및 이용 기간:</strong> 검사 결과 제공 및 서비스 지원/활용: 수집일로부터 5년. 연구 및 결과 활용: 10년. (법령 의무 보관 기간 준수)</p>
-                    <p><strong className="font-medium">제공 및 처리 위탁:</strong> 원칙적 제3자 미제공 (법령 요구, 서비스 운영 위한 외부업체 위탁 시 사전 안내)</p>
-                    <p><strong className="font-medium">법령 준수:</strong> 개인정보 보호법 및 관련 법령 준수.</p>
-                    <p><strong className="font-medium">동의 거부 권리 및 불이익:</strong> 동의 거부 가능. 단, 거부 시 검사 결과 제공 등 서비스 이용 제한될 수 있음.</p>
-                    <p><strong className="font-medium">파기:</strong> 보유기간 만료 또는 목적 달성 후 지체없이 파기 (전자적 파일: 영구삭제, 서면: 분쇄/소각).</p>
-                    <p><strong className="font-medium">문의 및 책임자:</strong> [박에스더] / [02.523.7523] / [admin@aptitude-x.com]</p>
-                    <p className="italic">본 동의서를 충분히 읽고 내용을 확인한 후 동의를 선택해주세요.</p>
+                    <p className="font-semibold break-keep">[개인정보 수집 및 이용 동의서]</p>
+                    <p className="break-keep"><strong className="font-medium">수집 항목:</strong> 이름, 생년월일, 이메일 주소, 성별, IP주소, User-Agent</p>
+                    <p className="break-keep"><strong className="font-medium">수집 및 이용 목적:</strong> (1) 적성검사 서비스 제공 (개인 맞춤형 검사 결과, 사용자 맞춤형 온라인 서비스) (2) 마케팅 및 서비스 지원 (서비스 안내, 이벤트/프로모션 정보, 맞춤형 광고/마케팅 자료 발송) (3) 연구 및 개발 (품질 향상, 서비스 개선 데이터 분석, 신규 서비스/기능 연구)</p>
+                    <p className="break-keep"><strong className="font-medium">보유 및 이용 기간:</strong> 검사 결과 제공 및 서비스 지원/활용: 수집일로부터 5년. 연구 및 결과 활용: 10년. (법령 의무 보관 기간 준수)</p>
+                    <p className="break-keep"><strong className="font-medium">제공 및 처리 위탁:</strong> 원칙적 제3자 미제공 (법령 요구, 서비스 운영 위한 외부업체 위탁 시 사전 안내)</p>
+                    <p className="break-keep"><strong className="font-medium">법령 준수:</strong> 개인정보 보호법 및 관련 법령 준수.</p>
+                    <p className="break-keep"><strong className="font-medium">동의 거부 권리 및 불이익:</strong> 동의 거부 가능. 단, 거부 시 검사 결과 제공 등 서비스 이용 제한될 수 있음.</p>
+                    <p className="break-keep"><strong className="font-medium">파기:</strong> 보유기간 만료 또는 목적 달성 후 지체없이 파기 (전자적 파일: 영구삭제, 서면: 분쇄/소각).</p>
+                    <p className="break-keep"><strong className="font-medium">문의 및 책임자:</strong> [박에스더] / [02.523.7523] / [admin@aptitude-x.com]</p>
+                    <p className="italic break-keep">본 동의서를 충분히 읽고 내용을 확인한 후 동의를 선택해주세요.</p>
                   </>
                 )}
                 {locale === 'en' && (
                   <>
-                    <p className="font-semibold">[Consent to Collect and Use Personal Information]</p>
-                    <p><strong className="font-medium">Items Collected:</strong> Name, Date of Birth, Email Address, Gender, IP Address, User-Agent</p>
-                    <p><strong className="font-medium">Purpose of Collection and Use:</strong><br />
+                    <p className="font-semibold break-words">[Consent to Collect and Use Personal Information]</p>
+                    <p className="break-words"><strong className="font-medium">Items Collected:</strong> Name, Date of Birth, Email Address, Gender, IP Address, User-Agent</p>
+                    <p className="break-words"><strong className="font-medium">Purpose of Collection and Use:</strong><br />
                       (1) Provision of aptitude test services (personalized test results, customized online services)<br />
                       (2) Marketing and service support (service notifications, event/promotion information, delivery of personalized advertisements and marketing materials)<br />
                       (3) Research and development (quality improvement, service enhancement through data analysis, research on new services and features)</p>
-                    <p><strong className="font-medium">Retention and Use Period:</strong><br />
+                    <p className="break-words"><strong className="font-medium">Retention and Use Period:</strong><br />
                       For providing test results and service support: 5 years from the date of collection<br />
                       For research and analytical usage: 10 years<br />
                       (Compliant with legally mandated retention periods)</p>
-                    <p><strong className="font-medium">Provision to Third Parties & Outsourcing:</strong><br />
+                    <p className="break-words"><strong className="font-medium">Provision to Third Parties & Outsourcing:</strong><br />
                       In principle, personal information is not provided to third parties.<br />
                       However, if required by law or if outsourcing to external service providers is necessary for service operations, prior notice will be given.</p>
-                    <p><strong className="font-medium">Compliance with Laws:</strong><br />
+                    <p className="break-words"><strong className="font-medium">Compliance with Laws:</strong><br />
                       We comply with the Personal Information Protection Act and all applicable laws and regulations.</p>
-                    <p><strong className="font-medium">Right to Refuse Consent and Possible Disadvantages:</strong><br />
+                    <p className="break-words"><strong className="font-medium">Right to Refuse Consent and Possible Disadvantages:</strong><br />
                       You may refuse to provide consent.<br />
                       However, refusal may limit your ability to use certain services, including the provision of test results.</p>
-                    <p><strong className="font-medium">Destruction of Personal Information:</strong><br />
+                    <p className="break-words"><strong className="font-medium">Destruction of Personal Information:</strong><br />
                       Personal data will be destroyed without delay once the retention period expires or the purpose of use is fulfilled.<br />
                       (Electronic files: permanently deleted; Paper documents: shredded/incinerated)</p>
-                    <p><strong className="font-medium">Inquiries & Responsible Person:</strong><br />
+                    <p className="break-words"><strong className="font-medium">Inquiries & Responsible Person:</strong><br />
                       [Esther Park] /+82-2-523-7523/ [admin@aptitude-x.com]</p>
-                    <p className="italic">Please make sure to read this consent form carefully and confirm your agreement before proceeding.</p>
+                    <p className="italic break-words">Please make sure to read this consent form carefully and confirm your agreement before proceeding.</p>
                   </>
                 )}
                 {locale === 'ja' && (
                   <>
-                    <p className="font-semibold">【個人情報の取り扱い・利用目的への同意書】</p>
-                    <p><strong className="font-medium">取り扱い項目：</strong>氏名、生年月日、メールアドレス、性別、IPアドレス、ユーザーエージェント</p>
-                    <p><strong className="font-medium">取り扱い及び利用目的：</strong><br />
+                    <p className="font-semibold break-words">【個人情報の取り扱い・利用目的への同意書】</p>
+                    <p className="break-words"><strong className="font-medium">取り扱い項目：</strong>氏名、生年月日、メールアドレス、性別、IPアドレス、ユーザーエージェント</p>
+                    <p className="break-words"><strong className="font-medium">取り扱い及び利用目的：</strong><br />
                       (1) 適性検査サービスの提供（個別の検査結果、パーソナライズされたオンラインサービス）<br />
                       (2) マーケティング及びサービスサポート（サービス案内、イベント／プロモーション情報、パーソナライズド広告／マーケティング資料の送付）<br />
                       (3) 研究および開発（品質向上、サービス改善のためのデータ分析、新サービス/機能の研究）</p>
-                    <p><strong className="font-medium">保有および利用期間：</strong><br />
+                    <p className="break-words"><strong className="font-medium">保有および利用期間：</strong><br />
                       ・検査結果提供及びサービス支援／活用：取り扱い日から5年間<br />
                       ・研究及び結果活用：10年間<br />
                       （関連法令に基づく法定保存期間を遵守）</p>
-                    <p><strong className="font-medium">提供及び処理委託：</strong><br />
+                    <p className="break-words"><strong className="font-medium">提供及び処理委託：</strong><br />
                       原則として第三者への提供は行いません（法令に基づく場合、またはサービス運営のため外部業者へ業務委託する場合には事前に案内いたします）。<br />
                       個人情報保護法及び関連法令を遵守します。</p>
-                    <p><strong className="font-medium">同意拒否の権利及び不利益：</strong><br />
+                    <p className="break-words"><strong className="font-medium">同意拒否の権利及び不利益：</strong><br />
                       同意は任意です。ただし、同意されない場合、検査結果の提供など一部サービスの利用に制限が生じることがあります。<br />
                       （電子ファイル：完全削除、書面：裁断／焼却）</p>
-                    <p><strong className="font-medium">お問い合わせ及び管理責任者：</strong><br />
+                    <p className="break-words"><strong className="font-medium">お問い合わせ及び管理責任者：</strong><br />
                       ［パク・エステル］／+82-2-523-7523／［admin@aptitude-x.com］</p>
-                    <p className="italic">本同意書の内容を十分にお読みいただき、ご同意の上、次へお進みください。</p>
+                    <p className="italic break-words">本同意書の内容を十分にお読みいただき、ご同意の上、次へお進みください。</p>
                   </>
                 )}
                 {locale === 'vi' && (
                   <>
-                    <p className="font-semibold">[Đồng Ý Thu Thập và Sử Dụng Thông Tin Cá Nhân]</p>
-                    <p><strong className="font-medium">Thông tin thu thập:</strong> Họ tên, Ngày tháng năm sinh, Địa chỉ email, Giới tính, Địa chỉ IP, User-Agent</p>
-                    <p><strong className="font-medium">Mục đích thu thập và sử dụng:</strong><br />
+                    <p className="font-semibold break-words">[Đồng Ý Thu Thập và Sử Dụng Thông Tin Cá Nhân]</p>
+                    <p className="break-words"><strong className="font-medium">Thông tin thu thập:</strong> Họ tên, Ngày tháng năm sinh, Địa chỉ email, Giới tính, Địa chỉ IP, User-Agent</p>
+                    <p className="break-words"><strong className="font-medium">Mục đích thu thập và sử dụng:</strong><br />
                       (1) Cung cấp dịch vụ kiểm tra năng lực (kết quả kiểm tra cá nhân hóa, dịch vụ trực tuyến tùy chỉnh theo người dùng)<br />
                       (2) Hỗ trợ marketing và dịch vụ (thông báo dịch vụ, thông tin sự kiện/khuyến mãi, gửi tài liệu marketing/quảng cáo phù hợp)<br />
                       (3) Nghiên cứu và phát triển (nâng cao chất lượng, phân tích dữ liệu để cải thiện dịch vụ, nghiên cứu dịch vụ/chức năng mới)</p>
-                    <p><strong className="font-medium">Thời gian lưu trữ và sử dụng:</strong><br />
+                    <p className="break-words"><strong className="font-medium">Thời gian lưu trữ và sử dụng:</strong><br />
                       Cung cấp kết quả kiểm tra và hỗ trợ dịch vụ: 5 năm kể từ ngày thu thập<br />
                       uNghiên cứu và sử dụng dữ liệu phân tích: 10 năm<br />
                       (Tuân thủ thời hạn lưu trữ bắt buộc theo quy định pháp luật)</p>
-                    <p><strong className="font-medium">Cung cấp cho bên thứ ba & Ủy thác xử lý:</strong><br />
+                    <p className="break-words"><strong className="font-medium">Cung cấp cho bên thứ ba & Ủy thác xử lý:</strong><br />
                       Theo nguyên tắc, thông tin cá nhân không được cung cấp cho bên thứ ba.<br />
                       Trường hợp pháp luật yêu cầu hoặc cần thiết ủy thác cho đơn vị bên ngoài để vận hành dịch vụ, chúng tôi sẽ thông báo trước.</p>
-                    <p><strong className="font-medium">Tuân thủ pháp luật:</strong><br />
+                    <p className="break-words"><strong className="font-medium">Tuân thủ pháp luật:</strong><br />
                       Chúng tôi tuân thủ Luật Bảo Vệ Thông Tin Cá Nhân và các quy định pháp lý có liên quan.</p>
-                    <p><strong className="font-medium">Quyền từ chối và khả năng bị hạn chế:</strong><br />
+                    <p className="break-words"><strong className="font-medium">Quyền từ chối và khả năng bị hạn chế:</strong><br />
                       Người dùng có quyền từ chối cung cấp thông tin.<br />
                       Tuy nhiên, việc từ chối có thể dẫn đến hạn chế trong việc sử dụng một số dịch vụ, bao gồm việc cung cấp kết quả kiểm tra.</p>
-                    <p><strong className="font-medium">Hủy/Xóa thông tin:</strong><br />
+                    <p className="break-words"><strong className="font-medium">Hủy/Xóa thông tin:</strong><br />
                       Thông tin cá nhân sẽ được hủy/xóa ngay khi hết thời hạn lưu trữ hoặc khi mục đích sử dụng đã hoàn thành.<br />
                       (Tập tin điện tử: xóa vĩnh viễn; Tài liệu giấy: cắt nhỏ/tiêu hủy)</p>
-                    <p><strong className="font-medium">Liên hệ & Người phụ trách:</strong><br />
+                    <p className="break-words"><strong className="font-medium">Liên hệ & Người phụ trách:</strong><br />
                       [Park Esther] / +82-2-523-7523/ [admin@aptitude-x.com]</p>
-                    <p className="italic">Vui lòng đọc kỹ nội dung bản đồng ý này và xác nhận sự đồng ý trước khi tiếp tục.</p>
+                    <p className="italic break-words">Vui lòng đọc kỹ nội dung bản đồng ý này và xác nhận sự đồng ý trước khi tiếp tục.</p>
                   </>
                 )}
               </div>
-              <div className="mt-3 flex items-center">
+              <div className="mt-3 flex items-center w-full">
                 <input
                   type="checkbox"
                   id="privacyConsent"
                   checked={agreedToPrivacy}
                   onChange={(e) => setAgreedToPrivacy(e.target.checked)}
-                  className="h-4 w-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500 cursor-pointer"
+                  className="h-4 w-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500 cursor-pointer flex-shrink-0"
                   disabled={isLoading}
                 />
-                <label htmlFor="privacyConsent" className="ml-2 block text-sm font-medium text-slate-700 cursor-pointer">
+                <label htmlFor="privacyConsent" className={`ml-2 block text-sm font-medium text-slate-700 cursor-pointer ${wordBreakClass}`}>
                   {t('start.privacyAgree')}
                 </label>
               </div>
@@ -315,13 +315,13 @@ export default function StartTestPage() {
           </div>
 
           {error && (
-            <div className="mt-5 bg-red-50 border border-red-300 rounded-lg p-3 text-center flex items-center justify-center text-sm">
+            <div className="mt-5 bg-red-50 border border-red-300 rounded-lg p-3 text-center flex items-center justify-center text-sm w-full overflow-hidden">
               <ShieldAlert size={18} className="text-red-500 mr-2 flex-shrink-0" />
-              <p className="text-red-600 font-medium">{error}</p>
+              <p className={`text-red-600 font-medium ${wordBreakClass}`}>{error}</p>
             </div>
           )}
 
-          <div className="mt-8">
+          <div className="mt-8 w-full">
             <button
               type="button"
               onClick={handleStartTest}
@@ -334,19 +334,19 @@ export default function StartTestPage() {
             >
               {isLoading ? (
                 <>
-                  <Loader2 size={24} className="animate-spin mr-2" />
-                  <span>{t('start.processing')}</span>
+                  <Loader2 size={24} className="animate-spin mr-2 flex-shrink-0" />
+                  <span className={wordBreakClass}>{t('start.processing')}</span>
                 </>
               ) : (
                 <>
-                  <span>{t('start.startTest')}</span>
-                  <ArrowRight size={22} />
+                  <span className={wordBreakClass}>{t('start.startTest')}</span>
+                  <ArrowRight size={22} className="flex-shrink-0" />
                 </>
               )}
             </button>
           </div>
         </div>
-        <p className="mt-8 text-xs text-slate-500 text-center">
+        <p className={`mt-8 text-xs text-slate-500 text-center ${wordBreakClass} max-w-lg px-4`}>
           {t('result.copyright')}
         </p>
       </div>

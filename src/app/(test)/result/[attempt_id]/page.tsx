@@ -133,9 +133,10 @@ interface TypeDetailModalProps {
   onClose: () => void;
   initialIndex: number;
   types: any[];
+  wordBreakClass: string;
 }
 
-function TypeDetailModal({ isOpen, onClose, initialIndex, types }: TypeDetailModalProps) {
+function TypeDetailModal({ isOpen, onClose, initialIndex, types, wordBreakClass }: TypeDetailModalProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [startX, setStartX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -220,8 +221,8 @@ function TypeDetailModal({ isOpen, onClose, initialIndex, types }: TypeDetailMod
           <div className="text-xs font-medium opacity-90 mb-3">
             {String(currentIndex + 1).padStart(2, '0')} / {String(types.length).padStart(2, '0')}
           </div>
-          <h2 className="text-2xl font-bold mb-1.5 break-keep">{currentType.title}</h2>
-          <p className="text-base font-medium opacity-90 whitespace-pre-line break-keep">{currentType.theme_sentence}</p>
+          <h2 className={`text-2xl font-bold mb-1.5 ${wordBreakClass}`}>{currentType.title}</h2>
+          <p className={`text-base font-medium opacity-90 whitespace-pre-line ${wordBreakClass}`}>{currentType.theme_sentence}</p>
         </div>
         <div
           className="flex-1 p-5 overflow-y-auto"
@@ -229,7 +230,7 @@ function TypeDetailModal({ isOpen, onClose, initialIndex, types }: TypeDetailMod
         >
           <div className="flex flex-col items-center">
             <Image src={getPersonalityImagePath(currentType.original_title) || ''} alt={`${currentType.title} 이미지`} width={120} height={120} className="mb-5 object-contain" />
-            <p className="text-slate-700 text-sm leading-relaxed whitespace-pre-line text-center break-keep">{currentType.description}</p>
+            <p className={`text-slate-700 text-sm leading-relaxed whitespace-pre-line text-center ${wordBreakClass}`}>{currentType.description}</p>
           </div>
         </div>
         <div className="flex justify-center items-center p-4 bg-slate-50 border-t">
@@ -248,9 +249,10 @@ function TypeDetailModal({ isOpen, onClose, initialIndex, types }: TypeDetailMod
 interface OtherTypesSectionProps {
   allTypes: any[];
   userTypes: string[];
+  wordBreakClass: string;
 }
 
-function OtherTypesSection({ allTypes, userTypes }: OtherTypesSectionProps) {
+function OtherTypesSection({ allTypes, userTypes, wordBreakClass }: OtherTypesSectionProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTypeIndex, setSelectedTypeIndex] = useState(0);
   const { t } = useTranslation();
@@ -266,7 +268,7 @@ function OtherTypesSection({ allTypes, userTypes }: OtherTypesSectionProps) {
   return (
     <>
       <section className="bg-white rounded-2xl shadow-xl p-5 mb-8 border border-slate-200">
-        <h3 className="text-lg font-semibold text-slate-700 mb-5 text-center flex items-center justify-center break-keep">
+        <h3 className={`text-lg font-semibold text-slate-700 mb-5 text-center flex items-center justify-center ${wordBreakClass}`}>
           <Image src="/oct_logo.jpg" alt="옥타그노시스 로고" width={24} height={24} className="mr-2 rounded-full" />
           {t('result.otherTypes')}
         </h3>
@@ -276,13 +278,13 @@ function OtherTypesSection({ allTypes, userTypes }: OtherTypesSectionProps) {
               <Image src={getPersonalityImagePath(type.original_title) || ''} alt={`${type.title} 아이콘`} width={64} height={64} className="mb-2 object-contain" />
               <div className="text-center w-full">
                 <p className="font-semibold text-sm text-slate-800 break-words line-clamp-1">{type.title}</p>
-                <p className="text-[10px] text-slate-500 mt-1 leading-tight line-clamp-2 break-all">{type.theme_sentence}</p>
+                <p className={`text-[10px] text-slate-500 mt-1 leading-tight line-clamp-2 ${wordBreakClass}`}>{type.theme_sentence}</p>
               </div>
             </button>
           ))}
         </div>
       </section>
-      <TypeDetailModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} initialIndex={selectedTypeIndex} types={allTypes} />
+      <TypeDetailModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} initialIndex={selectedTypeIndex} types={allTypes} wordBreakClass={wordBreakClass} />
     </>
   );
 }
@@ -291,9 +293,11 @@ export default function ResultPage() {
   const params = useParams();
   const router = useRouter();
   const attemptId = params.attempt_id;
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const initLocale = useLocaleStore((state) => state.initLocale);
-  const locale = useLocaleStore((state) => state.locale);
+
+  // 언어별 word-break 클래스
+  const wordBreakClass = locale === 'ko' ? 'break-keep' : 'break-words';
 
   const [copySuccess, setCopySuccess] = useState(false);
   const [kakaoReady, setKakaoReady] = useState(false);
@@ -400,7 +404,7 @@ export default function ResultPage() {
     return (
       <div className="min-h-screen bg-sky-50 flex flex-col items-center justify-center text-center p-4">
         <Loader2 size={40} className="text-blue-500 animate-spin mb-4" />
-        <p className="text-base font-semibold text-slate-700 break-keep">결과를 분석 중입니다...</p>
+        <p className={`text-base font-semibold text-slate-700 ${wordBreakClass}`}>결과를 분석 중입니다...</p>
       </div>
     );
   }
@@ -410,8 +414,8 @@ export default function ResultPage() {
       <div className="min-h-screen bg-sky-50 flex flex-col items-center justify-center p-4">
         <div className="w-full max-w-sm bg-white rounded-xl shadow-xl p-6 text-center border border-red-200">
           <AlertTriangle size={40} className="text-red-500 mx-auto mb-4" />
-          <h2 className="text-lg font-semibold text-slate-800 mb-2 break-keep">결과를 불러올 수 없습니다</h2>
-          <p className="text-sm text-slate-600 mb-5 break-keep">{error?.message || data?.message || '알 수 없는 오류가 발생했습니다.'}</p>
+          <h2 className={`text-lg font-semibold text-slate-800 mb-2 ${wordBreakClass}`}>결과를 불러올 수 없습니다</h2>
+          <p className={`text-sm text-slate-600 mb-5 ${wordBreakClass}`}>{error?.message || data?.message || '알 수 없는 오류가 발생했습니다.'}</p>
           <div className="flex gap-3 justify-center">
             <button onClick={() => mutate()} className="flex-1 flex items-center justify-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md active:bg-blue-700">
               <RefreshCw size={16} className="mr-2" />다시 시도
@@ -431,8 +435,8 @@ export default function ResultPage() {
       <div className="min-h-screen bg-sky-50 flex flex-col items-center justify-center p-4">
         <div className="w-full max-w-sm bg-white rounded-xl shadow-xl p-6 text-center border border-amber-300">
           <Users size={40} className="text-amber-500 mx-auto mb-4" />
-          <h2 className="text-lg font-semibold text-slate-800 mb-2 break-keep">결과 정보 없음</h2>
-          <p className="text-sm text-slate-600 mb-5 break-keep">유효하지 않은 접근이거나, 테스트를 완료해주세요.</p>
+          <h2 className={`text-lg font-semibold text-slate-800 mb-2 ${wordBreakClass}`}>결과 정보 없음</h2>
+          <p className={`text-sm text-slate-600 mb-5 ${wordBreakClass}`}>유효하지 않은 접근이거나, 테스트를 완료해주세요.</p>
           <button onClick={() => router.push('/')} className="w-full px-5 py-2.5 bg-blue-600 text-white font-semibold rounded-lg shadow-md active:bg-blue-700">
             테스트 다시 시작하기
           </button>
@@ -469,13 +473,13 @@ export default function ResultPage() {
             <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-600 mb-2">
               {t('result.title')}
             </h1>
-            <p className="text-base text-slate-600 break-keep text-balance">
+            <p className={`text-base text-slate-600 ${wordBreakClass} text-balance`}>
               {isTie && personalityTypes.length > 1
                 ? t('result.congratsMultiple', { count: String(personalityTypes.length) })
                 : t('result.congratsSingle')}
             </p>
             {isTie && personalityTypes.length > 1 && (
-              <p className="text-xs text-slate-500 mt-1.5 break-keep text-balance">{t('result.tieNote')}</p>
+              <p className={`text-xs text-slate-500 mt-1.5 ${wordBreakClass} text-balance`}>{t('result.tieNote')}</p>
             )}
           </header>
 
@@ -500,7 +504,7 @@ export default function ResultPage() {
                         </span>
                       </div>
                       <h2 className="text-2xl font-bold mb-1.5 drop-shadow-sm">{type.title}</h2>
-                      <p className="text-base font-semibold text-white/95 break-keep text-balance">&quot;{type.theme_sentence}&quot;</p>
+                      <p className={`text-base font-semibold text-white/95 ${wordBreakClass} text-balance`}>&quot;{type.theme_sentence}&quot;</p>
                     </div>
                   </div>
 
@@ -511,7 +515,7 @@ export default function ResultPage() {
                         {type.description_points.map((point: string, i: number) => (
                           <li key={`${type.id}-desc-${i}`} className="flex items-start">
                             <CheckCircle size={14} className="text-green-500 mt-0.5 mr-2 flex-shrink-0" />
-                            <span className="text-sm text-slate-600 leading-relaxed break-keep">{point}</span>
+                            <span className={`text-sm text-slate-600 leading-relaxed ${wordBreakClass}`}>{point}</span>
                           </li>
                         ))}
                       </ul>
@@ -520,14 +524,14 @@ export default function ResultPage() {
                     <div>
                       <h3 className="text-base font-semibold text-slate-700 mb-2.5">{t('result.strengthKeywords')}</h3>
                       <div className="flex flex-wrap gap-2">
-                        {type.strength_keywords.map((kw: string) => <span key={kw} className="px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 break-keep">{kw}</span>)}
+                        {type.strength_keywords.map((kw: string) => <span key={kw} className={`px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 ${wordBreakClass}`}>{kw}</span>)}
                       </div>
                     </div>
 
                     <div>
                       <h3 className="text-base font-semibold text-slate-700 mb-2.5">{t('result.weaknessKeywords')}</h3>
                       <div className="flex flex-wrap gap-2">
-                        {type.weakness_keywords.map((kw: string) => <span key={kw} className="px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200 break-keep">{kw}</span>)}
+                        {type.weakness_keywords.map((kw: string) => <span key={kw} className={`px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200 ${wordBreakClass}`}>{kw}</span>)}
                       </div>
                     </div>
                   </div>
@@ -537,7 +541,7 @@ export default function ResultPage() {
           </section>
 
           <section className="bg-white rounded-2xl shadow-xl p-5 mb-8 border border-slate-200">
-            <h3 className="text-lg font-semibold text-slate-700 mb-4 text-center break-keep">{t('result.shareTitle')}</h3>
+            <h3 className={`text-lg font-semibold text-slate-700 mb-4 text-center ${wordBreakClass}`}>{t('result.shareTitle')}</h3>
             <div className="grid grid-cols-3 gap-3">
               {[
                 { name: t('result.shareKakao'), Icon: Share2, handler: handleKakaoShare, disabled: !kakaoReady, style: `bg-yellow-400 text-slate-800 ${!kakaoReady ? 'bg-slate-300 text-slate-500' : 'active:bg-yellow-500'}` },
@@ -555,7 +559,7 @@ export default function ResultPage() {
             </div>
           </section>
 
-          <OtherTypesSection allTypes={allTypes || []} userTypes={userTypeNames} />
+          <OtherTypesSection allTypes={allTypes || []} userTypes={userTypeNames} wordBreakClass={wordBreakClass} />
 
           <section className="bg-gradient-to-r from-sky-500 to-indigo-500 rounded-2xl shadow-xl p-6 mb-8 text-white text-center">
             <Users size={32} className="mx-auto mb-3 opacity-80" />

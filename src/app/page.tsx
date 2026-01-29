@@ -10,8 +10,11 @@ import LanguageSelector from '@/components/LanguageSelector';
 
 export default function Home() {
   const [participantCount, setParticipantCount] = useState<number | null>(null);
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const initLocale = useLocaleStore((state) => state.initLocale);
+
+  // 언어별 word-break 클래스
+  const wordBreakClass = locale === 'ko' ? 'break-keep' : 'break-words';
 
   // 언어 초기화
   useEffect(() => {
@@ -35,7 +38,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center px-4 py-12 overflow-hidden relative">
+    <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex flex-col items-center justify-center px-4 py-12 overflow-x-hidden relative">
       {/* Language Selector */}
       <div className="absolute top-4 right-4 z-50">
         <LanguageSelector />
@@ -49,7 +52,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto text-center space-y-10 relative z-10">
+      <div className="max-w-3xl mx-auto text-center space-y-10 relative z-10 w-full px-2">
         <div className="flex justify-center mb-6">
           <div className="inline-block p-3 bg-white bg-opacity-60 backdrop-blur-md rounded-xl border border-slate-200 shadow-lg">
             <Image
@@ -62,11 +65,11 @@ export default function Home() {
           </div>
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-500 leading-tight drop-shadow-sm break-keep">
+        <h1 className={`text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-500 leading-tight drop-shadow-sm ${wordBreakClass}`}>
           {t('home.title')}
         </h1>
 
-        <p className="text-lg md:text-xl text-slate-700 leading-relaxed max-w-xl mx-auto break-keep text-balance">
+        <p className={`text-lg md:text-xl text-slate-700 leading-relaxed max-w-xl mx-auto ${wordBreakClass} text-balance`}>
           {t('home.description', { count: '{count}' }).split('{count}')[0]}
           {' '}
           <span className="font-semibold text-blue-600">{t('home.countText')}</span>
@@ -79,17 +82,17 @@ export default function Home() {
           {t('home.tryFree', { programName: '' }).split(t('home.programName'))[1]}
         </p>
 
-        <div className="pt-8">
+        <div className="pt-8 w-full">
           <Link
             href="/start"
-            className="group inline-flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 via-cyan-500 to-sky-600 hover:from-blue-600 hover:via-cyan-600 hover:to-sky-700 text-white font-semibold text-xl px-10 py-4 rounded-xl shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-70"
+            className="group inline-flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 via-cyan-500 to-sky-600 hover:from-blue-600 hover:via-cyan-600 hover:to-sky-700 text-white font-semibold text-xl px-10 py-4 rounded-xl shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-70 max-w-full"
           >
-            <div className="flex items-center">
+            <div className={`flex items-center ${wordBreakClass}`}>
               {t('home.startTest')}
-              <ChevronRight size={24} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+              <ChevronRight size={24} className="ml-2 transition-transform duration-300 group-hover:translate-x-1 flex-shrink-0" />
             </div>
-            <div className="flex items-center text-sm font-normal mt-1 opacity-90">
-              <Users size={16} className="mr-1" />
+            <div className={`flex items-center text-sm font-normal mt-1 opacity-90 ${wordBreakClass}`}>
+              <Users size={16} className="mr-1 flex-shrink-0" />
               {participantCount !== null
                 ? t('home.participants', { count: participantCount.toLocaleString() })
                 : t('home.loadingParticipants')
@@ -98,8 +101,8 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="pt-12">
-          <p className="text-xs text-slate-600 leading-relaxed max-w-md mx-auto break-keep">
+        <div className="pt-12 w-full">
+          <p className={`text-xs text-slate-600 leading-relaxed max-w-md mx-auto ${wordBreakClass}`}>
             {t('home.disclaimer')}
           </p>
         </div>
